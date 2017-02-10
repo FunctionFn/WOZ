@@ -68,7 +68,7 @@ public class PlayerController : MonoBehaviour
     Rigidbody rb;
     public Pickupable heldObject;
 
-    public enum State { NoMovement, GroundedMovement, Jumping }
+    public enum State { NoMovement, GroundedMovement, Jumping, Dash } 
 
     bool holding;
     public bool beingHeld;
@@ -160,7 +160,7 @@ public class PlayerController : MonoBehaviour
                 grabBox.GetComponent<GrabBox>().isactive = false;
         }
 
-        if(DashTimer <= dashCooldown)
+        if(movementState == State.Dash && DashTimer <= dashCooldown)
         {
             ChangeMovementState(State.GroundedMovement);
             currentMaxSpeed = maxSpeed;
@@ -205,7 +205,7 @@ public class PlayerController : MonoBehaviour
         //}
 
 
-        if (movementState == State.NoMovement)
+        if (movementState == State.NoMovement || movementState == State.Dash)
         {
             
         }
@@ -272,7 +272,7 @@ public class PlayerController : MonoBehaviour
 
     void PowerUpdate()
     {
-        if (movementState != State.NoMovement)
+        if (movementState != State.NoMovement && movementState != State.Dash)
         {
             if (!holding)
             {
@@ -309,7 +309,7 @@ public class PlayerController : MonoBehaviour
 
     void Fireball()
     {
-        if(FireTimer <= 0 && !holding && movementState != State.NoMovement)
+        if(FireTimer <= 0)
         {
             GameObject go = (GameObject)Instantiate(missilePrefab, missileSpawnLocation.position, missileSpawnLocation.rotation);
 
@@ -475,7 +475,6 @@ public class PlayerController : MonoBehaviour
 		if (DashTimer <= 0) 
 		{
 			GetComponent<Rigidbody> ().velocity = Vector3.zero;
-            ChangeMovementState(State.NoMovement);
             moveDirection = new Vector3 (Input.GetAxis ("Horizontal" + PlayerNumber), moveDirection.y, Input.GetAxis ("Vertical" + PlayerNumber));
 			moveDirection.x *= rollSpeed;
 			moveDirection.z *= rollSpeed;
@@ -483,7 +482,9 @@ public class PlayerController : MonoBehaviour
 
             currentMaxSpeed = 9999999.0f;
 
-            DashTimer = DashTime;
+            DashTimer = DashTime + dashCooldown;
+
+            ChangeMovementState(State.Dash);
 		}
 	}
 
