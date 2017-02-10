@@ -2023,7 +2023,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000010765101244}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.92, y: 1.583, z: -3.61}
+  m_LocalPosition: {x: -3.47, y: 0.36, z: -3.29}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
@@ -2577,17 +2577,18 @@ MonoBehaviour:
   VIPHoldLocation: {fileID: 4000012372320268}
   throwForce: 500
   speed: 500
-  rollSpeed: 700
+  rollSpeed: 500
   airSpeedModifier: 0.75
   missileSpeed: 15
   meteorSpeed: 10
-  maxSpeed: 5
+  maxSpeed: 6
   maxSpeedHitModifier: 3
   maxSpeedDecay: 5
   currentMaxSpeed: 0
+  dashCooldown: 1.5
   FireTime: 0.5
   MeteorTime: 6
-  DashTime: 4
+  DashTime: 0.35
   GrabTime: 0.2
   DeathStunTime: 5
   MaxHoldTime: 3
