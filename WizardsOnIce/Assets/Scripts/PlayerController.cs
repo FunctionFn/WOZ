@@ -33,6 +33,7 @@ public class PlayerController : MonoBehaviour
     public float throwForce;
 
     public float speed;
+	public float rollSpeed;
     public float airSpeedModifier;
     public float missileSpeed;
     public float meteorSpeed;
@@ -41,6 +42,7 @@ public class PlayerController : MonoBehaviour
 
     public float FireTime;
     public float MeteorTime;
+    public float DashTime;
     public float GrabTime;
     public float DeathStunTime;
     public float MaxHoldTime;
@@ -49,6 +51,7 @@ public class PlayerController : MonoBehaviour
     float angle;
     public float FireTimer;
     public float MeteorTimer;
+	public float DashTimer;
     public float GrabTimer;
     public float StunTimer;
     public float HoldTimer;
@@ -135,6 +138,7 @@ public class PlayerController : MonoBehaviour
         StunTimer -= Time.deltaTime;
         iTimer -= Time.deltaTime;
         MeteorTimer -= Time.deltaTime;
+		DashTimer -= Time.deltaTime;
 
         cdtext.text = MeteorTimer.ToString();
 
@@ -149,22 +153,16 @@ public class PlayerController : MonoBehaviour
                 grabBox.GetComponent<GrabBox>().isactive = false;
         }
 
-        
-
-        if (movementState == State.NoMovement && StunTimer <= 0)
+        if(DashTimer <= 0)
         {
-            
-
-            if(GetComponent<CharacterController>().enabled == false)
-            {
-                transform.rotation = Quaternion.Euler(0, 0, 0);
-                Destroy(GetComponent<Rigidbody>());
-                GetComponent<CharacterController>().enabled = true;
-                
-            }
-
             ChangeMovementState(State.GroundedMovement);
         }
+
+        //if (movementState == State.NoMovement && StunTimer <= 0)
+        //{
+
+        //    ChangeMovementState(State.GroundedMovement);
+        //}
         if (beingHeld && HoldTimer <= 0)
         {
             holder.Chuck();
@@ -288,6 +286,11 @@ public class PlayerController : MonoBehaviour
                 if (Input.GetAxis("Trigger" + PlayerNumber) > 0.5f)
                 {
                     Fireball();
+                }
+
+                if (Input.GetButtonDown("RollDash" + PlayerNumber))
+                {
+                    RollDash();
                 }
 
             }
@@ -462,6 +465,22 @@ public class PlayerController : MonoBehaviour
             Chuck();
         
     }
+
+	public void RollDash ()
+	{
+		if (DashTimer <= 0) 
+		{
+			GetComponent<Rigidbody> ().velocity = Vector3.zero;
+            ChangeMovementState(State.NoMovement);
+            moveDirection = new Vector3 (Input.GetAxis ("Horizontal" + PlayerNumber), moveDirection.y, Input.GetAxis ("Vertical" + PlayerNumber));
+			moveDirection.x *= rollSpeed;
+			moveDirection.z *= rollSpeed;
+
+            rb.AddForce(moveDirection);
+
+            DashTimer = DashTime;
+		}
+	}
 
     // ......Beeeep, your current wait time is **8 MINUTES** ...Beeeeeeep
     public void OnHold()
