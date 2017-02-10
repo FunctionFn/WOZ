@@ -37,9 +37,14 @@ public class Bullet : MonoBehaviour
         if (other.gameObject.GetComponent<PlayerController>() && other.gameObject.GetComponent<PlayerController>().PlayerNumber != shooter)
         {
             //other.gameObject.GetComponent<PlayerController>().Damage(1);
-            other.GetComponent<Rigidbody>().velocity = Vector3.Project(other.GetComponent<Rigidbody>().velocity, left.position - GetComponent<Transform>().position);
+
+            // sets player volecity to the projection onto a vector horizontal to the bullet
+
+            Vector3 proj = Vector3.Project(other.GetComponent<Rigidbody>().velocity, left.position - GetComponent<Transform>().position);
+            other.GetComponent<Rigidbody>().velocity = (proj + other.GetComponent<Rigidbody>().velocity) * .5f;
 
             other.GetComponent<Rigidbody>().AddForce(this.GetComponent<Rigidbody>().velocity.normalized * strength);
+            other.GetComponent<PlayerController>().OnHit();
             Destroy(gameObject);
         }
 
