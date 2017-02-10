@@ -2581,6 +2581,9 @@ MonoBehaviour:
   missileSpeed: 15
   meteorSpeed: 10
   maxSpeed: 5
+  maxSpeedHitModifier: 3
+  maxSpeedDecay: 5
+  currentMaxSpeed: 0
   FireTime: 0.5
   MeteorTime: 6
   GrabTime: 0.2

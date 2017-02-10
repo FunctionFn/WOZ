@@ -38,6 +38,9 @@ public class PlayerController : MonoBehaviour
     public float meteorSpeed;
 
     public float maxSpeed;
+    public float maxSpeedHitModifier;
+    public float maxSpeedDecay;
+    public float currentMaxSpeed;
 
     public float FireTime;
     public float MeteorTime;
@@ -70,9 +73,6 @@ public class PlayerController : MonoBehaviour
     bool willFire;
 
     public PlayerController holder;
-    //public CostumeEnum equippedCostume;
-
-    // Singleton Pattern
 
     public float grabTime;
 
@@ -86,7 +86,6 @@ public class PlayerController : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        //controller = GetComponent<CharacterController>();
 
         rb = GetComponent<Rigidbody>();
 
@@ -94,8 +93,7 @@ public class PlayerController : MonoBehaviour
 
         currentHealth = maxHealth;
         holding = false;
-
-        //Physics.IgnoreLayerCollision(8, gameObject.layer);
+        
 
         willFire = false;
 
@@ -106,14 +104,16 @@ public class PlayerController : MonoBehaviour
         dead = false;
 
         cdtext.enabled = false;
+
+        currentMaxSpeed = maxSpeed;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(GetComponent<Rigidbody>().velocity.magnitude > maxSpeed)
+        if(GetComponent<Rigidbody>().velocity.magnitude > currentMaxSpeed)
         {
-            GetComponent<Rigidbody>().velocity = GetComponent<Rigidbody>().velocity.normalized* maxSpeed;
+            GetComponent<Rigidbody>().velocity = GetComponent<Rigidbody>().velocity.normalized* currentMaxSpeed;
         }
 
 
@@ -135,12 +135,18 @@ public class PlayerController : MonoBehaviour
         StunTimer -= Time.deltaTime;
         iTimer -= Time.deltaTime;
         MeteorTimer -= Time.deltaTime;
+        currentMaxSpeed -= maxSpeedDecay * Time.deltaTime;
 
         cdtext.text = MeteorTimer.ToString();
 
         if(MeteorTimer <= 0)
         {
             cdtext.enabled = false;
+        }
+
+        if(currentMaxSpeed <= maxSpeed)
+        {
+            currentMaxSpeed = maxSpeed;
         }
 
         if (GrabTimer <= 0)
@@ -469,6 +475,11 @@ public class PlayerController : MonoBehaviour
         beingHeld = true;
         Stun(MaxHoldTime + .2f, true);
         HoldTimer = MaxHoldTime;
+    }
+
+    public void OnHit()
+    {
+        currentMaxSpeed += maxSpeedHitModifier;
     }
 
     public void Kill()
