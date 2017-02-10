@@ -42,6 +42,7 @@ public class PlayerController : MonoBehaviour
     public float maxSpeedHitModifier;
     public float maxSpeedDecay;
     public float currentMaxSpeed;
+    public float dashCooldown;
 
     public float FireTime;
     public float MeteorTime;
@@ -138,7 +139,7 @@ public class PlayerController : MonoBehaviour
         StunTimer -= Time.deltaTime;
         iTimer -= Time.deltaTime;
         MeteorTimer -= Time.deltaTime;
-	DashTimer -= Time.deltaTime;
+	    DashTimer -= Time.deltaTime;
         currentMaxSpeed -= maxSpeedDecay * Time.deltaTime;
 
         cdtext.text = MeteorTimer.ToString();
@@ -159,9 +160,10 @@ public class PlayerController : MonoBehaviour
                 grabBox.GetComponent<GrabBox>().isactive = false;
         }
 
-        if(DashTimer <= 0)
+        if(DashTimer <= dashCooldown)
         {
             ChangeMovementState(State.GroundedMovement);
+            currentMaxSpeed = maxSpeed;
         }
 
         //if (movementState == State.NoMovement && StunTimer <= 0)
@@ -190,11 +192,7 @@ public class PlayerController : MonoBehaviour
 
         movementState = state;
 
-        if(movementState == State.NoMovement && !gameObject.GetComponent<Pickupable>())
-        {
-            gameObject.AddComponent<Pickupable>();
-            //transform.parent = mainCamera.transform;
-        }
+        
 
     }
 
@@ -209,7 +207,7 @@ public class PlayerController : MonoBehaviour
 
         if (movementState == State.NoMovement)
         {
-
+            
         }
         else if (movementState == State.GroundedMovement)
         {
@@ -481,8 +479,9 @@ public class PlayerController : MonoBehaviour
             moveDirection = new Vector3 (Input.GetAxis ("Horizontal" + PlayerNumber), moveDirection.y, Input.GetAxis ("Vertical" + PlayerNumber));
 			moveDirection.x *= rollSpeed;
 			moveDirection.z *= rollSpeed;
-
             rb.AddForce(moveDirection);
+
+            currentMaxSpeed = 9999999.0f;
 
             DashTimer = DashTime;
 		}
