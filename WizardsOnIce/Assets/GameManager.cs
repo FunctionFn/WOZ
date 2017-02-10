@@ -12,15 +12,22 @@ public enum LEVEL_NAMES
 public class GameManager : MonoBehaviour 
 {
 
+    public int PlayersAlive;
+
 	public LEVEL_NAMES NextLevelName;
 
-
+    private void Awake()
+    {
+        PlayersAlive = 0;
+    }
     void Update()
     {
         if (Input.GetButtonDown("Submit"))
         {
             SceneManager.LoadScene("arena");
         }
+
+        
     }
 
 	public void LoadNextScene()
@@ -33,6 +40,20 @@ public class GameManager : MonoBehaviour
     public void QuitGame()
     {
         Application.Quit();
+    }
+
+    public void AddPlayer()
+    {
+        PlayersAlive++;
+    }
+
+    public void SubPlayer()
+    {
+        PlayersAlive--;
+        if (PlayersAlive <= 1)
+        {
+            GameOver();
+        }
     }
 
     public static void GameOver()

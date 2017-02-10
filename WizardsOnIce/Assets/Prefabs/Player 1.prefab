@@ -1433,7 +1433,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000013186936530}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 17}
+  m_LocalPosition: {x: 0, y: 0, z: 10.93}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
@@ -2023,7 +2023,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000010765101244}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.6, y: 1.583, z: -2.94}
+  m_LocalPosition: {x: -3.92, y: 1.583, z: -3.61}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
@@ -2565,6 +2565,9 @@ MonoBehaviour:
   meteorIndicator: {fileID: 1000013004422816, guid: 7391da4ae5cd5f949896d5ccbd808914,
     type: 2}
   grabBox: {fileID: 1000010913025764}
+  cdtext: {fileID: 0}
+  color: {fileID: 2100000, guid: 4328548430f271149b0d7101945999bf, type: 2}
+  indicatorColor: {fileID: 2100000, guid: c82f2c899e716d344974a7ae2536ed0d, type: 2}
   playerCenter: {fileID: 4000012718752920}
   gravity: 20
   jumpSpeed: 10
@@ -2579,7 +2582,7 @@ MonoBehaviour:
   meteorSpeed: 10
   maxSpeed: 5
   FireTime: 0.5
-  MeteorTime: 3
+  MeteorTime: 6
   GrabTime: 0.2
   DeathStunTime: 5
   MaxHoldTime: 3
@@ -2590,13 +2593,14 @@ MonoBehaviour:
   StunTimer: 0
   HoldTimer: 0
   iTimer: 0
+  dead: 0
   moveDirection: {x: 0, y: 0, z: 0}
   heldObject: {fileID: 0}
   beingHeld: 0
   movementState: 0
   holder: {fileID: 0}
   grabTime: 0
-  environmentDamage: 0.3
+  environmentDamage: 0.075
 --- !u!114 &114000010869953802
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -14,11 +14,5 @@ public class Killbox : MonoBehaviour {
 		
 	}
 
-    private void OnTriggerEnter(Collider other)
-    {
-        if(other.GetComponent<PlayerController>())
-        {
-            GameManager.GameOver();
-        }
-    }
+    
 }

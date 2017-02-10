@@ -16,6 +16,11 @@ public class PlayerController : MonoBehaviour
     public GameObject meteorIndicator;
     public GameObject grabBox;
 
+    public Text cdtext;
+
+    public Material color;
+    public Material indicatorColor;
+
     public Transform playerCenter;
     public float gravity;
     public float jumpSpeed;
@@ -48,7 +53,9 @@ public class PlayerController : MonoBehaviour
     public float StunTimer;
     public float HoldTimer;
     public float iTimer;
-    
+
+    public bool dead;
+
     public Vector3 moveDirection = Vector3.zero;
 
     Rigidbody rb;
@@ -93,6 +100,12 @@ public class PlayerController : MonoBehaviour
         willFire = false;
 
         float grabTime = 0.0f;
+
+        mainCamera.GetComponent<GameManager>().AddPlayer();
+
+        dead = false;
+
+        cdtext.enabled = false;
     }
 
     // Update is called once per frame
@@ -123,7 +136,14 @@ public class PlayerController : MonoBehaviour
         iTimer -= Time.deltaTime;
         MeteorTimer -= Time.deltaTime;
 
-        if(GrabTimer <= 0)
+        cdtext.text = MeteorTimer.ToString();
+
+        if(MeteorTimer <= 0)
+        {
+            cdtext.enabled = false;
+        }
+
+        if (GrabTimer <= 0)
         {
             if(grabBox.GetComponent<GrabBox>().isactive)
                 grabBox.GetComponent<GrabBox>().isactive = false;
@@ -220,11 +240,11 @@ public class PlayerController : MonoBehaviour
             //    ChangeMovementState(State.GroundedMovement);
             //}
         }
-        if (willFire)
-        {
-            Fireball();
-            willFire = false;
-        }
+        //if (willFire)
+        //{
+        //    Fireball();
+        //    willFire = false;
+        //}
 
     }
 
@@ -241,7 +261,7 @@ public class PlayerController : MonoBehaviour
         if (Mathf.Abs(Input.GetAxis("RHorizontal" + PlayerNumber)) > 0.01f || Mathf.Abs(Input.GetAxis("RVertical" + PlayerNumber)) > 0.01f)
         {
             angle = Mathf.Atan2(Input.GetAxis("RHorizontal" + PlayerNumber), Input.GetAxis("RVertical" + PlayerNumber)) * Mathf.Rad2Deg;
-            willFire = true;
+            //willFire = true;
         }
 
 
@@ -264,6 +284,12 @@ public class PlayerController : MonoBehaviour
                 {
                     Meteor();
                 }
+
+                if (Input.GetAxis("Trigger" + PlayerNumber) > 0.5f)
+                {
+                    Fireball();
+                }
+
             }
             else if (Input.GetButtonDown("Fire" + PlayerNumber))
             {
@@ -283,6 +309,7 @@ public class PlayerController : MonoBehaviour
 
             go.GetComponent<Rigidbody>().velocity = (missileSpawnLocation.transform.forward) * missileSpeed;
             go.GetComponent<Bullet>().shooter = PlayerNumber;
+            go.transform.GetChild(0).GetComponent<Renderer>().material = color;
             FireTimer = FireTime;
         }
         
@@ -299,9 +326,16 @@ public class PlayerController : MonoBehaviour
             go.GetComponent<Rigidbody>().velocity = (go.GetComponent<Rigidbody>().transform.forward) * meteorSpeed;
             go.GetComponent<Meteor>().shooter = PlayerNumber;
 
+            go.transform.GetChild(0).GetComponent<Renderer>().material = color;
 
             GameObject go2 = (GameObject)Instantiate(meteorIndicator, meteorTarget.position, playerCenter.rotation);
+
+            go2.transform.GetChild(0).GetComponent<Renderer>().material = indicatorColor;
+
             MeteorTimer = MeteorTime;
+
+            cdtext.enabled = true;
+            cdtext.text = MeteorTimer.ToString();
         }
     }
 
@@ -393,6 +427,10 @@ public class PlayerController : MonoBehaviour
         //    Destroy(other.gameObject);
         //}
         //Destroy(other.gameObject);
+        if (other.GetComponent<Killbox>())
+        {
+            Kill();
+        }
     }
 
     void OnTriggerStay(Collider other)
@@ -431,6 +469,16 @@ public class PlayerController : MonoBehaviour
         beingHeld = true;
         Stun(MaxHoldTime + .2f, true);
         HoldTimer = MaxHoldTime;
+    }
+
+    public void Kill()
+    {
+        if (!dead)
+        {
+            dead = true;
+            mainCamera.GetComponent<GameManager>().SubPlayer();
+            Destroy(gameObject);
+        }
     }
    
 }
