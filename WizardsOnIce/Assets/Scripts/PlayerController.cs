@@ -184,14 +184,22 @@ public class PlayerController : MonoBehaviour
 
     public void ChangeMovementState(State state)
     {
-        if(movementState == State.NoMovement && state != State.NoMovement)
+        //if(movementState == State.NoMovement && state != State.NoMovement)
+        //{
+        //    Destroy(gameObject.GetComponent<Pickupable>());
+        //    transform.parent = null;
+        //}
+        if(movementState == State.Dash && state != State.Dash)
         {
-            Destroy(gameObject.GetComponent<Pickupable>());
-            transform.parent = null;
+            rb.useGravity = true;
         }
 
         movementState = state;
 
+        if(movementState == State.Dash)
+        {
+            rb.useGravity = false;
+        }
         
 
     }
@@ -215,12 +223,7 @@ public class PlayerController : MonoBehaviour
             HorizontalMoveControl();
             AimControl();
             //moveDirection.y = 0;
-            if (Input.GetButtonDown("Jump" + PlayerNumber))
-            {
-                Debug.Log("Jump" + PlayerNumber);
-                moveDirection.y = jumpSpeed;
-                ChangeMovementState(State.Jumping);
-            }
+            
 
             rb.AddForce(moveDirection * Time.deltaTime);
 
@@ -295,6 +298,7 @@ public class PlayerController : MonoBehaviour
                 if (Input.GetButtonDown("RollDash" + PlayerNumber))
                 {
                     RollDash();
+
                 }
 
             }
@@ -481,7 +485,6 @@ public class PlayerController : MonoBehaviour
             rb.AddForce(moveDirection);
 
             currentMaxSpeed = 9999999.0f;
-
             DashTimer = DashTime + dashCooldown;
 
             ChangeMovementState(State.Dash);
