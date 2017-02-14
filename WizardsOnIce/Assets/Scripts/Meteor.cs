@@ -39,6 +39,7 @@ public class Meteor : MonoBehaviour
             Vector3 dir = other.GetComponent<Rigidbody>().position - GetComponent<Rigidbody>().position;
 
             other.GetComponent<Rigidbody>().AddForce(new Vector3(dir.x, 0, dir.z).normalized * strength);
+            other.GetComponent<PlayerController>().OnHit();
         }
 
        

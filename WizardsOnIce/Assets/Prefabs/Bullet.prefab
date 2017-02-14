@@ -297,7 +297,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shooter: 
   strength: 200
-  environmentDamage: 0.425
+  environmentDamage: 0.5
   left: {fileID: 4000013155207636}
 --- !u!136 &136000013665981620
 CapsuleCollider:
