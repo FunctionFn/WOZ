@@ -43,7 +43,7 @@ public class Bullet : MonoBehaviour
             Vector3 proj = Vector3.Project(other.GetComponent<Rigidbody>().velocity, left.position - GetComponent<Transform>().position);
             other.GetComponent<Rigidbody>().velocity = (proj + other.GetComponent<Rigidbody>().velocity) * .5f;
 
-            other.GetComponent<Rigidbody>().AddForce(this.GetComponent<Rigidbody>().velocity.normalized * strength);
+            other.GetComponent<Rigidbody>().AddForce(this.GetComponent<Rigidbody>().velocity.normalized * strength, ForceMode.Impulse);
             other.GetComponent<PlayerController>().OnHit();
             Destroy(gameObject);
         }

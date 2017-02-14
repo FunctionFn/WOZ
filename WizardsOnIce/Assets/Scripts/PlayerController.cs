@@ -46,6 +46,7 @@ public class PlayerController : MonoBehaviour
     public float brakeSpeed;
     public float currentMaxSpeed;
     public float dashCooldown;
+    public float turnRate;
 
     public float FireTime;
     public float MeteorTime;
@@ -269,9 +270,9 @@ public class PlayerController : MonoBehaviour
 
             rb.AddForce(moveDirection * Time.deltaTime);
 
-            playerCenter.transform.rotation = Quaternion.Euler(0, angle, 0);
+            //playerCenter.transform.rotation = Quaternion.Euler(0, angle, 0);
+            transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.Euler(0, angle, 0), turnRate * Time.deltaTime);
 
-            
 
         }
         //else if (movementState == State.Jumping)
@@ -533,7 +534,7 @@ public class PlayerController : MonoBehaviour
             moveDirection = new Vector3 (Input.GetAxis ("Horizontal" + PlayerNumber), moveDirection.y, Input.GetAxis ("Vertical" + PlayerNumber));
 			moveDirection.x *= rollSpeed;
 			moveDirection.z *= rollSpeed;
-            rb.AddForce(moveDirection);
+            rb.AddForce(moveDirection, ForceMode.Impulse);
 
             currentMaxSpeed = 9999999.0f;
             DashTimer = DashTime + dashCooldown;

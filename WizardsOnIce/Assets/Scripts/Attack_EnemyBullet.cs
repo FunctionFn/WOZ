@@ -32,7 +32,8 @@ public class Attack_EnemyBullet : MonoBehaviour
         if (col.gameObject.GetComponent<PlayerController>())
         {
             //col.gameObject.GetComponent<PlayerController>().Damage(dmg);
-            col.GetComponent<Rigidbody>().AddForce(this.GetComponent<Rigidbody>().velocity.normalized * strength);
+            col.GetComponent<Rigidbody>().AddForce(this.GetComponent<Rigidbody>().velocity.normalized * strength, ForceMode.Impulse);
+            col.GetComponent<PlayerController>().OnHit();
             Destroy(gameObject);
         }
 

@@ -2645,16 +2645,17 @@ MonoBehaviour:
   VIPHoldLocation: {fileID: 4000012372320268}
   throwForce: 500
   speed: 500
-  rollSpeed: 500
+  rollSpeed: 11
   airSpeedModifier: 0.75
   missileSpeed: 15
   meteorSpeed: 10
   maxSpeed: 6
-  maxSpeedHitModifier: 3
+  maxSpeedHitModifier: 4
   maxSpeedDecay: 5
   brakeSpeed: 6
   currentMaxSpeed: 0
   dashCooldown: 1.5
+  turnRate: 500
   FireTime: 0.5
   MeteorTime: 6
   DashTime: 0.35

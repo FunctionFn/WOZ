@@ -267,7 +267,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shooter: 
-  strength: 300
+  strength: 500
   environmentDamage: 6
 --- !u!136 &136000012082769544
 CapsuleCollider:
