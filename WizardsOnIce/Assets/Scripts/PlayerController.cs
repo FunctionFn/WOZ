@@ -16,6 +16,8 @@ public class PlayerController : MonoBehaviour
     public GameObject meteorIndicator;
     public GameObject grabBox;
 
+    public GameObject IceBrake;
+
     public Text cdtext;
 
     public Material color;
@@ -41,6 +43,7 @@ public class PlayerController : MonoBehaviour
     public float maxSpeed;
     public float maxSpeedHitModifier;
     public float maxSpeedDecay;
+    public float brakeSpeed;
     public float currentMaxSpeed;
     public float dashCooldown;
 
@@ -68,7 +71,7 @@ public class PlayerController : MonoBehaviour
     Rigidbody rb;
     public Pickupable heldObject;
 
-    public enum State { NoMovement, GroundedMovement, Jumping, Dash } 
+    public enum State { NoMovement, GroundedMovement, Jumping, Dash, Braking } 
 
     bool holding;
     public bool beingHeld;
@@ -110,6 +113,8 @@ public class PlayerController : MonoBehaviour
         cdtext.enabled = false;
 
         currentMaxSpeed = maxSpeed;
+
+        IceBrake.GetComponent<Renderer>().enabled = false;
     }
 
     // Update is called once per frame
@@ -117,9 +122,12 @@ public class PlayerController : MonoBehaviour
     {
         if(GetComponent<Rigidbody>().velocity.magnitude > currentMaxSpeed)
         {
-            GetComponent<Rigidbody>().velocity = GetComponent<Rigidbody>().velocity.normalized* currentMaxSpeed;
+            Vector3 v = GetComponent<Rigidbody>().velocity.normalized* currentMaxSpeed;
+
+            GetComponent<Rigidbody>().velocity = new Vector3(v.x, GetComponent<Rigidbody>().velocity.y, v.z);
         }
 
+        rb.angularVelocity = Vector3.zero;
 
         ControlUpdate();
         PowerUpdate();
@@ -140,7 +148,39 @@ public class PlayerController : MonoBehaviour
         iTimer -= Time.deltaTime;
         MeteorTimer -= Time.deltaTime;
 	    DashTimer -= Time.deltaTime;
-        currentMaxSpeed -= maxSpeedDecay * Time.deltaTime;
+
+        if (currentMaxSpeed > maxSpeed)
+        {
+            IceBrake.GetComponent<Renderer>().enabled = false;
+            currentMaxSpeed -= maxSpeedDecay * Time.deltaTime;
+            if(currentMaxSpeed < maxSpeed)
+            {
+                currentMaxSpeed = maxSpeed;
+            }
+        }
+        else
+        {
+            
+
+            if (movementState != State.Braking)
+            {
+                currentMaxSpeed = maxSpeed;
+                IceBrake.GetComponent<Renderer>().enabled = false;
+            }
+            else
+            {
+                IceBrake.GetComponent<Renderer>().enabled = true;
+                Color c = IceBrake.GetComponent<Renderer>().material.color;
+                IceBrake.GetComponent<Renderer>().material.SetColor("_Color", new Color(c.r, c.g, c.b, 1.0f - currentMaxSpeed / maxSpeed));
+
+                currentMaxSpeed -= brakeSpeed * Time.deltaTime;
+                if (currentMaxSpeed < 0)
+                {
+                    currentMaxSpeed = 0;
+                }
+            }
+        }
+    
 
         cdtext.text = MeteorTimer.ToString();
 
@@ -149,10 +189,10 @@ public class PlayerController : MonoBehaviour
             cdtext.enabled = false;
         }
 
-        if(currentMaxSpeed <= maxSpeed)
-        {
-            currentMaxSpeed = maxSpeed;
-        }
+        
+        
+        
+        
 
         if (GrabTimer <= 0)
         {
@@ -184,14 +224,26 @@ public class PlayerController : MonoBehaviour
 
     public void ChangeMovementState(State state)
     {
-        if(movementState == State.NoMovement && state != State.NoMovement)
+        //if(movementState == State.NoMovement && state != State.NoMovement)
+        //{
+        //    Destroy(gameObject.GetComponent<Pickupable>());
+        //    transform.parent = null;
+        //}
+        if(movementState == State.Dash && state != State.Dash)
         {
-            Destroy(gameObject.GetComponent<Pickupable>());
-            transform.parent = null;
+            rb.useGravity = true;
         }
+
+        
 
         movementState = state;
 
+        if(movementState == State.Dash)
+        {
+            rb.useGravity = false;
+        }
+
+        
         
 
     }
@@ -209,18 +261,11 @@ public class PlayerController : MonoBehaviour
         {
             
         }
-        else if (movementState == State.GroundedMovement)
+        else if (movementState == State.GroundedMovement || movementState == State.Braking)
         {
             
             HorizontalMoveControl();
             AimControl();
-            //moveDirection.y = 0;
-            if (Input.GetButtonDown("Jump" + PlayerNumber))
-            {
-                Debug.Log("Jump" + PlayerNumber);
-                moveDirection.y = jumpSpeed;
-                ChangeMovementState(State.Jumping);
-            }
 
             rb.AddForce(moveDirection * Time.deltaTime);
 
@@ -229,19 +274,19 @@ public class PlayerController : MonoBehaviour
             
 
         }
-        else if (movementState == State.Jumping)
-        {
-            HorizontalMoveControl();
-            AimControl();
-            rb.AddForce(moveDirection * Time.deltaTime * airSpeedModifier);
-            moveDirection.y -= (gravity) * Time.deltaTime;
-            playerCenter.transform.rotation = Quaternion.Euler(0, angle, 0);
+        //else if (movementState == State.Jumping)
+        //{
+        //    HorizontalMoveControl();
+        //    AimControl();
+        //    rb.AddForce(moveDirection * Time.deltaTime * airSpeedModifier);
+        //    moveDirection.y -= (gravity) * Time.deltaTime;
+        //    playerCenter.transform.rotation = Quaternion.Euler(0, angle, 0);
 
-            //if(controller.isGrounded && moveDirection.y < 0)
-            //{
-            //    ChangeMovementState(State.GroundedMovement);
-            //}
-        }
+        //    //if(controller.isGrounded && moveDirection.y < 0)
+        //    //{
+        //    //    ChangeMovementState(State.GroundedMovement);
+        //    //}
+        //}
         //if (willFire)
         //{
         //    Fireball();
@@ -276,7 +321,11 @@ public class PlayerController : MonoBehaviour
         {
             if (!holding)
             {
-                if(Input.GetButtonDown("Fire" + PlayerNumber))
+                if (Input.GetButtonDown("Brake" + PlayerNumber))
+                {
+                    ChangeMovementState(State.Braking);
+                }
+                if (Input.GetButtonDown("Fire" + PlayerNumber))
                 {
                     grabBox.GetComponent<GrabBox>().SetActive(true);
                     GrabTimer = GrabTime;
@@ -295,7 +344,13 @@ public class PlayerController : MonoBehaviour
                 if (Input.GetButtonDown("RollDash" + PlayerNumber))
                 {
                     RollDash();
+
                 }
+                if(Input.GetButtonUp("Brake" + PlayerNumber))
+                {
+                    ChangeMovementState(State.GroundedMovement);
+                }
+
 
             }
             else if (Input.GetButtonDown("Fire" + PlayerNumber))
@@ -481,7 +536,6 @@ public class PlayerController : MonoBehaviour
             rb.AddForce(moveDirection);
 
             currentMaxSpeed = 9999999.0f;
-
             DashTimer = DashTime + dashCooldown;
 
             ChangeMovementState(State.Dash);
@@ -498,6 +552,10 @@ public class PlayerController : MonoBehaviour
 
     public void OnHit()
     {
+        if(currentMaxSpeed < maxSpeed)
+        {
+            currentMaxSpeed = maxSpeed;
+        }
         currentMaxSpeed += maxSpeedHitModifier;
     }
 
