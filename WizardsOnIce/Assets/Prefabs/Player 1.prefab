@@ -2657,14 +2657,14 @@ MonoBehaviour:
   dashCooldown: 1.5
   turnRate: 500
   FireTime: 0.5
-  MeteorTime: 6
+  AbilityTime: 5
   DashTime: 0.35
   GrabTime: 0.2
   DeathStunTime: 5
   MaxHoldTime: 3
   iTime: 7
   FireTimer: 0
-  MeteorTimer: 0
+  AbilityTimer: 0
   DashTimer: 0
   GrabTimer: 0
   StunTimer: 0

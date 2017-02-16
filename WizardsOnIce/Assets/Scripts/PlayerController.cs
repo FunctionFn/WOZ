@@ -12,8 +12,6 @@ public class PlayerController : MonoBehaviour
 
     public GameObject mainCamera;
     public GameObject missilePrefab;
-    public GameObject meteorPrefab;
-    public GameObject meteorIndicator;
     public GameObject grabBox;
 
     public GameObject IceBrake;
@@ -28,8 +26,7 @@ public class PlayerController : MonoBehaviour
     public float jumpSpeed;
 
     public Transform missileSpawnLocation;
-    public Transform meteorSpawnLocation;
-    public Transform meteorTarget;
+    public Transform abilityTarget;
     public Transform VIPHoldLocation;
 
     public float throwForce;
@@ -38,7 +35,6 @@ public class PlayerController : MonoBehaviour
 	public float rollSpeed;
     public float airSpeedModifier;
     public float missileSpeed;
-    public float meteorSpeed;
 
     public float maxSpeed;
     public float maxSpeedHitModifier;
@@ -49,7 +45,6 @@ public class PlayerController : MonoBehaviour
     public float turnRate;
 
     public float FireTime;
-    public float MeteorTime;
     public float DashTime;
     public float GrabTime;
     public float DeathStunTime;
@@ -58,7 +53,7 @@ public class PlayerController : MonoBehaviour
 
     float angle;
     public float FireTimer;
-    public float MeteorTimer;
+    public float AbilityTimer;
 	public float DashTimer;
     public float GrabTimer;
     public float StunTimer;
@@ -71,6 +66,8 @@ public class PlayerController : MonoBehaviour
 
     Rigidbody rb;
     public Pickupable heldObject;
+
+    public PlayerAbility playerSkill;
 
     public enum State { NoMovement, GroundedMovement, Jumping, Dash, Braking } 
 
@@ -101,7 +98,9 @@ public class PlayerController : MonoBehaviour
 
         currentHealth = maxHealth;
         holding = false;
-        
+
+        playerSkill.Initialize(color, indicatorColor, PlayerNumber, ref abilityTarget);
+
 
         willFire = false;
 
@@ -147,7 +146,7 @@ public class PlayerController : MonoBehaviour
         HoldTimer -= Time.deltaTime;
         StunTimer -= Time.deltaTime;
         iTimer -= Time.deltaTime;
-        MeteorTimer -= Time.deltaTime;
+        AbilityTimer -= Time.deltaTime;
 	    DashTimer -= Time.deltaTime;
 
         if (currentMaxSpeed > maxSpeed)
@@ -183,9 +182,9 @@ public class PlayerController : MonoBehaviour
         }
     
 
-        cdtext.text = MeteorTimer.ToString();
+        cdtext.text = AbilityTimer.ToString();
 
-        if(MeteorTimer <= 0)
+        if(AbilityTimer <= 0)
         {
             cdtext.enabled = false;
         }
@@ -334,7 +333,7 @@ public class PlayerController : MonoBehaviour
                 }
                 if(Input.GetButtonDown("Meteor" + PlayerNumber))
                 {
-                    Meteor();
+                    Ability();
                 }
 
                 if (Input.GetAxis("Trigger" + PlayerNumber) > 0.5f)
@@ -378,27 +377,16 @@ public class PlayerController : MonoBehaviour
         
     }
 
-    void Meteor()
+    void Ability()
     {
-        if (MeteorTimer <= 0)
+        if (AbilityTimer <= 0)
         {
-            GameObject go = (GameObject)Instantiate(meteorPrefab, meteorSpawnLocation.position, meteorSpawnLocation.rotation);
+            playerSkill.TriggerAbility();
 
-            go.GetComponent<Rigidbody>().transform.LookAt(meteorTarget);
-
-            go.GetComponent<Rigidbody>().velocity = (go.GetComponent<Rigidbody>().transform.forward) * meteorSpeed;
-            go.GetComponent<Meteor>().shooter = PlayerNumber;
-
-            go.transform.GetChild(0).GetComponent<Renderer>().material = color;
-
-            GameObject go2 = (GameObject)Instantiate(meteorIndicator, meteorTarget.position, playerCenter.rotation);
-
-            go2.transform.GetChild(0).GetComponent<Renderer>().material = indicatorColor;
-
-            MeteorTimer = MeteorTime;
+            AbilityTimer = playerSkill.GetAbilityTime();
 
             cdtext.enabled = true;
-            cdtext.text = MeteorTimer.ToString();
+            cdtext.text = AbilityTimer.ToString();
         }
     }
 
