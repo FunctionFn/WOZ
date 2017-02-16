@@ -107,7 +107,7 @@ public class PlayerController : MonoBehaviour
 
         float grabTime = 0.0f;
 
-        mainCamera.GetComponent<GameManager>().AddPlayer();
+        mainCamera.GetComponent<GameManager>().AddPlayer(this.GetComponent<PlayerController>());
 
         dead = false;
 
@@ -565,7 +565,7 @@ public class PlayerController : MonoBehaviour
         if (!dead)
         {
             dead = true;
-            mainCamera.GetComponent<GameManager>().SubPlayer();
+            mainCamera.GetComponent<GameManager>().SubPlayer(this.GetComponent<PlayerController>());
             Destroy(gameObject);
         }
     }

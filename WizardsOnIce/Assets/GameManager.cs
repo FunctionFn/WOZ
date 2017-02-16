@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine.SceneManagement;
 
 public enum LEVEL_NAMES
@@ -12,13 +13,13 @@ public enum LEVEL_NAMES
 public class GameManager : MonoBehaviour 
 {
 
-    public int PlayersAlive;
+    public List<PlayerController> PlayersAlive;
 
 	public LEVEL_NAMES NextLevelName;
 
     private void Awake()
     {
-        PlayersAlive = 0;
+
     }
     void Update()
     {
@@ -42,15 +43,15 @@ public class GameManager : MonoBehaviour
         Application.Quit();
     }
 
-    public void AddPlayer()
+    public void AddPlayer(PlayerController p)
     {
-        PlayersAlive++;
+        PlayersAlive.Add(p);
     }
 
-    public void SubPlayer()
+    public void SubPlayer(PlayerController p)
     {
-        PlayersAlive--;
-        if (PlayersAlive <= 1)
+        PlayersAlive.Remove(p);
+        if (PlayersAlive.Count <= 1)
         {
             GameOver();
         }
