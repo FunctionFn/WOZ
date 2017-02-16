@@ -313,11 +313,6 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: df96332c350dab946ae68f9d295834eb, type: 2}
   m_IsPrefabParent: 0
---- !u!4 &615629656 stripped
-Transform:
-  m_PrefabParentObject: {fileID: 4000012856157736, guid: 63e40eb59c87a164ebfebebbde3967c2,
-    type: 2}
-  m_PrefabInternal: {fileID: 298005375}
 --- !u!1 &802158862
 GameObject:
   m_ObjectHideFlags: 0
@@ -531,7 +526,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bee93ce8cb5c5ea4696147e572ca18b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PlayersAlive: 0
+  PlayersAlive: []
   NextLevelName: 0
 --- !u!82 &953726568
 AudioSource:
@@ -648,14 +643,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: beb50caee414e3040a9d55e202d5560f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_DampTime: 0.2
-  m_ScreenEdgeBuffer: 4
+  m_DampTime: 0.5
   m_MinSize: 6.5
-  m_Targets:
-  - {fileID: 615629656}
-  - {fileID: 1507246563}
-  - {fileID: 1426544149}
-  - {fileID: 1667305663}
+  gm: {fileID: 953726567}
+  zOffset: -7.14
+  yOffset: 4.38
+  maxY: 17
+  minX: -6
+  maxX: 6
+  minZ: -8
+  maxZ: 8
 --- !u!1 &1107984647
 GameObject:
   m_ObjectHideFlags: 0
@@ -1059,16 +1056,6 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1426256664}
---- !u!4 &1426544149 stripped
-Transform:
-  m_PrefabParentObject: {fileID: 4000012856157736, guid: 63e40eb59c87a164ebfebebbde3967c2,
-    type: 2}
-  m_PrefabInternal: {fileID: 2077146871}
---- !u!4 &1507246563 stripped
-Transform:
-  m_PrefabParentObject: {fileID: 4000012856157736, guid: 63e40eb59c87a164ebfebebbde3967c2,
-    type: 2}
-  m_PrefabInternal: {fileID: 1217079896}
 --- !u!1 &1650906931
 GameObject:
   m_ObjectHideFlags: 0
@@ -1215,11 +1202,6 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: df96332c350dab946ae68f9d295834eb, type: 2}
   m_IsPrefabParent: 0
---- !u!4 &1667305663 stripped
-Transform:
-  m_PrefabParentObject: {fileID: 4000012856157736, guid: 63e40eb59c87a164ebfebebbde3967c2,
-    type: 2}
-  m_PrefabInternal: {fileID: 917029735}
 --- !u!4 &1693888364 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4000013563465924, guid: df96332c350dab946ae68f9d295834eb,

@@ -3,10 +3,17 @@
 public class CameraControl : MonoBehaviour
 {
     public float m_DampTime = 0.2f;                 // Approximate time for the camera to refocus.
-    public float m_ScreenEdgeBuffer = 4f;           // Space between the top/bottom most target and the screen edge.
     public float m_MinSize = 6.5f;                  // The smallest orthographic size the camera can be.
-    public Transform[] m_Targets; // All the targets the camera needs to encompass.
-    public float smoothTime;
+    //public Transform[] m_Targets; // All the targets the camera needs to encompass.
+
+    public GameManager gm;
+    public float zOffset;
+    public float yOffset;
+    public float maxY;
+    public float minX;
+    public float maxX;
+    public float minZ;
+    public float maxZ;
 
     private Camera m_Camera;                        // Used for referencing the camera.
     private float m_ZoomSpeed;                      // Reference speed for the smooth damping of the orthographic size.
@@ -26,7 +33,7 @@ public class CameraControl : MonoBehaviour
         Move();
 
         // Change the size of the camera based.
-        Zoom();
+        
     }
 
 
@@ -34,7 +41,7 @@ public class CameraControl : MonoBehaviour
     {
         // Find the average position of the targets.
         FindAveragePosition();
-
+        Zoom();
         // Smoothly transition to that position.
         transform.position = Vector3.SmoothDamp(transform.position, m_DesiredPosition, ref m_MoveVelocity, m_DampTime);
     }
@@ -46,14 +53,16 @@ public class CameraControl : MonoBehaviour
         int numTargets = 0;
 
         // Go through all the targets and add their positions together.
-        for (int i = 0; i < m_Targets.Length; i++)
+        for (int i = 0; i < gm.PlayersAlive.Count; i++)
         {
             // If the target isn't active, go on to the next one.
-            if (!m_Targets[i].gameObject.activeSelf)
+            if (!gm.PlayersAlive[i].gameObject.activeSelf)
                 continue;
 
             // Add to the average and increment the number of targets in the average.
-            averagePos += m_Targets[i].position;
+            averagePos += gm.PlayersAlive[i].transform.position;
+            averagePos += gm.PlayersAlive[i].meteorTarget.transform.position;
+            numTargets++;
             numTargets++;
         }
 
@@ -61,11 +70,16 @@ public class CameraControl : MonoBehaviour
         if (numTargets > 0)
             averagePos /= numTargets;
 
+        averagePos.z += zOffset;
+
         // Keep the same y value.
         averagePos.y = transform.position.y;
+        averagePos.x = Mathf.Clamp(averagePos.x, minX, maxX);
+        averagePos.z = Mathf.Clamp(averagePos.z, minZ, maxZ);
 
         // The desired position is the average position;
         m_DesiredPosition = averagePos;
+        
     }
 
 
@@ -73,7 +87,12 @@ public class CameraControl : MonoBehaviour
     {
         // Find the required size based on the desired position and smoothly transition to that size.
         float distance = FindCameraHeight();
-        transform.position = Vector3.SmoothDamp(transform.position, new Vector3(transform.position.x, transform.position.y + distance, transform.position.z), ref m_MoveVelocity, smoothTime, m_DampTime);
+        m_DesiredPosition.y = distance + yOffset;
+        if(m_DesiredPosition.y > maxY)
+        {
+            m_DesiredPosition.y = maxY;
+        }
+        //transform.position = Vector3.SmoothDamp(transform.position, new Vector3(transform.position.x, transform.position.y + distance, transform.position.z), ref m_MoveVelocity, smoothTime, m_DampTime);
     }
 
 
@@ -118,21 +137,22 @@ public class CameraControl : MonoBehaviour
     {
         float distance = 0f;
 
-        for (int i = 0; i < m_Targets.Length; i++)
+        for (int i = 0; i < gm.PlayersAlive.Count; i++)
         {
             // ... and if they aren't active continue on to the next target.
-            if (!m_Targets[i].gameObject.activeSelf)
+            if (!gm.PlayersAlive[i].gameObject.activeSelf)
                 continue;
 
-            for(int j = i + 1; j < m_Targets.Length; j++)
+            for(int j = i + 1; j < gm.PlayersAlive.Count; j++)
             {
-                if (!m_Targets[i].gameObject.activeSelf)
+                if (!gm.PlayersAlive[i].gameObject.activeSelf)
                     continue;
 
-                distance = Mathf.Max(distance, Vector3.Distance(m_Targets[i].position, m_Targets[j].position));
+                distance = Mathf.Max(distance, Vector3.Distance(gm.PlayersAlive[i].transform.position, gm.PlayersAlive[j].transform.position));
+                distance = Mathf.Max(distance, Vector3.Distance(gm.PlayersAlive[i].meteorTarget.transform.position, gm.PlayersAlive[j].transform.position));
+                distance = Mathf.Max(distance, Vector3.Distance(gm.PlayersAlive[i].transform.position, gm.PlayersAlive[j].meteorTarget.transform.position));
+                distance = Mathf.Max(distance, Vector3.Distance(gm.PlayersAlive[i].meteorTarget.transform.position, gm.PlayersAlive[j].meteorTarget.transform.position));
             }
-
-
         }
 
 
