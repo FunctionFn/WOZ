@@ -6,7 +6,7 @@ public class CameraControl : MonoBehaviour
     public float m_ScreenEdgeBuffer = 4f;           // Space between the top/bottom most target and the screen edge.
     public float m_MinSize = 6.5f;                  // The smallest orthographic size the camera can be.
     public Transform[] m_Targets; // All the targets the camera needs to encompass.
-
+    public float smoothTime;
 
     private Camera m_Camera;                        // Used for referencing the camera.
     private float m_ZoomSpeed;                      // Reference speed for the smooth damping of the orthographic size.
@@ -149,6 +149,6 @@ public class CameraControl : MonoBehaviour
         transform.position = m_DesiredPosition;
 
         // Find and set the required size of the camera.
-        m_Camera.orthographicSize = FindRequiredSize();
+        //m_Camera.orthographicSize = FindRequiredSize();
     }
 }
