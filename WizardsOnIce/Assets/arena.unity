@@ -508,12 +508,12 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 953726561}
-  m_LocalRotation: {x: 0.6096515, y: -0, z: -0, w: 0.7926696}
-  m_LocalPosition: {x: 0, y: 19.23, z: -5.47}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 75.105, y: 0, z: 0}
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 986117570}
   m_RootOrder: 0
 --- !u!114 &953726567
 MonoBehaviour:
@@ -526,7 +526,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bee93ce8cb5c5ea4696147e572ca18b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PlayersAlive: 0
+  PlayersAlive: []
   NextLevelName: 0
 --- !u!82 &953726568
 AudioSource:
@@ -602,6 +602,57 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 0
+--- !u!1 &986117569
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 986117570}
+  - 114: {fileID: 986117571}
+  m_Layer: 0
+  m_Name: CameraControl
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &986117570
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 986117569}
+  m_LocalRotation: {x: 0.6096515, y: -0, z: -0, w: 0.7926696}
+  m_LocalPosition: {x: 0, y: 18.15, z: -9.55}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Children:
+  - {fileID: 953726566}
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+--- !u!114 &986117571
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 986117569}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: beb50caee414e3040a9d55e202d5560f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_DampTime: 0.5
+  m_MinSize: 6.5
+  gm: {fileID: 953726567}
+  zOffset: -7.14
+  yOffset: 4.38
+  maxY: 17
+  minX: -6
+  maxX: 6
+  minZ: -8
+  maxZ: 8
 --- !u!1 &1107984647
 GameObject:
   m_ObjectHideFlags: 0
