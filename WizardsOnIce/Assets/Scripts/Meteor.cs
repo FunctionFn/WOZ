@@ -9,17 +9,26 @@ public class Meteor : PlayerAbility
     public float strength;
     public float environmentDamage;
 
+    // CAN BE CHANGED FOR BALANCE
     public float meteorSpeed = 10.0f;
+    // CAN BE CHANGED FOR BALANCE
 
     public GameObject meteorIndicator;
 
+    public Transform meteorSpawn;
+
     void Start()
     {
-        abilityPrefab = (GameObject)Instantiate(Resources.Load("Meteor"));
-        meteorIndicator = (GameObject)Instantiate(Resources.Load("MeteorIndicator"));
-        abilityTime = 5.0f;
+        abilityPrefab = (GameObject)(Resources.Load("Meteor"));
+        meteorIndicator = (GameObject)(Resources.Load("MeteorIndicator"));
 
-        Physics.IgnoreLayerCollision(10, gameObject.layer);
+        // CAN BE CHANGED FOR BALANCE
+        abilityTime = 5.0f;
+        // CAN BE CHANGED FOR BALANCE
+
+        meteorSpawn = playerObject.transform.Find("PlayerCenter/MeteorSpawn");
+
+            Physics.IgnoreLayerCollision(10, gameObject.layer);
     }
 
     // Update is called once per frame
@@ -55,7 +64,7 @@ public class Meteor : PlayerAbility
 
     public override void TriggerAbility()
     {
-        GameObject go = (GameObject)Instantiate(abilityPrefab, meteorSpawnLocation.position, meteorSpawnLocation.rotation);
+        GameObject go = (GameObject)Instantiate(abilityPrefab, meteorSpawn.position, meteorSpawn.rotation);
 
         go.GetComponent<Rigidbody>().transform.LookAt(target);
 
@@ -64,7 +73,7 @@ public class Meteor : PlayerAbility
 
         go.transform.GetChild(0).GetComponent<Renderer>().material = playerColor;
 
-        GameObject go2 = (GameObject)Instantiate(meteorIndicator, target.position, playerCenter.rotation);
+        GameObject go2 = (GameObject)Instantiate(meteorIndicator, target.position, playerTransform.rotation);
 
         go2.transform.GetChild(0).GetComponent<Renderer>().material = indicatorColor;
     }

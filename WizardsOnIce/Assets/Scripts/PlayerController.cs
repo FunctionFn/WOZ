@@ -99,7 +99,11 @@ public class PlayerController : MonoBehaviour
         currentHealth = maxHealth;
         holding = false;
 
-        playerSkill.Initialize(color, indicatorColor, PlayerNumber, ref abilityTarget);
+        // Change this to be added by menu system!!
+        playerSkill = gameObject.AddComponent<Meteor>();
+        // Change this to be added by menu system!!
+
+        playerSkill.Initialize(color, indicatorColor, PlayerNumber, gameObject);//abilityTarget, playerCenter);
 
 
         willFire = false;
@@ -331,7 +335,7 @@ public class PlayerController : MonoBehaviour
                     GrabTimer = GrabTime;
 
                 }
-                if(Input.GetButtonDown("Meteor" + PlayerNumber))
+                if(Input.GetButtonDown("AbilityTrigger" + PlayerNumber))
                 {
                     Ability();
                 }

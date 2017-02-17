@@ -890,7 +890,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 4000010691633816}
   m_Layer: 0
-  m_Name: MeteorTarget
+  m_Name: TargetReticle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2627,10 +2627,6 @@ MonoBehaviour:
   mainCamera: {fileID: 0}
   missilePrefab: {fileID: 1000011816276132, guid: 9934efbff3871de45bead5491db78df5,
     type: 2}
-  meteorPrefab: {fileID: 1000013357566682, guid: d8f4f7499790cfd41a40241a542a9cc1,
-    type: 2}
-  meteorIndicator: {fileID: 1000013004422816, guid: 7391da4ae5cd5f949896d5ccbd808914,
-    type: 2}
   grabBox: {fileID: 1000010913025764}
   IceBrake: {fileID: 1000011146211426}
   cdtext: {fileID: 0}
@@ -2640,15 +2636,13 @@ MonoBehaviour:
   gravity: 20
   jumpSpeed: 10
   missileSpawnLocation: {fileID: 4000010256578326}
-  meteorSpawnLocation: {fileID: 4000013798148380}
-  meteorTarget: {fileID: 4000010691633816}
+  abilityTarget: {fileID: 4000010691633816}
   VIPHoldLocation: {fileID: 4000012372320268}
   throwForce: 500
   speed: 500
   rollSpeed: 11
   airSpeedModifier: 0.75
   missileSpeed: 15
-  meteorSpeed: 10
   maxSpeed: 6
   maxSpeedHitModifier: 4
   maxSpeedDecay: 5
@@ -2657,7 +2651,6 @@ MonoBehaviour:
   dashCooldown: 1.5
   turnRate: 500
   FireTime: 0.5
-  AbilityTime: 5
   DashTime: 0.35
   GrabTime: 0.2
   DeathStunTime: 5
@@ -2673,6 +2666,7 @@ MonoBehaviour:
   dead: 0
   moveDirection: {x: 0, y: 0, z: 0}
   heldObject: {fileID: 0}
+  playerSkill: {fileID: 0}
   beingHeld: 0
   movementState: 0
   holder: {fileID: 0}
@@ -2689,7 +2683,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 309b7108e8a213042a3ac3b85f22eb99, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 114000010592206144}
+  player: {fileID: 0}
   isactive: 0
 --- !u!137 &137000010072418542
 SkinnedMeshRenderer:
