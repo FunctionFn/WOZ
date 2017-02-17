@@ -61,7 +61,7 @@ public class CameraControl : MonoBehaviour
 
             // Add to the average and increment the number of targets in the average.
             averagePos += gm.PlayersAlive[i].transform.position;
-            averagePos += gm.PlayersAlive[i].meteorTarget.transform.position;
+            averagePos += gm.PlayersAlive[i].transform.Find("PlayerCenter/TargetReticle").transform.position;
             numTargets++;
             numTargets++;
         }
@@ -149,9 +149,9 @@ public class CameraControl : MonoBehaviour
                     continue;
 
                 distance = Mathf.Max(distance, Vector3.Distance(gm.PlayersAlive[i].transform.position, gm.PlayersAlive[j].transform.position));
-                distance = Mathf.Max(distance, Vector3.Distance(gm.PlayersAlive[i].meteorTarget.transform.position, gm.PlayersAlive[j].transform.position));
-                distance = Mathf.Max(distance, Vector3.Distance(gm.PlayersAlive[i].transform.position, gm.PlayersAlive[j].meteorTarget.transform.position));
-                distance = Mathf.Max(distance, Vector3.Distance(gm.PlayersAlive[i].meteorTarget.transform.position, gm.PlayersAlive[j].meteorTarget.transform.position));
+                distance = Mathf.Max(distance, Vector3.Distance(gm.PlayersAlive[i].transform.Find("PlayerCenter/TargetReticle").transform.position, gm.PlayersAlive[j].transform.position));
+                distance = Mathf.Max(distance, Vector3.Distance(gm.PlayersAlive[i].transform.position, gm.PlayersAlive[j].transform.Find("PlayerCenter/TargetReticle").transform.position));
+                distance = Mathf.Max(distance, Vector3.Distance(gm.PlayersAlive[i].transform.Find("PlayerCenter/TargetReticle").transform.position, gm.PlayersAlive[j].transform.Find("PlayerCenter/TargetReticle").transform.position));
             }
         }
 

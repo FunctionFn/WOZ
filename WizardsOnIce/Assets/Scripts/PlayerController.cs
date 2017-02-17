@@ -26,7 +26,6 @@ public class PlayerController : MonoBehaviour
     public float jumpSpeed;
 
     public Transform missileSpawnLocation;
-    public Transform abilityTarget;
     public Transform VIPHoldLocation;
 
     public float throwForce;
@@ -100,10 +99,10 @@ public class PlayerController : MonoBehaviour
         holding = false;
 
         // Change this to be added by menu system!!
-        playerSkill = gameObject.AddComponent<Meteor>();
+        playerSkill = gameObject.AddComponent<MeteorAbility>();
         // Change this to be added by menu system!!
 
-        playerSkill.Initialize(color, indicatorColor, PlayerNumber, gameObject);//abilityTarget, playerCenter);
+        playerSkill.Initialize(color, indicatorColor, PlayerNumber, gameObject);
 
 
         willFire = false;

@@ -2636,7 +2636,6 @@ MonoBehaviour:
   gravity: 20
   jumpSpeed: 10
   missileSpawnLocation: {fileID: 4000010256578326}
-  abilityTarget: {fileID: 4000010691633816}
   VIPHoldLocation: {fileID: 4000012372320268}
   throwForce: 500
   speed: 500
