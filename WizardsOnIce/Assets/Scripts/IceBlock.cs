@@ -23,9 +23,18 @@ public class IceBlock : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-	    if(currentHealth <= 0)
+
+        if (currentHealth <= 0)
         {
-            Destroy(gameObject);
+            //Destroy(gameObject);
+            GetComponent<Renderer>().enabled = false;
+            GetComponent<BoxCollider>().enabled = false;
+        }
+
+        if(GetComponent<Renderer>().enabled == false && currentHealth >= 0)
+        {
+            GetComponent<Renderer>().enabled = true;
+            GetComponent<BoxCollider>().enabled = true;
         }
 
 
@@ -34,7 +43,20 @@ public class IceBlock : MonoBehaviour {
 
     public void Decay(float dmg)
     {
-        currentHealth -= dmg;
+        if ((currentHealth > 0 && dmg > 0) || (currentHealth < 100 && dmg < 0))
+        {
+            currentHealth -= dmg;
+            if(currentHealth > 100)
+            {
+                currentHealth = 100;
+            }
+            else if (currentHealth < 0)
+            {
+                currentHealth = -1.0f;
+            }
+
+        }
+
     }
 
 

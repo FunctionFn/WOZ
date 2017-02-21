@@ -5,10 +5,10 @@ using System.Collections;
 
 public class PlayerController : MonoBehaviour
 {
+    private enum SkillID {Meteor, IceWall};
+
     public string PlayerNumber;
-    public int maxHealth;
-    public int currentHealth;
-    
+    [SerializeField] private SkillID Skill;
 
     public GameObject mainCamera;
     public GameObject missilePrefab;
@@ -26,6 +26,7 @@ public class PlayerController : MonoBehaviour
     public float jumpSpeed;
 
     public Transform missileSpawnLocation;
+    public Transform iceWallSpawn;
     public Transform VIPHoldLocation;
 
     public float throwForce;
@@ -69,7 +70,7 @@ public class PlayerController : MonoBehaviour
     public PlayerAbility playerSkill;
 
     public enum State { NoMovement, GroundedMovement, Jumping, Dash, Braking } 
-
+    
     bool holding;
     public bool beingHeld;
     public State movementState;
@@ -94,12 +95,22 @@ public class PlayerController : MonoBehaviour
         rb = GetComponent<Rigidbody>();
 
         ChangeMovementState(State.GroundedMovement);
-
-        currentHealth = maxHealth;
+        
         holding = false;
 
         // Change this to be added by menu system!!
-        playerSkill = gameObject.AddComponent<MeteorAbility>();
+        // SHOULDNT NEED AN ENUM, DUMB CODE
+        if (Skill == SkillID.Meteor)
+        {
+            playerSkill = gameObject.AddComponent<MeteorAbility>();
+        }
+        else if (Skill == SkillID.IceWall)
+        {
+            playerSkill = gameObject.AddComponent<IceWallAbility>();
+
+            // short term hack, pls dont keep this way thanks
+            transform.Find("PlayerCenter/TargetReticle").position = iceWallSpawn.position;
+        }
         // Change this to be added by menu system!!
 
         playerSkill.Initialize(color, indicatorColor, PlayerNumber, gameObject);
@@ -135,13 +146,7 @@ public class PlayerController : MonoBehaviour
         ControlUpdate();
         PowerUpdate();
 
-        
-
-        if (currentHealth <= 0)
-        {
-            Stun(DeathStunTime);
-            currentHealth = maxHealth;
-        }
+       
 
 
         FireTimer -= Time.deltaTime;
@@ -499,8 +504,8 @@ public class PlayerController : MonoBehaviour
 
     public void Damage(int dmg)
     {
-        if(iTimer <= 0)
-            currentHealth -= dmg;
+        //if(iTimer <= 0)
+        //    currentHealth -= dmg;
     }
 
     public void Stun(float time, bool force = false)
