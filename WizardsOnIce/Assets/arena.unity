@@ -108,7 +108,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4000012856157736, guid: 63e40eb59c87a164ebfebebbde3967c2, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 0.36
+      value: -1.6
       objectReference: {fileID: 0}
     - target: {fileID: 4000012856157736, guid: 63e40eb59c87a164ebfebebbde3967c2, type: 2}
       propertyPath: m_LocalPosition.z
@@ -144,6 +144,16 @@ Prefab:
       propertyPath: cdtext
       value: 
       objectReference: {fileID: 1426256666}
+    - target: {fileID: 114000010592206144, guid: 63e40eb59c87a164ebfebebbde3967c2,
+        type: 2}
+      propertyPath: playerSkill
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000010592206144, guid: 63e40eb59c87a164ebfebebbde3967c2,
+        type: 2}
+      propertyPath: Skill
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 63e40eb59c87a164ebfebebbde3967c2, type: 2}
   m_IsPrefabParent: 0
@@ -358,7 +368,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4000012856157736, guid: 63e40eb59c87a164ebfebebbde3967c2, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 0.2
+      value: -1.76
       objectReference: {fileID: 0}
     - target: {fileID: 4000012856157736, guid: 63e40eb59c87a164ebfebebbde3967c2, type: 2}
       propertyPath: m_LocalPosition.z
@@ -740,7 +750,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4000012856157736, guid: 63e40eb59c87a164ebfebebbde3967c2, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 0.11
+      value: -1.85
       objectReference: {fileID: 0}
     - target: {fileID: 4000012856157736, guid: 63e40eb59c87a164ebfebebbde3967c2, type: 2}
       propertyPath: m_LocalPosition.z
@@ -1345,7 +1355,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4000012856157736, guid: 63e40eb59c87a164ebfebebbde3967c2, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 0.32
+      value: -1.64
       objectReference: {fileID: 0}
     - target: {fileID: 4000012856157736, guid: 63e40eb59c87a164ebfebebbde3967c2, type: 2}
       propertyPath: m_LocalPosition.z
@@ -1416,6 +1426,11 @@ Prefab:
       propertyPath: cdtext
       value: 
       objectReference: {fileID: 1107984649}
+    - target: {fileID: 114000010592206144, guid: 63e40eb59c87a164ebfebebbde3967c2,
+        type: 2}
+      propertyPath: Skill
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 63e40eb59c87a164ebfebebbde3967c2, type: 2}
   m_IsPrefabParent: 0

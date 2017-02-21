@@ -47,6 +47,10 @@ public class Bullet : MonoBehaviour
             other.GetComponent<PlayerController>().OnHit();
             Destroy(gameObject);
         }
+        else if(other.GetComponent<IceWall>())
+        {
+            Destroy(gameObject);
+        }
 
     }
 }
