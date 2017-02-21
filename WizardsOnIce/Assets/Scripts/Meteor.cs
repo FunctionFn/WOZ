@@ -32,9 +32,9 @@ public class Meteor : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.GetComponent<PlayerController>() && other.gameObject.GetComponent<PlayerController>().PlayerNumber != shooter)
+        if (other.gameObject.GetComponent<PlayerController>())
         {
-            //other.gameObject.GetComponent<PlayerController>().Damage(1);
+        //other.gameObject.GetComponent<PlayerController>().Damage(1);
 
             Vector3 dir = other.GetComponent<Rigidbody>().position - GetComponent<Rigidbody>().position;
 
