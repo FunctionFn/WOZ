@@ -3,23 +3,31 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.SceneManagement;
 
-public enum LEVEL_NAMES
-{
-	Room1,
-	Room2
 
-}
 
 public class GameManager : MonoBehaviour 
 {
 
     public List<PlayerController> PlayersAlive;
+    
 
-	public LEVEL_NAMES NextLevelName;
 
-    private void Awake()
+    private static GameManager _inst;
+    public static GameManager Inst { get { return _inst; } }
+
+    void Awake()
     {
 
+        if (!Inst)
+        {
+            _inst = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+
+        DontDestroyOnLoad(gameObject);
     }
     void Update()
     {
@@ -33,8 +41,7 @@ public class GameManager : MonoBehaviour
 
 	public void LoadNextScene()
 	{
-		if (NextLevelName == LEVEL_NAMES.Room1) 
-			SceneManager.LoadScene ("arena");
+		SceneManager.LoadScene ("arena");
 
         
 	}
