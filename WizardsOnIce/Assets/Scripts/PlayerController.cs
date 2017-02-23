@@ -553,16 +553,19 @@ public class PlayerController : MonoBehaviour
         {
             currentMaxSpeed = maxSpeed;
         }
-        currentMaxSpeed += maxSpeedHitModifier;
-    }
+	        currentMaxSpeed += maxSpeedHitModifier;
+	    }
 
     public void Kill()
     {
-        if (!dead)
+		if (!dead) 
         {
-            dead = true;
+			dead = true;
             mainCamera.GetComponent<GameManager>().SubPlayer(this.GetComponent<PlayerController>());
             Destroy(gameObject);
+			if (!GetComponent<AudioSource>().isPlaying) {
+				GetComponent<AudioSource>().Play ();
+			}
         }
     }
    
