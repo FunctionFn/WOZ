@@ -5,7 +5,7 @@ using System.Collections;
 
 public class PlayerController : MonoBehaviour
 {
-    private enum SkillID {Meteor, IceWall};
+    public enum SkillID {Meteor, IceWall};
 
     public string PlayerNumber;
     [SerializeField] private SkillID Skill;
@@ -99,7 +99,10 @@ public class PlayerController : MonoBehaviour
         holding = false;
 
         // Change this to be added by menu system!!
-        // SHOULDNT NEED AN ENUM, DUMB CODE
+        int output;
+        int.TryParse(PlayerNumber, out output);
+        Skill = GameManager.Inst.PlayerSkills[output];
+
         if (Skill == SkillID.Meteor)
         {
             playerSkill = gameObject.AddComponent<MeteorAbility>();
