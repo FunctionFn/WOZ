@@ -16,6 +16,10 @@ public class GameManager : MonoBehaviour
     private static GameManager _inst;
     public static GameManager Inst { get { return _inst; } }
 
+    public int[] playerScores = new int[4];
+    public string[] levelList;
+    public int nextLevel;
+
     public Dictionary<int, PlayerController.SkillID> PlayerSkills;
 
     void Awake()
@@ -47,18 +51,16 @@ public class GameManager : MonoBehaviour
     {
         if (Input.GetButtonDown("Submit"))
         {
-            SceneManager.LoadScene("arena");
+            // Load level 1
+            nextLevel = 1;
+            LoadNextScene();
         }
 
-
-        
     }
 
 	public void LoadNextScene()
 	{
-		SceneManager.LoadScene ("arena");
-
-        
+       SceneManager.LoadScene(levelList[nextLevel]);
 	}
     public void QuitGame()
     {
@@ -75,15 +77,61 @@ public class GameManager : MonoBehaviour
         PlayersAlive.Remove(p);
         if (PlayersAlive.Count <= 1)
         {
+            switch(PlayersAlive[0].PlayerNumber)
+            {
+                case "0":
+                    playerScores[0] += 1;
+                    break;
+
+                case "1":
+                    playerScores[1] += 1;
+                    break;
+
+                case "2":
+                    playerScores[2] += 1;
+                    break;
+
+                case "3":
+                    playerScores[3] += 1;
+                    break;
+
+                   default:
+                    Debug.Log("Error: Can't find players alive");
+                    break;
+            }
+
             PlayersAlive.Clear();
             GameOver();
 
         }
     }
 
-    public static void GameOver()
+    public void GameOver()
     {
-        SceneManager.LoadScene("arena");
+        if (nextLevel <= levelList.Length - 2)
+        {
+            nextLevel++;
+        }
+        else
+        {
+            // Go to level 1
+            nextLevel = 1;
+        }
+        
+        for(int i = 0; i < playerScores.Length; i++)
+        {
+            if (playerScores[i] >= 3)
+            {
+                // Go to character select menu
+                nextLevel = 0;
+
+                for (int j = 0; j < playerScores.Length; j++)
+                {
+                    playerScores[j] = 0;
+                }
+            }
+        }
+        LoadNextScene();
     }
 
 
