@@ -63,4 +63,9 @@ public class IceWall : MonoBehaviour
             currentHealth -= bulletDamage;
         }
     }
+
+    public void Decay(float dmg)
+    {
+        currentHealth -= dmg;
+    }
 }

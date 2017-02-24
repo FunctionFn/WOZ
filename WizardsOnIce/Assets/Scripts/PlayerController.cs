@@ -5,7 +5,7 @@ using System.Collections;
 
 public class PlayerController : MonoBehaviour
 {
-    private enum SkillID {Meteor, IceWall};
+    public enum SkillID {Meteor, IceWall};
 
     public string PlayerNumber;
     [SerializeField] private SkillID Skill;
@@ -104,7 +104,12 @@ public class PlayerController : MonoBehaviour
         holding = false;
 
         // Change this to be added by menu system!!
-        // SHOULDNT NEED AN ENUM, DUMB CODE
+        int output;
+        int.TryParse(PlayerNumber, out output);
+        if (GameManager.Inst.PlayerSkills.Count > output)
+            Skill = GameManager.Inst.PlayerSkills[output];
+        else
+            Skill = SkillID.Meteor;
         if (Skill == SkillID.Meteor)
         {
             playerSkill = gameObject.AddComponent<MeteorAbility>();
@@ -125,7 +130,7 @@ public class PlayerController : MonoBehaviour
 
         float grabTime = 0.0f;
 
-        mainCamera.GetComponent<GameManager>().AddPlayer(this.GetComponent<PlayerController>());
+        GameManager.Inst.AddPlayer(this.GetComponent<PlayerController>());
 
         dead = false;
 
@@ -341,10 +346,9 @@ public class PlayerController : MonoBehaviour
                 {
                     ChangeMovementState(State.Braking);
                 }
-                if (Input.GetButtonDown("Fire" + PlayerNumber))
+                if (Input.GetButton("Fire" + PlayerNumber))
                 {
-                    grabBox.GetComponent<GrabBox>().SetActive(true);
-                    GrabTimer = GrabTime;
+                    Fireball();
 
                 }
                 if(Input.GetButtonDown("AbilityTrigger" + PlayerNumber))
@@ -559,19 +563,19 @@ public class PlayerController : MonoBehaviour
 
     public void OnHit()
     {
-        if(currentMaxSpeed < maxSpeed)
-        {
-            currentMaxSpeed = maxSpeed;
-        }
-	        currentMaxSpeed += maxSpeedHitModifier;
-	    }
+        //if(currentMaxSpeed < maxSpeed)
+        //{
+        //    currentMaxSpeed = maxSpeed;
+        //}
+	    currentMaxSpeed += maxSpeedHitModifier;
+	}
 
     public void Kill()
     {
 		if (!dead) 
         {
-			dead = true;
-            mainCamera.GetComponent<GameManager>().SubPlayer(this.GetComponent<PlayerController>());
+            dead = true;
+            GameManager.Inst.SubPlayer(this.GetComponent<PlayerController>());
             Destroy(gameObject);
 			if (!GetComponent<AudioSource>().isPlaying) {
 				GetComponent<AudioSource>().Play ();

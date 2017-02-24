@@ -53,15 +53,15 @@ public class CameraControl : MonoBehaviour
         int numTargets = 0;
 
         // Go through all the targets and add their positions together.
-        for (int i = 0; i < gm.PlayersAlive.Count; i++)
+        for (int i = 0; i < GameManager.Inst.PlayersAlive.Count; i++)
         {
             // If the target isn't active, go on to the next one.
-            if (!gm.PlayersAlive[i].gameObject.activeSelf)
-                continue;
+            //if (!GameManager.Inst.PlayersAlive[i].gameObject.activeSelf)
+            //    continue;
 
             // Add to the average and increment the number of targets in the average.
-            averagePos += gm.PlayersAlive[i].transform.position;
-            averagePos += gm.PlayersAlive[i].transform.Find("PlayerCenter/TargetReticle").transform.position;
+            averagePos += GameManager.Inst.PlayersAlive[i].transform.position;
+            averagePos += GameManager.Inst.PlayersAlive[i].transform.Find("PlayerCenter/TargetReticle").transform.position;
             numTargets++;
             numTargets++;
         }
@@ -137,21 +137,21 @@ public class CameraControl : MonoBehaviour
     {
         float distance = 0f;
 
-        for (int i = 0; i < gm.PlayersAlive.Count; i++)
+        for (int i = 0; i < GameManager.Inst.PlayersAlive.Count; i++)
         {
             // ... and if they aren't active continue on to the next target.
-            if (!gm.PlayersAlive[i].gameObject.activeSelf)
+            if (!GameManager.Inst.PlayersAlive[i].gameObject.activeSelf)
                 continue;
 
-            for(int j = i + 1; j < gm.PlayersAlive.Count; j++)
+            for(int j = i + 1; j < GameManager.Inst.PlayersAlive.Count; j++)
             {
-                if (!gm.PlayersAlive[i].gameObject.activeSelf)
+                if (!GameManager.Inst.PlayersAlive[i].gameObject.activeSelf)
                     continue;
 
-                distance = Mathf.Max(distance, Vector3.Distance(gm.PlayersAlive[i].transform.position, gm.PlayersAlive[j].transform.position));
-                distance = Mathf.Max(distance, Vector3.Distance(gm.PlayersAlive[i].transform.Find("PlayerCenter/TargetReticle").transform.position, gm.PlayersAlive[j].transform.position));
-                distance = Mathf.Max(distance, Vector3.Distance(gm.PlayersAlive[i].transform.position, gm.PlayersAlive[j].transform.Find("PlayerCenter/TargetReticle").transform.position));
-                distance = Mathf.Max(distance, Vector3.Distance(gm.PlayersAlive[i].transform.Find("PlayerCenter/TargetReticle").transform.position, gm.PlayersAlive[j].transform.Find("PlayerCenter/TargetReticle").transform.position));
+                distance = Mathf.Max(distance, Vector3.Distance(GameManager.Inst.PlayersAlive[i].transform.position, GameManager.Inst.PlayersAlive[j].transform.position));
+                distance = Mathf.Max(distance, Vector3.Distance(GameManager.Inst.PlayersAlive[i].transform.Find("PlayerCenter/TargetReticle").transform.position, GameManager.Inst.PlayersAlive[j].transform.position));
+                distance = Mathf.Max(distance, Vector3.Distance(GameManager.Inst.PlayersAlive[i].transform.position, GameManager.Inst.PlayersAlive[j].transform.Find("PlayerCenter/TargetReticle").transform.position));
+                distance = Mathf.Max(distance, Vector3.Distance(GameManager.Inst.PlayersAlive[i].transform.Find("PlayerCenter/TargetReticle").transform.position, GameManager.Inst.PlayersAlive[j].transform.Find("PlayerCenter/TargetReticle").transform.position));
             }
         }
 
