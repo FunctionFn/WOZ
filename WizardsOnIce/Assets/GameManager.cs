@@ -31,11 +31,12 @@ public class GameManager : MonoBehaviour
         }
 
         DontDestroyOnLoad(gameObject);
+        PlayerSkills = new Dictionary<int, PlayerController.SkillID>();
     }
 
     void Start()
     {
-        PlayerSkills = new Dictionary<int, PlayerController.SkillID>();
+        
 
         Inst.PlayerSkills.Add(0, 0);
         Inst.PlayerSkills.Add(1, 0);

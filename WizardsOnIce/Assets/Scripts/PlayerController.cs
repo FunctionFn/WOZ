@@ -101,8 +101,10 @@ public class PlayerController : MonoBehaviour
         // Change this to be added by menu system!!
         int output;
         int.TryParse(PlayerNumber, out output);
-        Skill = GameManager.Inst.PlayerSkills[output];
-
+        if (GameManager.Inst.PlayerSkills.Count > output)
+            Skill = GameManager.Inst.PlayerSkills[output];
+        else
+            Skill = SkillID.Meteor;
         if (Skill == SkillID.Meteor)
         {
             playerSkill = gameObject.AddComponent<MeteorAbility>();
