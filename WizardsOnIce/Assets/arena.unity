@@ -90,6 +90,48 @@ NavMeshSettings:
     cellSize: 0.16666667
     manualCellSize: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1001 &127028618
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4000011738520994, guid: 9006cabb445995a459b1a4f1afb4f6d8, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000011738520994, guid: 9006cabb445995a459b1a4f1afb4f6d8, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 18.15
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000011738520994, guid: 9006cabb445995a459b1a4f1afb4f6d8, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: -9.55
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000011738520994, guid: 9006cabb445995a459b1a4f1afb4f6d8, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0.6096515
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000011738520994, guid: 9006cabb445995a459b1a4f1afb4f6d8, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000011738520994, guid: 9006cabb445995a459b1a4f1afb4f6d8, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000011738520994, guid: 9006cabb445995a459b1a4f1afb4f6d8, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 0.7926696
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000011738520994, guid: 9006cabb445995a459b1a4f1afb4f6d8, type: 2}
+      propertyPath: m_RootOrder
+      value: 10
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 9006cabb445995a459b1a4f1afb4f6d8, type: 2}
+  m_IsPrefabParent: 0
 --- !u!4 &228609809 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4000013563465924, guid: df96332c350dab946ae68f9d295834eb,
@@ -144,16 +186,6 @@ Prefab:
       propertyPath: cdtext
       value: 
       objectReference: {fileID: 1426256666}
-    - target: {fileID: 114000010592206144, guid: 63e40eb59c87a164ebfebebbde3967c2,
-        type: 2}
-      propertyPath: playerSkill
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 114000010592206144, guid: 63e40eb59c87a164ebfebebbde3967c2,
-        type: 2}
-      propertyPath: Skill
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 63e40eb59c87a164ebfebebbde3967c2, type: 2}
   m_IsPrefabParent: 0
@@ -448,7 +480,6 @@ GameObject:
   - 92: {fileID: 953726564}
   - 124: {fileID: 953726563}
   - 81: {fileID: 953726562}
-  - 114: {fileID: 953726567}
   - 82: {fileID: 953726568}
   m_Layer: 0
   m_Name: Main Camera
@@ -525,19 +556,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 986117570}
   m_RootOrder: 0
---- !u!114 &953726567
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 953726561}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bee93ce8cb5c5ea4696147e572ca18b1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  PlayersAlive: []
-  NextLevelName: 0
 --- !u!82 &953726568
 AudioSource:
   m_ObjectHideFlags: 0
@@ -655,7 +673,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_DampTime: 0.5
   m_MinSize: 6.5
-  gm: {fileID: 953726567}
+  gm: {fileID: 0}
   zOffset: -7.14
   yOffset: 4.38
   maxY: 17
