@@ -338,10 +338,9 @@ public class PlayerController : MonoBehaviour
                 {
                     ChangeMovementState(State.Braking);
                 }
-                if (Input.GetButtonDown("Fire" + PlayerNumber))
+                if (Input.GetButton("Fire" + PlayerNumber))
                 {
-                    grabBox.GetComponent<GrabBox>().SetActive(true);
-                    GrabTimer = GrabTime;
+                    Fireball();
 
                 }
                 if(Input.GetButtonDown("AbilityTrigger" + PlayerNumber))
@@ -554,12 +553,12 @@ public class PlayerController : MonoBehaviour
 
     public void OnHit()
     {
-        if(currentMaxSpeed < maxSpeed)
-        {
-            currentMaxSpeed = maxSpeed;
-        }
-	        currentMaxSpeed += maxSpeedHitModifier;
-	    }
+        //if(currentMaxSpeed < maxSpeed)
+        //{
+        //    currentMaxSpeed = maxSpeed;
+        //}
+	    currentMaxSpeed += maxSpeedHitModifier;
+	}
 
     public void Kill()
     {
