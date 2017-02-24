@@ -55,7 +55,6 @@ public class GameManager : MonoBehaviour
             nextLevel = 1;
             LoadNextScene();
         }
-
     }
 
 	public void LoadNextScene()
