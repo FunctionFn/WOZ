@@ -1,4 +1,4 @@
-Initialize engine version: 5.4.4f1 (5a3967d8c55d)
+Initialize engine version: 5.4.0f3 (a6d8d714de6f)
 GfxDevice: creating device client; threaded=1
 Direct3D:
     Version:  Direct3D 11.0 [level 11.0]
@@ -6,17 +6,47 @@ Direct3D:
     Vendor:   NVIDIA
     VRAM:     1989 MB
 Begin MonoManager ReloadAssembly
-Platform assembly: C:\Users\DFernow\Documents\GitHub\WOZ\WizardsOnIce\WizardsOnIce_Data\Managed\UnityEngine.dll (this message is harmless)
-Loading C:\Users\DFernow\Documents\GitHub\WOZ\WizardsOnIce\WizardsOnIce_Data\Managed\UnityEngine.dll into Unity Child Domain
-Platform assembly: C:\Users\DFernow\Documents\GitHub\WOZ\WizardsOnIce\WizardsOnIce_Data\Managed\Assembly-CSharp.dll (this message is harmless)
-Loading C:\Users\DFernow\Documents\GitHub\WOZ\WizardsOnIce\WizardsOnIce_Data\Managed\Assembly-CSharp.dll into Unity Child Domain
-Platform assembly: C:\Users\DFernow\Documents\GitHub\WOZ\WizardsOnIce\WizardsOnIce_Data\Managed\UnityEngine.UI.dll (this message is harmless)
-Loading C:\Users\DFernow\Documents\GitHub\WOZ\WizardsOnIce\WizardsOnIce_Data\Managed\UnityEngine.UI.dll into Unity Child Domain
-Platform assembly: C:\Users\DFernow\Documents\GitHub\WOZ\WizardsOnIce\WizardsOnIce_Data\Managed\UnityEngine.Networking.dll (this message is harmless)
-Loading C:\Users\DFernow\Documents\GitHub\WOZ\WizardsOnIce\WizardsOnIce_Data\Managed\UnityEngine.Networking.dll into Unity Child Domain
-- Completed reload, in  0.142 seconds
-Platform assembly: C:\Users\DFernow\Documents\GitHub\WOZ\WizardsOnIce\WizardsOnIce_Data\Managed\System.Core.dll (this message is harmless)
-Platform assembly: C:\Users\DFernow\Documents\GitHub\WOZ\WizardsOnIce\WizardsOnIce_Data\Managed\System.dll (this message is harmless)
+Platform assembly: C:\Users\dcheng5\Documents\GitHub\WOZ\WizardsOnIce\WizardsOnIce_Data\Managed\UnityEngine.dll (this message is harmless)
+Loading C:\Users\dcheng5\Documents\GitHub\WOZ\WizardsOnIce\WizardsOnIce_Data\Managed\UnityEngine.dll into Unity Child Domain
+Platform assembly: C:\Users\dcheng5\Documents\GitHub\WOZ\WizardsOnIce\WizardsOnIce_Data\Managed\Assembly-CSharp.dll (this message is harmless)
+Loading C:\Users\dcheng5\Documents\GitHub\WOZ\WizardsOnIce\WizardsOnIce_Data\Managed\Assembly-CSharp.dll into Unity Child Domain
+Platform assembly: C:\Users\dcheng5\Documents\GitHub\WOZ\WizardsOnIce\WizardsOnIce_Data\Managed\UnityEngine.UI.dll (this message is harmless)
+Loading C:\Users\dcheng5\Documents\GitHub\WOZ\WizardsOnIce\WizardsOnIce_Data\Managed\UnityEngine.UI.dll into Unity Child Domain
+Platform assembly: C:\Users\dcheng5\Documents\GitHub\WOZ\WizardsOnIce\WizardsOnIce_Data\Managed\UnityEngine.Networking.dll (this message is harmless)
+Loading C:\Users\dcheng5\Documents\GitHub\WOZ\WizardsOnIce\WizardsOnIce_Data\Managed\UnityEngine.Networking.dll into Unity Child Domain
+- Completed reload, in  0.047 seconds
+Platform assembly: C:\Users\dcheng5\Documents\GitHub\WOZ\WizardsOnIce\WizardsOnIce_Data\Managed\System.Core.dll (this message is harmless)
+Platform assembly: C:\Users\dcheng5\Documents\GitHub\WOZ\WizardsOnIce\WizardsOnIce_Data\Managed\System.dll (this message is harmless)
 desktop: 1920x1200 59Hz; virtual: 1920x1200 at 0,0
 <RI> Initializing input.
 <RI> Input initialized.
+<RI> Initialized touch support.
+UnloadTime: 0.606194 ms
+Setting up 3 worker threads for Enlighten.
+  Thread -> id: 2240 -> priority: 1 
+  Thread -> id: 1898 -> priority: 1 
+  Thread -> id: 2408 -> priority: 1 
+Unloading 6 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 2.457919 ms
+
+Unloading 18 unused Assets to reduce memory usage. Loaded Objects now: 31103.
+Total: 1.905980 ms (FindLiveObjects: 0.769254 ms CreateObjectMapping: 0.219368 ms MarkObjects: 0.878645 ms  DeleteObjects: 0.038125 ms)
+
+Can not play a disabled audio source
+ 
+(Filename:  Line: 432)
+
+Can not play a disabled audio source
+ 
+(Filename:  Line: 432)
+
+Can not play a disabled audio source
+ 
+(Filename:  Line: 432)
+
+Unloading 6 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 7.886693 ms
+
+Unloading 352 unused Assets to reduce memory usage. Loaded Objects now: 31637.
+Total: 2.571709 ms (FindLiveObjects: 0.694176 ms CreateObjectMapping: 0.118188 ms MarkObjects: 1.043171 ms  DeleteObjects: 0.715585 ms)
+
