@@ -52,3 +52,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PlayersAlive: []
+  playerScores: 00000000000000000000000000000000
+  levelList:
+  - CharacterSelect
+  - arena
+  - arena
+  - arena
+  nextLevel: 0

@@ -40,6 +40,7 @@ GameObject:
   - 65: {fileID: 65000010668718124}
   - 23: {fileID: 23000013634848428}
   - 114: {fileID: 114000012043160896}
+  - 205: {fileID: 205000010619174648}
   m_Layer: 0
   m_Name: IceBlock
   m_TagString: Untagged
@@ -163,3 +164,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ib: {fileID: 114000012043160896}
+--- !u!205 &205000010619174648
+LODGroup:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000014267544900}
+  serializedVersion: 2
+  m_LocalReferencePoint: {x: 0, y: 0, z: 0}
+  m_Size: 1
+  m_FadeMode: 0
+  m_AnimateCrossFading: 0
+  m_LODs:
+  - screenRelativeHeight: 0.017274484
+    fadeTransitionWidth: 0
+    renderers: []
+  - screenRelativeHeight: 0.010900488
+    fadeTransitionWidth: 0
+    renderers: []
+  - screenRelativeHeight: 0.005576456
+    fadeTransitionWidth: 0
+    renderers: []
+  m_Enabled: 1
