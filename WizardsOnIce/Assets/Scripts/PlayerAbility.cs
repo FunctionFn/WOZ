@@ -13,16 +13,23 @@ public class PlayerAbility : MonoBehaviour {
     public string playerNumber;
 
     public GameObject playerObject;
+    public GameObject missilePrefab;
 
     public Transform target;
     public Transform playerTransform;
+
+    public float FireTime;
+    public float FireTimer;
+    public float missileSpeed;
+
+    public Transform missileSpawnLocation;
 
     // Use this for initialization
     void Start () {
 	
 	}
 
-    public void Initialize(Material col, Material icol, string pn, GameObject play)
+    public void Initialize(Material col, Material icol, string pn, GameObject play, Transform mSpawnLocation)
     {
         playerColor = col;
         indicatorColor = icol;
@@ -32,12 +39,9 @@ public class PlayerAbility : MonoBehaviour {
 
         target = play.transform.Find("PlayerCenter/TargetReticle");
         playerTransform = play.transform.Find("PlayerCenter");
+        
+        missileSpawnLocation = mSpawnLocation;
     }
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
 
     public virtual void TriggerAbility()
     {
@@ -47,5 +51,10 @@ public class PlayerAbility : MonoBehaviour {
     public float GetAbilityTime()
     {
         return abilityTime;
+    }
+
+    public virtual void Fire()
+    {
+
     }
 }

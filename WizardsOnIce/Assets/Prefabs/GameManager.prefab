@@ -55,7 +55,7 @@ MonoBehaviour:
   playerScores: 00000000000000000000000000000000
   levelList:
   - CharacterSelect
-  - arena
-  - arena2
   - arena3
+  - arena2
+  - arena
   nextLevel: 0

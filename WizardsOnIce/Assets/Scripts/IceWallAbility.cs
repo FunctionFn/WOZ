@@ -14,9 +14,11 @@ public class IceWallAbility : PlayerAbility
     void Start()
     {
         abilityPrefab = (GameObject)(Resources.Load("IceWall"));
-
+        missilePrefab = (GameObject)(Resources.Load("IceBullet"));
         // CAN BE CHANGED FOR BALANCE
         abilityTime = 5.0f;
+        FireTime = 0.5f;
+        missileSpeed = 15.0f;
         // CAN BE CHANGED FOR BALANCE
 
         iceWallSpawn = playerObject.transform.Find("PlayerCenter/IceWallSpawn");
@@ -27,7 +29,7 @@ public class IceWallAbility : PlayerAbility
     // Update is called once per frame
     void Update()
     {
-        
+        FireTimer -= Time.deltaTime;
     }
 
     public override void TriggerAbility()
@@ -35,5 +37,20 @@ public class IceWallAbility : PlayerAbility
         GameObject go = (GameObject)Instantiate(abilityPrefab, iceWallSpawn.position, iceWallSpawn.rotation);
 
         //go.transform.GetChild(0).GetComponent<Renderer>().material = playerColor;
+    }
+
+    public override void Fire()
+    {
+        if (FireTimer <= 0)
+        {
+            GameObject go = (GameObject)Instantiate(missilePrefab, missileSpawnLocation.position, missileSpawnLocation.rotation);
+
+
+            go.GetComponent<Rigidbody>().velocity = (missileSpawnLocation.transform.forward) * missileSpeed;
+            go.GetComponent<Bullet>().shooter = playerNumber;
+            Physics.IgnoreCollision(go.GetComponent<Collider>(), playerObject.GetComponent<Collider>());
+            go.transform.GetChild(0).GetComponent<Renderer>().material = playerColor;
+            FireTimer = FireTime;
+        }
     }
 }

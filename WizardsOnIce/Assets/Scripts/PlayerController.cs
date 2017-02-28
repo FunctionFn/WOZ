@@ -44,7 +44,7 @@ public class PlayerController : MonoBehaviour
     public float dashCooldown;
     public float turnRate;
 
-    public float FireTime;
+    
     public float DashTime;
     public float GrabTime;
     public float DeathStunTime;
@@ -52,7 +52,7 @@ public class PlayerController : MonoBehaviour
     public float iTime;
 
     float angle;
-    public float FireTimer;
+    
     public float AbilityTimer;
 	public float DashTimer;
     public float GrabTimer;
@@ -118,7 +118,7 @@ public class PlayerController : MonoBehaviour
         }
         // Change this to be added by menu system!!
 
-        playerSkill.Initialize(color, indicatorColor, PlayerNumber, gameObject);
+        playerSkill.Initialize(color, indicatorColor, PlayerNumber, gameObject, missileSpawnLocation);
 
 
         willFire = false;
@@ -153,8 +153,7 @@ public class PlayerController : MonoBehaviour
 
        
 
-
-        FireTimer -= Time.deltaTime;
+        
         GrabTimer -= Time.deltaTime;
         HoldTimer -= Time.deltaTime;
         StunTimer -= Time.deltaTime;
@@ -338,11 +337,11 @@ public class PlayerController : MonoBehaviour
                 {
                     ChangeMovementState(State.Braking);
                 }
-                if (Input.GetButton("Fire" + PlayerNumber))
-                {
-                    Fireball();
+                //if (Input.GetButton("Fire" + PlayerNumber))
+                //{
+                //    Fireball();
 
-                }
+                //}
                 if(Input.GetButtonDown("AbilityTrigger" + PlayerNumber))
                 {
                     Ability();
@@ -376,17 +375,7 @@ public class PlayerController : MonoBehaviour
 
     void Fireball()
     {
-        if(FireTimer <= 0)
-        {
-            GameObject go = (GameObject)Instantiate(missilePrefab, missileSpawnLocation.position, missileSpawnLocation.rotation);
-
-
-            go.GetComponent<Rigidbody>().velocity = (missileSpawnLocation.transform.forward) * missileSpeed;
-            go.GetComponent<Bullet>().shooter = PlayerNumber;
-            go.transform.GetChild(0).GetComponent<Renderer>().material = color;
-            FireTimer = FireTime;
-        }
-        
+        playerSkill.Fire();
     }
 
     void Ability()
