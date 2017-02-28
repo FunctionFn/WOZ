@@ -82,6 +82,11 @@ public class PlayerController : MonoBehaviour
     public float grabTime;
 
     public float environmentDamage;
+
+	public bool enter;
+
+	public AudioClip DeathScream;
+	private AudioSource source;
     void Awake()
     {
 
@@ -134,6 +139,7 @@ public class PlayerController : MonoBehaviour
         currentMaxSpeed = maxSpeed;
 
         IceBrake.GetComponent<Renderer>().enabled = false;
+
     }
 
     // Update is called once per frame
@@ -228,6 +234,8 @@ public class PlayerController : MonoBehaviour
         {
             holder.Chuck();
         }
+			
+
 
         
     }
@@ -494,6 +502,8 @@ public class PlayerController : MonoBehaviour
         {
             Kill();
         }
+
+	
     }
 
     void OnTriggerStay(Collider other)
