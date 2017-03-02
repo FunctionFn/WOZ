@@ -8,7 +8,7 @@ public class IceBullet : Bullet
     int bounces;
     void Start()
     {
-        Physics.IgnoreLayerCollision(10, gameObject.layer);
+        Physics.IgnoreLayerCollision(31, 31);
     }
 
     // Update is called once per frame

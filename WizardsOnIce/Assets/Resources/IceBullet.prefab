@@ -25,7 +25,7 @@ GameObject:
   - 136: {fileID: 136000011464507998}
   - 82: {fileID: 82000011302525802}
   - 114: {fileID: 114000012684970270}
-  m_Layer: 8
+  m_Layer: 31
   m_Name: IceBullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -40,7 +40,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 4000012501393182}
-  m_Layer: 8
+  m_Layer: 31
   m_Name: Left
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -58,7 +58,7 @@ GameObject:
   - 33: {fileID: 33000010828509508}
   - 23: {fileID: 23000010690845832}
   - 95: {fileID: 95000012592138600}
-  m_Layer: 0
+  m_Layer: 31
   m_Name: Fireball
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -299,7 +299,7 @@ MonoBehaviour:
   strength: 7.5
   environmentDamage: 0.5
   left: {fileID: 4000012501393182}
-  bounceLimit: 5
+  bounceLimit: 3
 --- !u!136 &136000011464507998
 CapsuleCollider:
   m_ObjectHideFlags: 1
