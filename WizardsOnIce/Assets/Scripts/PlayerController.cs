@@ -355,7 +355,7 @@ public class PlayerController : MonoBehaviour
                     Ability();
                 }
 
-                if (Input.GetAxis("Trigger" + PlayerNumber) > 0.5f)
+                if (Input.GetAxis("Trigger" + PlayerNumber) > 0.5f || Input.GetAxis("Trigger" + PlayerNumber) < -0.5f)
                 {
                     Fireball();
                 }
