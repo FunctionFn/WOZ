@@ -11,13 +11,16 @@ public class MeteorAbility : PlayerAbility {
 
     public Transform meteorSpawn;
 
+
     // Use this for initialization
     void Start () {
         abilityPrefab = (GameObject)(Resources.Load("Meteor"));
         meteorIndicator = (GameObject)(Resources.Load("MeteorIndicator"));
-
+        missilePrefab = (GameObject)(Resources.Load("Bullet"));
         // CAN BE CHANGED FOR BALANCE
         abilityTime = 5.0f;
+        FireTime = 0.5f;
+        missileSpeed = 15.0f;
         // CAN BE CHANGED FOR BALANCE
 
         meteorSpawn = playerObject.transform.Find("PlayerCenter/MeteorSpawn");
@@ -27,8 +30,8 @@ public class MeteorAbility : PlayerAbility {
 	
 	// Update is called once per frame
 	void Update () {
-	
-	}
+        FireTimer -= Time.deltaTime;
+    }
 
     public override void TriggerAbility()
     {
@@ -44,5 +47,19 @@ public class MeteorAbility : PlayerAbility {
         GameObject go2 = (GameObject)Instantiate(meteorIndicator, target.position, playerTransform.rotation);
 
         go2.transform.GetChild(0).GetComponent<Renderer>().material = indicatorColor;
+    }
+
+    public override void Fire()
+    {
+        if (FireTimer <= 0)
+        {
+            GameObject go = (GameObject)Instantiate(missilePrefab, missileSpawnLocation.position, missileSpawnLocation.rotation);
+
+
+            go.GetComponent<Rigidbody>().velocity = (missileSpawnLocation.transform.forward) * missileSpeed;
+            go.GetComponent<Bullet>().shooter = playerNumber;
+            go.transform.GetChild(0).GetComponent<Renderer>().material = playerColor;
+            FireTimer = FireTime;
+        }
     }
 }
