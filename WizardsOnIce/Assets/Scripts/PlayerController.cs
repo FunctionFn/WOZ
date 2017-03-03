@@ -85,8 +85,10 @@ public class PlayerController : MonoBehaviour
 
 	public bool enter;
 
-	public AudioClip DeathScream;
-	private AudioSource source;
+	public AudioClip DeathSound;
+	public float volume;
+	AudioSource audio;
+
     void Awake()
     {
 
@@ -96,6 +98,7 @@ public class PlayerController : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+		audio = GetComponent<AudioSource> ();
 
         rb = GetComponent<Rigidbody>();
 
@@ -489,6 +492,8 @@ public class PlayerController : MonoBehaviour
         //Destroy(other.gameObject);
         if (other.GetComponent<Killbox>())
         {
+
+			AudioSource.PlayClipAtPoint (DeathSound, new Vector3(0, 18, 0));
             Kill();
         }
 
