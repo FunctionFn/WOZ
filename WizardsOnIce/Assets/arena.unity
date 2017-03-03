@@ -187,6 +187,11 @@ Prefab:
       propertyPath: cdtext
       value: 
       objectReference: {fileID: 1426256666}
+    - target: {fileID: 114000010592206144, guid: 63e40eb59c87a164ebfebebbde3967c2,
+        type: 2}
+      propertyPath: Skill
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 63e40eb59c87a164ebfebebbde3967c2, type: 2}
   m_IsPrefabParent: 0
@@ -1280,6 +1285,11 @@ Prefab:
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 65000012899219626, guid: df96332c350dab946ae68f9d295834eb,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: df96332c350dab946ae68f9d295834eb, type: 2}
   m_IsPrefabParent: 0
@@ -1497,11 +1507,6 @@ Prefab:
       propertyPath: cdtext
       value: 
       objectReference: {fileID: 1107984649}
-    - target: {fileID: 114000010592206144, guid: 63e40eb59c87a164ebfebebbde3967c2,
-        type: 2}
-      propertyPath: Skill
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 82000012417801774, guid: 63e40eb59c87a164ebfebebbde3967c2,
         type: 2}
       propertyPath: spreadCustomCurve.m_RotationOrder
