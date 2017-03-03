@@ -226,11 +226,11 @@ public class PlayerController : MonoBehaviour
             currentMaxSpeed = maxSpeed;
         }
 
-        //if (movementState == State.NoMovement && StunTimer <= 0)
-        //{
+        if (movementState == State.NoMovement && StunTimer <= 0)
+        {
 
-        //    ChangeMovementState(State.GroundedMovement);
-        //}
+            ChangeMovementState(State.GroundedMovement);
+        }
         if (beingHeld && HoldTimer <= 0)
         {
             holder.Chuck();

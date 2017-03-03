@@ -5,7 +5,7 @@ public class EarthAbility : PlayerAbility
 {
 
     // CAN BE CHANGED FOR BALANCE
-    public float meteorSpeed = 10.0f;
+    public float stunRockSpeed;
     // CAN BE CHANGED FOR BALANCE
 
     public GameObject meteorIndicator;
@@ -21,14 +21,14 @@ public class EarthAbility : PlayerAbility
     // Use this for initialization
     void Start()
     {
-        abilityPrefab = (GameObject)(Resources.Load("Meteor"));
-        meteorIndicator = (GameObject)(Resources.Load("MeteorIndicator"));
+        abilityPrefab = (GameObject)(Resources.Load("StunRock"));
         missilePrefab = (GameObject)(Resources.Load("EarthBullet"));
         // CAN BE CHANGED FOR BALANCE
         abilityTime = 5.0f;
         FireTime = 0.5f;
         missileSpeed = 5.0f;
         chargeSpeed = 0.75f;
+        stunRockSpeed = 12.0f;
         // CAN BE CHANGED FOR BALANCE
 
         meteorSpawn = playerObject.transform.Find("PlayerCenter/MeteorSpawn");
@@ -60,18 +60,13 @@ public class EarthAbility : PlayerAbility
 
     public override void TriggerAbility()
     {
-        GameObject go = (GameObject)Instantiate(abilityPrefab, meteorSpawn.position, meteorSpawn.rotation);
+        GameObject go = (GameObject)Instantiate(abilityPrefab, missileSpawnLocation.position, missileSpawnLocation.rotation);
 
-        go.GetComponent<Rigidbody>().transform.LookAt(target);
 
-        go.GetComponent<Rigidbody>().velocity = (go.GetComponent<Rigidbody>().transform.forward) * meteorSpeed;
-        go.GetComponent<Meteor>().shooter = playerNumber;
-
+        go.GetComponent<Rigidbody>().velocity = (missileSpawnLocation.transform.forward) * stunRockSpeed;
+        go.GetComponent<Bullet>().shooter = playerNumber;
         go.transform.GetChild(0).GetComponent<Renderer>().material = playerColor;
-
-        GameObject go2 = (GameObject)Instantiate(meteorIndicator, target.position, playerTransform.rotation);
-
-        go2.transform.GetChild(0).GetComponent<Renderer>().material = indicatorColor;
+        FireTimer = FireTime;
     }
 
     public override void Fire()
