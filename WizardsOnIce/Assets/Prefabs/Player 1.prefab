@@ -2726,7 +2726,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PlayerNumber: 0
-  Skill: 1
+  Skill: 3
   mainCamera: {fileID: 0}
   missilePrefab: {fileID: 1000011816276132, guid: 9934efbff3871de45bead5491db78df5,
     type: 2}
@@ -2747,7 +2747,6 @@ MonoBehaviour:
   airSpeedModifier: 0.75
   missileSpeed: 15
   maxSpeed: 6
-  maxSpeedHitModifier: 4
   maxSpeedDecay: 5
   brakeSpeed: 6
   currentMaxSpeed: 0
@@ -2773,6 +2772,8 @@ MonoBehaviour:
   holder: {fileID: 0}
   grabTime: 0
   environmentDamage: 0.1
+  enter: 0
+  DeathScream: {fileID: 0}
 --- !u!114 &114000010869953802
 MonoBehaviour:
   m_ObjectHideFlags: 1
