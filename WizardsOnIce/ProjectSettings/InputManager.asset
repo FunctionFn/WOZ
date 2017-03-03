@@ -419,7 +419,7 @@ InputManager:
     snap: 0
     invert: 0
     type: 2
-    axis: 9
+    axis: 2
     joyNum: 1
   - serializedVersion: 3
     m_Name: Trigger1
@@ -435,7 +435,7 @@ InputManager:
     snap: 0
     invert: 0
     type: 2
-    axis: 9
+    axis: 2
     joyNum: 2
   - serializedVersion: 3
     m_Name: Trigger2
@@ -451,7 +451,7 @@ InputManager:
     snap: 0
     invert: 0
     type: 2
-    axis: 9
+    axis: 2
     joyNum: 3
   - serializedVersion: 3
     m_Name: Trigger3
@@ -467,7 +467,7 @@ InputManager:
     snap: 0
     invert: 0
     type: 2
-    axis: 9
+    axis: 2
     joyNum: 4
   - serializedVersion: 3
     m_Name: Fire0
@@ -636,7 +636,7 @@ InputManager:
     negativeButton: 
     positiveButton: joystick 1 button 5
     altNegativeButton: 
-    altPositiveButton: 
+    altPositiveButton: joystick 1 button 4
     gravity: 1000
     dead: 0.001
     sensitivity: 1000
@@ -668,7 +668,7 @@ InputManager:
     negativeButton: 
     positiveButton: joystick 2 button 5
     altNegativeButton: 
-    altPositiveButton: 
+    altPositiveButton: joystick 2 button 4
     gravity: 1000
     dead: 0.001
     sensitivity: 1000
@@ -684,7 +684,7 @@ InputManager:
     negativeButton: 
     positiveButton: joystick 3 button 5
     altNegativeButton: 
-    altPositiveButton: 
+    altPositiveButton: joystick 3 button 4
     gravity: 1000
     dead: 0.001
     sensitivity: 1000
@@ -700,7 +700,7 @@ InputManager:
     negativeButton: 
     positiveButton: joystick 4 button 5
     altNegativeButton: 
-    altPositiveButton: 
+    altPositiveButton: joystick 4 button 4
     gravity: 1000
     dead: 0.001
     sensitivity: 1000
