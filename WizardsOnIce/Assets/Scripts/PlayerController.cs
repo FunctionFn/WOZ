@@ -5,7 +5,8 @@ using System.Collections;
 
 public class PlayerController : MonoBehaviour
 {
-    public enum SkillID {Meteor, IceWall, MagneticBlast};
+
+    public enum SkillID {Meteor, IceWall, Earth, MagneticBlast, None};
 
     public string PlayerNumber;
     [SerializeField] private SkillID Skill;
@@ -37,7 +38,6 @@ public class PlayerController : MonoBehaviour
     public float missileSpeed;
 
     public float maxSpeed;
-    public float maxSpeedHitModifier;
     public float maxSpeedDecay;
     public float brakeSpeed;
     public float currentMaxSpeed;
@@ -106,10 +106,9 @@ public class PlayerController : MonoBehaviour
         // Change this to be added by menu system!!
         int output;
         int.TryParse(PlayerNumber, out output);
-        if (GameManager.Inst.PlayerSkills.Count > output)
+        if (GameManager.Inst.PlayerSkills.Count > output && Skill == SkillID.None)
             Skill = GameManager.Inst.PlayerSkills[output];
-        else
-            Skill = SkillID.Meteor;
+
         if (Skill == SkillID.Meteor)
         {
             playerSkill = gameObject.AddComponent<MeteorAbility>();
@@ -121,6 +120,10 @@ public class PlayerController : MonoBehaviour
         else if (Skill == SkillID.MagneticBlast)
         {
             playerSkill = gameObject.AddComponent<MagneticBlastAbility>();
+        }
+        else if(Skill == SkillID.Earth)
+        {
+            playerSkill = gameObject.AddComponent<EarthAbility>();
         }
         // Change this to be added by menu system!!
 
@@ -225,11 +228,11 @@ public class PlayerController : MonoBehaviour
             currentMaxSpeed = maxSpeed;
         }
 
-        //if (movementState == State.NoMovement && StunTimer <= 0)
-        //{
+        if (movementState == State.NoMovement && StunTimer <= 0)
+        {
 
-        //    ChangeMovementState(State.GroundedMovement);
-        //}
+            ChangeMovementState(State.GroundedMovement);
+        }
         if (beingHeld && HoldTimer <= 0)
         {
             holder.Chuck();
@@ -551,13 +554,13 @@ public class PlayerController : MonoBehaviour
         HoldTimer = MaxHoldTime;
     }
 
-    public void OnHit()
+    public void OnHit(float hit = 4)
     {
         //if(currentMaxSpeed < maxSpeed)
         //{
         //    currentMaxSpeed = maxSpeed;
         //}
-	    currentMaxSpeed += maxSpeedHitModifier;
+	    currentMaxSpeed += hit;
 	}
 
     public void Kill()

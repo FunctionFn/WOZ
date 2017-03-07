@@ -297,7 +297,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shooter: 
   strength: 7.5
-  environmentDamage: 0.5
+  environmentDamage: 0
   left: {fileID: 4000012501393182}
   bounceLimit: 3
 --- !u!136 &136000011464507998
