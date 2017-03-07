@@ -1,36 +1,34 @@
-Initialize engine version: 5.4.0f3 (a6d8d714de6f)
+Initialize engine version: 5.4.4f1 (5a3967d8c55d)
 GfxDevice: creating device client; threaded=1
 Direct3D:
     Version:  Direct3D 11.0 [level 11.0]
-    Renderer: NVIDIA Quadro K2000 (ID=0xffe)
+    Renderer: NVIDIA GeForce GTX 780 (ID=0x1004)
     Vendor:   NVIDIA
-    VRAM:     1989 MB
+    VRAM:     3039 MB
 Begin MonoManager ReloadAssembly
-Platform assembly: C:\Users\dcheng5\Documents\GitHub\WOZ\WizardsOnIce\WizardsOnIce_Data\Managed\UnityEngine.dll (this message is harmless)
-Loading C:\Users\dcheng5\Documents\GitHub\WOZ\WizardsOnIce\WizardsOnIce_Data\Managed\UnityEngine.dll into Unity Child Domain
-Platform assembly: C:\Users\dcheng5\Documents\GitHub\WOZ\WizardsOnIce\WizardsOnIce_Data\Managed\Assembly-CSharp.dll (this message is harmless)
-Loading C:\Users\dcheng5\Documents\GitHub\WOZ\WizardsOnIce\WizardsOnIce_Data\Managed\Assembly-CSharp.dll into Unity Child Domain
-Platform assembly: C:\Users\dcheng5\Documents\GitHub\WOZ\WizardsOnIce\WizardsOnIce_Data\Managed\UnityEngine.UI.dll (this message is harmless)
-Loading C:\Users\dcheng5\Documents\GitHub\WOZ\WizardsOnIce\WizardsOnIce_Data\Managed\UnityEngine.UI.dll into Unity Child Domain
-Platform assembly: C:\Users\dcheng5\Documents\GitHub\WOZ\WizardsOnIce\WizardsOnIce_Data\Managed\UnityEngine.Networking.dll (this message is harmless)
-Loading C:\Users\dcheng5\Documents\GitHub\WOZ\WizardsOnIce\WizardsOnIce_Data\Managed\UnityEngine.Networking.dll into Unity Child Domain
-- Completed reload, in  0.047 seconds
-Platform assembly: C:\Users\dcheng5\Documents\GitHub\WOZ\WizardsOnIce\WizardsOnIce_Data\Managed\System.Core.dll (this message is harmless)
-Platform assembly: C:\Users\dcheng5\Documents\GitHub\WOZ\WizardsOnIce\WizardsOnIce_Data\Managed\System.dll (this message is harmless)
-desktop: 1920x1200 59Hz; virtual: 1920x1200 at 0,0
+Platform assembly: C:\Users\Dan Fernow\Documents\GitHub\WOZ\WizardsOnIce\WizardsOnIce_Data\Managed\UnityEngine.dll (this message is harmless)
+Loading C:\Users\Dan Fernow\Documents\GitHub\WOZ\WizardsOnIce\WizardsOnIce_Data\Managed\UnityEngine.dll into Unity Child Domain
+Platform assembly: C:\Users\Dan Fernow\Documents\GitHub\WOZ\WizardsOnIce\WizardsOnIce_Data\Managed\Assembly-CSharp.dll (this message is harmless)
+Loading C:\Users\Dan Fernow\Documents\GitHub\WOZ\WizardsOnIce\WizardsOnIce_Data\Managed\Assembly-CSharp.dll into Unity Child Domain
+Platform assembly: C:\Users\Dan Fernow\Documents\GitHub\WOZ\WizardsOnIce\WizardsOnIce_Data\Managed\UnityEngine.UI.dll (this message is harmless)
+Loading C:\Users\Dan Fernow\Documents\GitHub\WOZ\WizardsOnIce\WizardsOnIce_Data\Managed\UnityEngine.UI.dll into Unity Child Domain
+Platform assembly: C:\Users\Dan Fernow\Documents\GitHub\WOZ\WizardsOnIce\WizardsOnIce_Data\Managed\UnityEngine.Networking.dll (this message is harmless)
+Loading C:\Users\Dan Fernow\Documents\GitHub\WOZ\WizardsOnIce\WizardsOnIce_Data\Managed\UnityEngine.Networking.dll into Unity Child Domain
+- Completed reload, in  0.057 seconds
+Platform assembly: C:\Users\Dan Fernow\Documents\GitHub\WOZ\WizardsOnIce\WizardsOnIce_Data\Managed\System.Core.dll (this message is harmless)
+Platform assembly: C:\Users\Dan Fernow\Documents\GitHub\WOZ\WizardsOnIce\WizardsOnIce_Data\Managed\System.dll (this message is harmless)
+desktop: 1920x1080 144Hz; virtual: 3840x1291 at 0,0
 <RI> Initializing input.
 <RI> Input initialized.
 <RI> Initialized touch support.
-UnloadTime: 0.606194 ms
-Setting up 3 worker threads for Enlighten.
-  Thread -> id: 2240 -> priority: 1 
-  Thread -> id: 1898 -> priority: 1 
-  Thread -> id: 2408 -> priority: 1 
-Unloading 6 Unused Serialized files (Serialized files now loaded: 0)
-UnloadTime: 2.457919 ms
+UnloadTime: 0.675928 ms
+Setting up 1 worker threads for Enlighten.
+  Thread -> id: 190c -> priority: 1 
+Unloading 7 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 2.683823 ms
 
-Unloading 18 unused Assets to reduce memory usage. Loaded Objects now: 31103.
-Total: 1.905980 ms (FindLiveObjects: 0.769254 ms CreateObjectMapping: 0.219368 ms MarkObjects: 0.878645 ms  DeleteObjects: 0.038125 ms)
+Unloading 18 unused Assets to reduce memory usage. Loaded Objects now: 30630.
+Total: 2.197489 ms (FindLiveObjects: 0.911075 ms CreateObjectMapping: 0.212370 ms MarkObjects: 1.048378 ms  DeleteObjects: 0.025343 ms)
 
 Can not play a disabled audio source
  
@@ -45,8 +43,71 @@ Can not play a disabled audio source
 (Filename:  Line: 432)
 
 Unloading 6 Unused Serialized files (Serialized files now loaded: 0)
-UnloadTime: 7.886693 ms
+UnloadTime: 8.965755 ms
 
-Unloading 352 unused Assets to reduce memory usage. Loaded Objects now: 31637.
-Total: 2.571709 ms (FindLiveObjects: 0.694176 ms CreateObjectMapping: 0.118188 ms MarkObjects: 1.043171 ms  DeleteObjects: 0.715585 ms)
+Unloading 341 unused Assets to reduce memory usage. Loaded Objects now: 31640.
+Total: 3.084504 ms (FindLiveObjects: 1.151355 ms CreateObjectMapping: 0.133453 ms MarkObjects: 1.182794 ms  DeleteObjects: 0.616259 ms)
+
+Can not play a disabled audio source
+ 
+(Filename:  Line: 432)
+
+Can not play a disabled audio source
+ 
+(Filename:  Line: 432)
+
+Can not play a disabled audio source
+ 
+(Filename:  Line: 432)
+
+ArgumentOutOfRangeException: Argument is out of range.
+Parameter name: index
+  at System.Collections.Generic.List`1[PlayerController].get_Item (Int32 index) [0x00000] in <filename unknown>:0 
+  at GameManager.SubPlayer (.PlayerController p) [0x00000] in <filename unknown>:0 
+  at PlayerController.Kill () [0x00000] in <filename unknown>:0 
+  at PlayerController.OnTriggerEnter (UnityEngine.Collider other) [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+Unloading 5 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 11.095876 ms
+
+Unloading 416 unused Assets to reduce memory usage. Loaded Objects now: 31106.
+Total: 3.059161 ms (FindLiveObjects: 1.150072 ms CreateObjectMapping: 0.135057 ms MarkObjects: 1.048378 ms  DeleteObjects: 0.725011 ms)
+
+Can not play a disabled audio source
+ 
+(Filename:  Line: 432)
+
+Can not play a disabled audio source
+ 
+(Filename:  Line: 432)
+
+Can not play a disabled audio source
+ 
+(Filename:  Line: 432)
+
+Unloading 6 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 10.243186 ms
+
+Unloading 396 unused Assets to reduce memory usage. Loaded Objects now: 30628.
+Total: 3.414288 ms (FindLiveObjects: 1.226423 ms CreateObjectMapping: 0.209804 ms MarkObjects: 1.276468 ms  DeleteObjects: 0.700950 ms)
+
+Can not play a disabled audio source
+ 
+(Filename:  Line: 432)
+
+Can not play a disabled audio source
+ 
+(Filename:  Line: 432)
+
+Can not play a disabled audio source
+ 
+(Filename:  Line: 432)
+
+Unloading 3 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 10.246073 ms
+
+Unloading 627 unused Assets to reduce memory usage. Loaded Objects now: 452.
+Total: 4.967608 ms (FindLiveObjects: 0.047799 ms CreateObjectMapping: 0.027909 ms MarkObjects: 0.294816 ms  DeleteObjects: 4.596762 ms)
 
