@@ -9,6 +9,7 @@ public class IceWall : MonoBehaviour
     //public float duration;
     public float maxHealth;
     public float currentHealth;
+    public float healthDecay;
     public float bulletDamage;
 
     public Color startingColor;
@@ -33,10 +34,6 @@ public class IceWall : MonoBehaviour
         gper = startingColor.g / 100;
         bper = startingColor.b / 100;
 
-
-
-
-        
     }
 
     // Update is called once per frame
@@ -47,8 +44,9 @@ public class IceWall : MonoBehaviour
         //{
         //    Destroy(gameObject);
         //}
+        Decay(healthDecay * Time.deltaTime);
 
-        if(currentHealth <= 0.0f)
+        if (currentHealth <= 0.0f)
         {
 			AudioSource.PlayClipAtPoint (IceShatter, new Vector3(0,18,0));
 			Destroy (gameObject);
@@ -72,7 +70,15 @@ public class IceWall : MonoBehaviour
 			//rare chance it will try play the sound at every frame and cause the game to slow down - Eddie
 			Destroy(gameObject);
         }
-        else if(other.GetComponent<Bullet>())
+        else if(other.GetComponent<Bullet>() && !other.GetComponent<EarthBullet>())
+        {
+            currentHealth -= bulletDamage;
+        }
+    }
+
+    void OnCollisionEnter(Collision other)
+    {
+        if(other.gameObject.GetComponent<IceBullet>())
         {
 			currentHealth -= bulletDamage;
         }

@@ -424,9 +424,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 781aefb0a53e0384b9ff21886c312598, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  environmentDamage: -3
+  environmentDamage: 0.1
   maxHealth: 100
   currentHealth: 0
+  healthDecay: 25
   bulletDamage: 35
   startingColor: {r: 0, g: 0, b: 0, a: 0}
   rper: 0
@@ -445,9 +446,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 781aefb0a53e0384b9ff21886c312598, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  environmentDamage: -3
+  environmentDamage: 0.1
   maxHealth: 100
   currentHealth: 0
+  healthDecay: 25
   bulletDamage: 35
   startingColor: {r: 0, g: 0, b: 0, a: 0}
   rper: 0
@@ -466,9 +468,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 781aefb0a53e0384b9ff21886c312598, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  environmentDamage: -3
+  environmentDamage: 0.1
   maxHealth: 100
   currentHealth: 0
+  healthDecay: 25
   bulletDamage: 35
   startingColor: {r: 0, g: 0, b: 0, a: 0}
   rper: 0

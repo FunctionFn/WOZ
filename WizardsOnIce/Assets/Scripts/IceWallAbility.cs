@@ -17,11 +17,12 @@ public class IceWallAbility : PlayerAbility
         missilePrefab = (GameObject)(Resources.Load("IceBullet"));
         // CAN BE CHANGED FOR BALANCE
         abilityTime = 5.0f;
-        FireTime = 0.5f;
-        missileSpeed = 15.0f;
+        FireTime = 1.0f;
+        missileSpeed = 12.0f;
         // CAN BE CHANGED FOR BALANCE
 
         iceWallSpawn = playerObject.transform.Find("PlayerCenter/IceWallSpawn");
+        transform.Find("PlayerCenter/TargetReticle").position = iceWallSpawn.position;
 
         Physics.IgnoreLayerCollision(10, gameObject.layer);
     }
