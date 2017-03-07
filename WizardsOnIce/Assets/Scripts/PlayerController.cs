@@ -85,7 +85,10 @@ public class PlayerController : MonoBehaviour
 
 	public bool enter;
 
+	public AudioClip Skating;
 	public AudioClip DeathSound;
+	public AudioClip WindDash;
+	public AudioClip Brake;
 	public float volume;
 	AudioSource audio;
 
@@ -153,6 +156,8 @@ public class PlayerController : MonoBehaviour
             Vector3 v = GetComponent<Rigidbody>().velocity.normalized* currentMaxSpeed;
 
             GetComponent<Rigidbody>().velocity = new Vector3(v.x, GetComponent<Rigidbody>().velocity.y, v.z);
+			//audio.Play ();
+			//audio.Pause (); Further assistance required for skating sound - Eddie
         }
 
         rb.angularVelocity = Vector3.zero;
@@ -185,6 +190,8 @@ public class PlayerController : MonoBehaviour
 
             if (movementState != State.Braking)
             {
+
+				//audio.PlayOneShot (Brake, 1.0f); need help so it doesn't play every frame
                 currentMaxSpeed = maxSpeed;
                 IceBrake.GetComponent<Renderer>().enabled = false;
             }
@@ -255,6 +262,8 @@ public class PlayerController : MonoBehaviour
         if(movementState == State.Dash && state != State.Dash)
         {
             rb.useGravity = true;
+
+
         }
 
         
@@ -263,7 +272,9 @@ public class PlayerController : MonoBehaviour
 
         if(movementState == State.Dash)
         {
-            rb.useGravity = false;
+			AudioSource.PlayClipAtPoint (WindDash, new Vector3 (0,19,0));
+
+			rb.useGravity = false;
         }
 
         

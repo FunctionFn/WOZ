@@ -269,6 +269,7 @@ MonoBehaviour:
   shooter: 
   strength: 500
   environmentDamage: 6
+  Explosion: {fileID: 8300000, guid: d4ff88a18aa22d443af06d17099dda8a, type: 3}
 --- !u!136 &136000012082769544
 CapsuleCollider:
   m_ObjectHideFlags: 1

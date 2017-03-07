@@ -349,7 +349,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 0425501ff69e215468444638a8557bf3, type: 3}
-  m_PlayOnAwake: 0
+  m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -432,6 +432,8 @@ MonoBehaviour:
   rper: 0
   gper: 0
   bper: 0
+  IceShatter: {fileID: 8300000, guid: abef44d5c380d294ca2cf3ea1d78ca72, type: 3}
+  volume: 200
 --- !u!114 &114000011157259022
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -451,6 +453,8 @@ MonoBehaviour:
   rper: 0
   gper: 0
   bper: 0
+  IceShatter: {fileID: 8300000, guid: abef44d5c380d294ca2cf3ea1d78ca72, type: 3}
+  volume: 200
 --- !u!114 &114000013185248520
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -470,3 +474,5 @@ MonoBehaviour:
   rper: 0
   gper: 0
   bper: 0
+  IceShatter: {fileID: 8300000, guid: abef44d5c380d294ca2cf3ea1d78ca72, type: 3}
+  volume: 200

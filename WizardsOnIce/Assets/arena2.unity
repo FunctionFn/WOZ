@@ -1262,11 +1262,26 @@ Prefab:
         type: 2}
       propertyPath: DeathSound
       value: 
-      objectReference: {fileID: 8300000, guid: d7364318bec8cb043b766fdbc7f8762e, type: 3}
+      objectReference: {fileID: 8300000, guid: ecdf4c24270e0154ca971ea680bbcadc, type: 3}
     - target: {fileID: 114000010592206144, guid: 63e40eb59c87a164ebfebebbde3967c2,
         type: 2}
       propertyPath: volume
       value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000010592206144, guid: 63e40eb59c87a164ebfebebbde3967c2,
+        type: 2}
+      propertyPath: WindDash
+      value: 
+      objectReference: {fileID: 8300000, guid: f6cb9eb09d5d89444856506299e1baa7, type: 3}
+    - target: {fileID: 114000010592206144, guid: 63e40eb59c87a164ebfebebbde3967c2,
+        type: 2}
+      propertyPath: Brake
+      value: 
+      objectReference: {fileID: 8300000, guid: 78dc4072212f63047bf5f939eb9561cc, type: 3}
+    - target: {fileID: 114000010592206144, guid: 63e40eb59c87a164ebfebebbde3967c2,
+        type: 2}
+      propertyPath: Skating
+      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 63e40eb59c87a164ebfebebbde3967c2, type: 2}
@@ -8989,7 +9004,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 63230b0b7e5634846943152f697b0ed3, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.5
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -10817,11 +10832,26 @@ Prefab:
         type: 2}
       propertyPath: DeathSound
       value: 
-      objectReference: {fileID: 8300000, guid: d7364318bec8cb043b766fdbc7f8762e, type: 3}
+      objectReference: {fileID: 8300000, guid: 3d3a9f9fcfedfa04b85e9230c8e9306c, type: 3}
     - target: {fileID: 114000010592206144, guid: 63e40eb59c87a164ebfebebbde3967c2,
         type: 2}
       propertyPath: volume
       value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000010592206144, guid: 63e40eb59c87a164ebfebebbde3967c2,
+        type: 2}
+      propertyPath: WindDash
+      value: 
+      objectReference: {fileID: 8300000, guid: f6cb9eb09d5d89444856506299e1baa7, type: 3}
+    - target: {fileID: 114000010592206144, guid: 63e40eb59c87a164ebfebebbde3967c2,
+        type: 2}
+      propertyPath: Brake
+      value: 
+      objectReference: {fileID: 8300000, guid: 78dc4072212f63047bf5f939eb9561cc, type: 3}
+    - target: {fileID: 114000010592206144, guid: 63e40eb59c87a164ebfebebbde3967c2,
+        type: 2}
+      propertyPath: Skating
+      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 63e40eb59c87a164ebfebebbde3967c2, type: 2}
@@ -11294,11 +11324,26 @@ Prefab:
         type: 2}
       propertyPath: DeathSound
       value: 
-      objectReference: {fileID: 8300000, guid: d7364318bec8cb043b766fdbc7f8762e, type: 3}
+      objectReference: {fileID: 8300000, guid: 37abab5c7db015d4caa5a42d08029751, type: 3}
     - target: {fileID: 114000010592206144, guid: 63e40eb59c87a164ebfebebbde3967c2,
         type: 2}
       propertyPath: volume
       value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000010592206144, guid: 63e40eb59c87a164ebfebebbde3967c2,
+        type: 2}
+      propertyPath: WindDash
+      value: 
+      objectReference: {fileID: 8300000, guid: f6cb9eb09d5d89444856506299e1baa7, type: 3}
+    - target: {fileID: 114000010592206144, guid: 63e40eb59c87a164ebfebebbde3967c2,
+        type: 2}
+      propertyPath: Brake
+      value: 
+      objectReference: {fileID: 8300000, guid: 78dc4072212f63047bf5f939eb9561cc, type: 3}
+    - target: {fileID: 114000010592206144, guid: 63e40eb59c87a164ebfebebbde3967c2,
+        type: 2}
+      propertyPath: Skating
+      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 63e40eb59c87a164ebfebebbde3967c2, type: 2}
@@ -16375,11 +16420,26 @@ Prefab:
         type: 2}
       propertyPath: DeathSound
       value: 
-      objectReference: {fileID: 8300000, guid: d7364318bec8cb043b766fdbc7f8762e, type: 3}
+      objectReference: {fileID: 8300000, guid: 261b77af022ea4b4a900517af20d870a, type: 3}
     - target: {fileID: 114000010592206144, guid: 63e40eb59c87a164ebfebebbde3967c2,
         type: 2}
       propertyPath: volume
       value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000010592206144, guid: 63e40eb59c87a164ebfebebbde3967c2,
+        type: 2}
+      propertyPath: WindDash
+      value: 
+      objectReference: {fileID: 8300000, guid: f6cb9eb09d5d89444856506299e1baa7, type: 3}
+    - target: {fileID: 114000010592206144, guid: 63e40eb59c87a164ebfebebbde3967c2,
+        type: 2}
+      propertyPath: Brake
+      value: 
+      objectReference: {fileID: 8300000, guid: 78dc4072212f63047bf5f939eb9561cc, type: 3}
+    - target: {fileID: 114000010592206144, guid: 63e40eb59c87a164ebfebebbde3967c2,
+        type: 2}
+      propertyPath: Skating
+      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 63e40eb59c87a164ebfebebbde3967c2, type: 2}
