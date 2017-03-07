@@ -6,7 +6,7 @@ using System.Collections;
 public class PlayerController : MonoBehaviour
 {
 
-    public enum SkillID {Meteor, IceWall, Earth, MagneticBlast, None};
+    public enum SkillID {Meteor, Earth, MagneticBlast, None};
 
     public string PlayerNumber;
     [SerializeField] private SkillID Skill;
@@ -113,10 +113,10 @@ public class PlayerController : MonoBehaviour
         {
             playerSkill = gameObject.AddComponent<MeteorAbility>();
         }
-        else if (Skill == SkillID.IceWall)
-        {
-            playerSkill = gameObject.AddComponent<IceWallAbility>();
-        }
+        //else if (Skill == SkillID.IceWall)
+        //{
+        //    playerSkill = gameObject.AddComponent<IceWallAbility>();
+        //}
         else if (Skill == SkillID.MagneticBlast)
         {
             playerSkill = gameObject.AddComponent<MagneticBlastAbility>();

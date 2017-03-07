@@ -4,7 +4,7 @@ using System.Collections;
 public class MagneticBlastAbility : PlayerAbility {
 
     public float radius = 3.0F;
-    public float power = 2000.0F;
+    public float power = 20.0F;
 
     public float indicatorTimer;
     // Use this for initialization
@@ -43,21 +43,15 @@ public class MagneticBlastAbility : PlayerAbility {
         Collider[] colliders = Physics.OverlapSphere(explosionPos, radius);
         foreach (Collider hit in colliders)
         {
-            if (hit.GetComponent<PlayerController>() /*|| hit.GetComponent<Bullet>()*/)
+            if (hit.gameObject.GetComponent<PlayerController>() && hit != playerObject.GetComponent<Collider>())
             {
-                Rigidbody rb = hit.GetComponent<Rigidbody>();
+                Rigidbody rb = hit.GetComponent<Rigidbody>(); Vector3 proj = Vector3.Project(rb.velocity, Quaternion.AngleAxis(-90, Vector3.up) * (rb.position - playerObject.GetComponent<Rigidbody>().position));
+                rb.velocity = (proj + rb.velocity) * .5f;
 
                 if (rb != null)
-                    rb.AddExplosionForce(power, explosionPos, radius, -2.0F);
-
-                //if(hit.GetComponent<Bullet>())
-                //{
-                //    hit.GetComponent<Bullet>().shooter = playerNumber;
-                //    hit.transform.GetChild(0).GetComponent<Renderer>().material = playerColor;
-                //}
-                /*else */if(hit.GetComponent<PlayerController>())
                 {
-                    hit.GetComponent<PlayerController>().OnHit();
+                    rb.AddExplosionForce(power, explosionPos, radius, 0.0F, ForceMode.Impulse);
+                    
                 }
             }
         }

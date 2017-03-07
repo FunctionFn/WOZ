@@ -547,7 +547,7 @@ MonoBehaviour:
     m_Options:
     - m_Text: Meteor
       m_Image: {fileID: 0}
-    - m_Text: Ice Wall
+    - m_Text: Boulder
       m_Image: {fileID: 0}
     - m_Text: Magnetic Blast
       m_Image: {fileID: 0}
@@ -1154,7 +1154,7 @@ MonoBehaviour:
     m_Options:
     - m_Text: Meteor
       m_Image: {fileID: 0}
-    - m_Text: Ice Wall
+    - m_Text: Boulder
       m_Image: {fileID: 0}
     - m_Text: Magnetic Blast
       m_Image: {fileID: 0}
@@ -3096,7 +3096,7 @@ MonoBehaviour:
     m_Options:
     - m_Text: Meteor
       m_Image: {fileID: 0}
-    - m_Text: Ice Wall
+    - m_Text: Boulder
       m_Image: {fileID: 0}
     - m_Text: Magnetic Blast
       m_Image: {fileID: 0}
@@ -4620,7 +4620,7 @@ MonoBehaviour:
     m_Options:
     - m_Text: Meteor
       m_Image: {fileID: 0}
-    - m_Text: Ice Wall
+    - m_Text: Boulder
       m_Image: {fileID: 0}
     - m_Text: Magnetic Blast
       m_Image: {fileID: 0}
