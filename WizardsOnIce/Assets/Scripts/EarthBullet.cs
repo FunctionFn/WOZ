@@ -17,6 +17,7 @@ public class EarthBullet : Bullet
     void Start()
     {
         chargeBonus = 0.0f;
+        GetComponent<AudioSource>().Pause();
     }
 
     // Update is called once per frame
@@ -55,6 +56,8 @@ public class EarthBullet : Bullet
         }
 
         strengthModifier *= chargeAmt;
+
+        GetComponent<AudioSource>().Play();
     }
 
     public override void OnTriggerEnter(Collider other)
