@@ -5,7 +5,8 @@ using System.Collections;
 
 public class PlayerController : MonoBehaviour
 {
-    public enum SkillID {Meteor, IceWall, Earth, None};
+
+    public enum SkillID {Meteor, IceWall, Earth, MagneticBlast, None};
 
     public string PlayerNumber;
     [SerializeField] private SkillID Skill;
@@ -115,9 +116,10 @@ public class PlayerController : MonoBehaviour
         else if (Skill == SkillID.IceWall)
         {
             playerSkill = gameObject.AddComponent<IceWallAbility>();
-
-            // short term hack, pls dont keep this way thanks
-            transform.Find("PlayerCenter/TargetReticle").position = iceWallSpawn.position;
+        }
+        else if (Skill == SkillID.MagneticBlast)
+        {
+            playerSkill = gameObject.AddComponent<MagneticBlastAbility>();
         }
         else if(Skill == SkillID.Earth)
         {

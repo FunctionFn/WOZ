@@ -549,7 +549,7 @@ MonoBehaviour:
       m_Image: {fileID: 0}
     - m_Text: Ice Wall
       m_Image: {fileID: 0}
-    - m_Text: Earth
+    - m_Text: Magnetic Blast
       m_Image: {fileID: 0}
   m_OnValueChanged:
     m_PersistentCalls:
@@ -1156,7 +1156,7 @@ MonoBehaviour:
       m_Image: {fileID: 0}
     - m_Text: Ice Wall
       m_Image: {fileID: 0}
-    - m_Text: Earth
+    - m_Text: Magnetic Blast
       m_Image: {fileID: 0}
   m_OnValueChanged:
     m_PersistentCalls:
@@ -3098,7 +3098,7 @@ MonoBehaviour:
       m_Image: {fileID: 0}
     - m_Text: Ice Wall
       m_Image: {fileID: 0}
-    - m_Text: Earth
+    - m_Text: Magnetic Blast
       m_Image: {fileID: 0}
   m_OnValueChanged:
     m_PersistentCalls:
@@ -4622,7 +4622,7 @@ MonoBehaviour:
       m_Image: {fileID: 0}
     - m_Text: Ice Wall
       m_Image: {fileID: 0}
-    - m_Text: Earth
+    - m_Text: Magnetic Blast
       m_Image: {fileID: 0}
   m_OnValueChanged:
     m_PersistentCalls:
