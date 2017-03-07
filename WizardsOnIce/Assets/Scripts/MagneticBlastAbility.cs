@@ -6,6 +6,7 @@ public class MagneticBlastAbility : PlayerAbility {
     public float radius = 3.0F;
     public float power = 2000.0F;
 
+    public float indicatorTimer;
     // Use this for initialization
     void Start()
     {
@@ -25,21 +26,42 @@ public class MagneticBlastAbility : PlayerAbility {
     void Update()
     {
         FireTimer -= Time.deltaTime;
+
+        
     }
 
     public override void TriggerAbility()
     {
         GameObject go = (GameObject)Instantiate(abilityPrefab, playerObject.transform.position, playerObject.transform.rotation);
+        
+        go.transform.GetChild(0).GetComponent<Renderer>().material = indicatorColor;
+        go.GetComponent<Animator>().speed = 5.0f;
+
+        go.GetComponent<MeteorIndicator>().countdown = true;
 
         Vector3 explosionPos = playerObject.transform.position;
         Collider[] colliders = Physics.OverlapSphere(explosionPos, radius);
         foreach (Collider hit in colliders)
         {
-            Rigidbody rb = hit.GetComponent<Rigidbody>();
+            if (hit.GetComponent<PlayerController>() /*|| hit.GetComponent<Bullet>()*/)
+            {
+                Rigidbody rb = hit.GetComponent<Rigidbody>();
 
-            if (rb != null)
-                rb.AddExplosionForce(power, explosionPos, radius, -2.0F);
+                if (rb != null)
+                    rb.AddExplosionForce(power, explosionPos, radius, -2.0F);
+
+                //if(hit.GetComponent<Bullet>())
+                //{
+                //    hit.GetComponent<Bullet>().shooter = playerNumber;
+                //    hit.transform.GetChild(0).GetComponent<Renderer>().material = playerColor;
+                //}
+                /*else */if(hit.GetComponent<PlayerController>())
+                {
+                    hit.GetComponent<PlayerController>().OnHit();
+                }
+            }
         }
+
     }
 
     public override void Fire()
