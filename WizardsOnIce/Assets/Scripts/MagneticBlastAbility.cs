@@ -1,28 +1,22 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class IceWallAbility : PlayerAbility
-{
+public class MagneticBlastAbility : PlayerAbility {
 
-    // CAN BE CHANGED FOR BALANCE
-    public float duration = 3.0f;
-    // CAN BE CHANGED FOR BALANCE
-
-    public Transform iceWallSpawn;
+    public float radius = 3.0F;
+    public float power = 2000.0F;
 
     // Use this for initialization
     void Start()
     {
-        abilityPrefab = (GameObject)(Resources.Load("IceWall"));
-        missilePrefab = (GameObject)(Resources.Load("IceBullet"));
+        abilityPrefab = (GameObject)(Resources.Load("MeteorIndicator"));
+        missilePrefab = (GameObject)(Resources.Load("MagnetBullet"));
         // CAN BE CHANGED FOR BALANCE
         abilityTime = 5.0f;
-        FireTime = 1.0f;
-        missileSpeed = 12.0f;
+        FireTime = 0.5f;
+        missileSpeed = 15.0f;
         // CAN BE CHANGED FOR BALANCE
 
-        iceWallSpawn = playerObject.transform.Find("PlayerCenter/IceWallSpawn");
-        transform.Find("PlayerCenter/TargetReticle").position = iceWallSpawn.position;
 
         Physics.IgnoreLayerCollision(10, gameObject.layer);
     }
@@ -35,9 +29,17 @@ public class IceWallAbility : PlayerAbility
 
     public override void TriggerAbility()
     {
-        GameObject go = (GameObject)Instantiate(abilityPrefab, iceWallSpawn.position, iceWallSpawn.rotation);
+        GameObject go = (GameObject)Instantiate(abilityPrefab, playerObject.transform.position, playerObject.transform.rotation);
 
-        //go.transform.GetChild(0).GetComponent<Renderer>().material = playerColor;
+        Vector3 explosionPos = playerObject.transform.position;
+        Collider[] colliders = Physics.OverlapSphere(explosionPos, radius);
+        foreach (Collider hit in colliders)
+        {
+            Rigidbody rb = hit.GetComponent<Rigidbody>();
+
+            if (rb != null)
+                rb.AddExplosionForce(power, explosionPos, radius, -2.0F);
+        }
     }
 
     public override void Fire()
@@ -55,3 +57,4 @@ public class IceWallAbility : PlayerAbility
         }
     }
 }
+
