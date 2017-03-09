@@ -14,6 +14,7 @@ public class Bullet : MonoBehaviour
     void Start()
     {
         Physics.IgnoreLayerCollision(10, gameObject.layer);
+        GetComponent<TrailRenderer>().material = transform.GetChild(0).GetComponent<Renderer>().material;
     }
 
     // Update is called once per frame
