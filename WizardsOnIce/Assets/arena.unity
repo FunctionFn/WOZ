@@ -627,9 +627,6 @@ Prefab:
       propertyPath: Brake
       value: 
       objectReference: {fileID: 8300000, guid: 78dc4072212f63047bf5f939eb9561cc, type: 3}
-      propertyPath: PlayerNumber
-      value: 3
-      objectReference: {fileID: 0}
     - target: {fileID: 114000010592206144, guid: 63e40eb59c87a164ebfebebbde3967c2,
         type: 2}
       propertyPath: Skill
@@ -809,7 +806,6 @@ GameObject:
   m_Component:
   - 4: {fileID: 986117570}
   - 114: {fileID: 986117571}
-  - 81: {fileID: 986117572}
   m_Layer: 0
   m_Name: CameraControl
   m_TagString: Untagged
@@ -852,13 +848,6 @@ MonoBehaviour:
   maxX: 6
   minZ: -8
   maxZ: 8
---- !u!81 &986117572
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 986117569}
-  m_Enabled: 1
 --- !u!1 &1107984647
 GameObject:
   m_ObjectHideFlags: 0
@@ -1439,6 +1428,7 @@ Prefab:
         type: 2}
       propertyPath: volume
       value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 65000012899219626, guid: df96332c350dab946ae68f9d295834eb,
         type: 2}
       propertyPath: m_Enabled
