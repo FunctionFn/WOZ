@@ -114,6 +114,8 @@ public class PlayerController : MonoBehaviour
         int.TryParse(PlayerNumber, out output);
         if (GameManager.Inst.PlayerSkills.Count > output && Skill == SkillID.None)
             Skill = GameManager.Inst.PlayerSkills[output];
+        else
+            Skill = SkillID.Meteor;
 
         if (Skill == SkillID.Meteor)
         {
@@ -167,7 +169,7 @@ public class PlayerController : MonoBehaviour
 
 			}
 
-			else
+			
 			//audio.Play ();
 			//audio.Pause (); Further assistance required for skating sound - Eddie
         }
