@@ -160,6 +160,14 @@ public class PlayerController : MonoBehaviour
             Vector3 v = GetComponent<Rigidbody>().velocity.normalized* currentMaxSpeed;
 
             GetComponent<Rigidbody>().velocity = new Vector3(v.x, GetComponent<Rigidbody>().velocity.y, v.z);
+
+			if (audio.isPlaying == false) 
+			{
+				audio.Play ();
+
+			}
+
+			else
 			//audio.Play ();
 			//audio.Pause (); Further assistance required for skating sound - Eddie
         }
