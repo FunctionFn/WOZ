@@ -7,6 +7,7 @@ using UnityEngine.SceneManagement;
 
 
 public class GameManager : MonoBehaviour 
+
 {
 
     public List<PlayerController> PlayersAlive;
@@ -21,6 +22,7 @@ public class GameManager : MonoBehaviour
     public int nextLevel;
 
     public Dictionary<int, PlayerController.SkillID> PlayerSkills;
+	public AudioSource click;
 
     void Awake()
     {
@@ -139,6 +141,8 @@ public class GameManager : MonoBehaviour
     {
         int playernum;
 
+
+
         switch (selector.name)
         {
             case "Player1Selector":
@@ -161,6 +165,10 @@ public class GameManager : MonoBehaviour
                 Debug.Log("Character select playernum error");
                 playernum = 0;
                 break;
+			if (Input.GetMouseButtonDown (0)) 
+			{
+				click.Play ();
+			}
         }
 
 
