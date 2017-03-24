@@ -9,9 +9,12 @@ public class Meteor : MonoBehaviour
     public float strength;
     public float environmentDamage;
 
+	public AudioClip Explosion;
+	AudioSource audio;
+
     void Start()
     {
-        
+		audio = GetComponent<AudioSource> ();
     }
 
     // Update is called once per frame
@@ -22,6 +25,7 @@ public class Meteor : MonoBehaviour
 
     void OnBecameInvisible()
     {
+		
         Destroy(gameObject, 2);
     }
 
@@ -34,14 +38,16 @@ public class Meteor : MonoBehaviour
     {
         if (other.gameObject.GetComponent<PlayerController>())
         {
+			AudioSource.PlayClipAtPoint (Explosion, new Vector3(0, 18, 0));
         //other.gameObject.GetComponent<PlayerController>().Damage(1);
 
             Vector3 dir = other.GetComponent<Rigidbody>().position - GetComponent<Rigidbody>().position;
 
             other.GetComponent<Rigidbody>().AddForce(new Vector3(dir.x, 0, dir.z).normalized * strength);
             other.GetComponent<PlayerController>().OnHit();
-        }
 
+        }
+			
        
     }
 }

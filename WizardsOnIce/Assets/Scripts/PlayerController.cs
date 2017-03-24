@@ -5,7 +5,8 @@ using System.Collections;
 
 public class PlayerController : MonoBehaviour
 {
-    public enum SkillID {Meteor, IceWall};
+
+    public enum SkillID {Meteor, Earth, MagneticBlast, None};
 
     public string PlayerNumber;
     [SerializeField] private SkillID Skill;
@@ -37,14 +38,13 @@ public class PlayerController : MonoBehaviour
     public float missileSpeed;
 
     public float maxSpeed;
-    public float maxSpeedHitModifier;
     public float maxSpeedDecay;
     public float brakeSpeed;
     public float currentMaxSpeed;
     public float dashCooldown;
     public float turnRate;
 
-    public float FireTime;
+    
     public float DashTime;
     public float GrabTime;
     public float DeathStunTime;
@@ -52,7 +52,7 @@ public class PlayerController : MonoBehaviour
     public float iTime;
 
     float angle;
-    public float FireTimer;
+    
     public float AbilityTimer;
 	public float DashTimer;
     public float GrabTimer;
@@ -82,6 +82,19 @@ public class PlayerController : MonoBehaviour
     public float grabTime;
 
     public float environmentDamage;
+    float tempedamage;
+
+	public bool enter;
+
+	public AudioClip Skating;
+	public AudioClip DeathSound;
+	public AudioClip WindDash;
+	public AudioClip Brake;
+	public float volume;
+	AudioSource audio;
+
+    public float startTime;
+
     void Awake()
     {
 
@@ -91,6 +104,7 @@ public class PlayerController : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+		audio = GetComponent<AudioSource> ();
 
         rb = GetComponent<Rigidbody>();
 
@@ -101,24 +115,30 @@ public class PlayerController : MonoBehaviour
         // Change this to be added by menu system!!
         int output;
         int.TryParse(PlayerNumber, out output);
-        if (GameManager.Inst.PlayerSkills.Count > output)
+        if (GameManager.Inst.PlayerSkills.Count > output && Skill == SkillID.None)
             Skill = GameManager.Inst.PlayerSkills[output];
         else
             Skill = SkillID.Meteor;
+
         if (Skill == SkillID.Meteor)
         {
             playerSkill = gameObject.AddComponent<MeteorAbility>();
         }
-        else if (Skill == SkillID.IceWall)
+        //else if (Skill == SkillID.IceWall)
+        //{
+        //    playerSkill = gameObject.AddComponent<IceWallAbility>();
+        //}
+        else if (Skill == SkillID.MagneticBlast)
         {
-            playerSkill = gameObject.AddComponent<IceWallAbility>();
-
-            // short term hack, pls dont keep this way thanks
-            transform.Find("PlayerCenter/TargetReticle").position = iceWallSpawn.position;
+            playerSkill = gameObject.AddComponent<MagneticBlastAbility>();
+        }
+        else if(Skill == SkillID.Earth)
+        {
+            playerSkill = gameObject.AddComponent<EarthAbility>();
         }
         // Change this to be added by menu system!!
 
-        playerSkill.Initialize(color, indicatorColor, PlayerNumber, gameObject);
+        playerSkill.Initialize(color, indicatorColor, PlayerNumber, gameObject, missileSpawnLocation);
 
 
         willFire = false;
@@ -134,6 +154,11 @@ public class PlayerController : MonoBehaviour
         currentMaxSpeed = maxSpeed;
 
         IceBrake.GetComponent<Renderer>().enabled = false;
+
+        tempedamage = environmentDamage;
+        environmentDamage = 0;
+        Stun(startTime);
+
     }
 
     // Update is called once per frame
@@ -144,6 +169,15 @@ public class PlayerController : MonoBehaviour
             Vector3 v = GetComponent<Rigidbody>().velocity.normalized* currentMaxSpeed;
 
             GetComponent<Rigidbody>().velocity = new Vector3(v.x, GetComponent<Rigidbody>().velocity.y, v.z);
+
+			if (audio.isPlaying == false) 
+			{
+				audio.Play ();
+
+			}
+
+			
+			
         }
 
         rb.angularVelocity = Vector3.zero;
@@ -153,8 +187,7 @@ public class PlayerController : MonoBehaviour
 
        
 
-
-        FireTimer -= Time.deltaTime;
+        
         GrabTimer -= Time.deltaTime;
         HoldTimer -= Time.deltaTime;
         StunTimer -= Time.deltaTime;
@@ -177,6 +210,8 @@ public class PlayerController : MonoBehaviour
 
             if (movementState != State.Braking)
             {
+
+				//audio.PlayOneShot (Brake, 1.0f); need help so it doesn't play every frame
                 currentMaxSpeed = maxSpeed;
                 IceBrake.GetComponent<Renderer>().enabled = false;
             }
@@ -195,7 +230,7 @@ public class PlayerController : MonoBehaviour
         }
     
 
-        cdtext.text = AbilityTimer.ToString();
+        cdtext.text = Mathf.Ceil(AbilityTimer).ToString();
 
         if(AbilityTimer <= 0)
         {
@@ -219,15 +254,22 @@ public class PlayerController : MonoBehaviour
             currentMaxSpeed = maxSpeed;
         }
 
-        //if (movementState == State.NoMovement && StunTimer <= 0)
-        //{
+        if (movementState == State.NoMovement && StunTimer <= 0)
+        {
 
-        //    ChangeMovementState(State.GroundedMovement);
-        //}
+            ChangeMovementState(State.GroundedMovement);
+
+            if(environmentDamage < tempedamage)
+            {
+                environmentDamage = tempedamage;
+            }
+        }
         if (beingHeld && HoldTimer <= 0)
         {
             holder.Chuck();
         }
+			
+
 
         
     }
@@ -245,6 +287,8 @@ public class PlayerController : MonoBehaviour
         if(movementState == State.Dash && state != State.Dash)
         {
             rb.useGravity = true;
+
+
         }
 
         
@@ -253,7 +297,9 @@ public class PlayerController : MonoBehaviour
 
         if(movementState == State.Dash)
         {
-            rb.useGravity = false;
+			AudioSource.PlayClipAtPoint (WindDash, new Vector3 (0,19,0));
+
+			rb.useGravity = false;
         }
 
         
@@ -338,18 +384,17 @@ public class PlayerController : MonoBehaviour
                 {
                     ChangeMovementState(State.Braking);
                 }
-                if (Input.GetButtonDown("Fire" + PlayerNumber))
-                {
-                    grabBox.GetComponent<GrabBox>().SetActive(true);
-                    GrabTimer = GrabTime;
+                //if (Input.GetButton("Fire" + PlayerNumber))
+                //{
+                //    Fireball();
 
-                }
+                //}
                 if(Input.GetButtonDown("AbilityTrigger" + PlayerNumber))
                 {
                     Ability();
                 }
 
-                if (Input.GetAxis("Trigger" + PlayerNumber) > 0.5f)
+                if (Input.GetAxis("Trigger" + PlayerNumber) > 0.5f || Input.GetAxis("Trigger" + PlayerNumber) < -0.5f)
                 {
                     Fireball();
                 }
@@ -377,17 +422,7 @@ public class PlayerController : MonoBehaviour
 
     void Fireball()
     {
-        if(FireTimer <= 0)
-        {
-            GameObject go = (GameObject)Instantiate(missilePrefab, missileSpawnLocation.position, missileSpawnLocation.rotation);
-
-
-            go.GetComponent<Rigidbody>().velocity = (missileSpawnLocation.transform.forward) * missileSpeed;
-            go.GetComponent<Bullet>().shooter = PlayerNumber;
-            go.transform.GetChild(0).GetComponent<Renderer>().material = color;
-            FireTimer = FireTime;
-        }
-        
+        playerSkill.Fire();
     }
 
     void Ability()
@@ -478,23 +513,14 @@ public class PlayerController : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        //if (other.GetComponent<EnemyBase>())
-        //{
-        //    Damage(other.GetComponent<EnemyBase>().damage);
-        //    Destroy(other.gameObject);
-
-        //    iTween.PunchPosition(mainCamera, new Vector3(0.0f, cameraPunchStrength, 0.0f), cameraPunchTime);
-        //}
-        //else if (other.GetComponent<Costume>())
-        //{
-        //    ChangeCostume();
-        //    Destroy(other.gameObject);
-        //}
-        //Destroy(other.gameObject);
         if (other.GetComponent<Killbox>())
         {
+
+			AudioSource.PlayClipAtPoint (DeathSound, new Vector3(0, 18, 0));
             Kill();
         }
+
+	
     }
 
     void OnTriggerStay(Collider other)
@@ -552,14 +578,14 @@ public class PlayerController : MonoBehaviour
         HoldTimer = MaxHoldTime;
     }
 
-    public void OnHit()
+    public void OnHit(float hit = 4)
     {
-        if(currentMaxSpeed < maxSpeed)
-        {
-            currentMaxSpeed = maxSpeed;
-        }
-	        currentMaxSpeed += maxSpeedHitModifier;
-	    }
+        //if(currentMaxSpeed < maxSpeed)
+        //{
+        //    currentMaxSpeed = maxSpeed;
+        //}
+	    currentMaxSpeed += hit;
+	}
 
     public void Kill()
     {
@@ -568,9 +594,6 @@ public class PlayerController : MonoBehaviour
             dead = true;
             GameManager.Inst.SubPlayer(this.GetComponent<PlayerController>());
             Destroy(gameObject);
-			if (!GetComponent<AudioSource>().isPlaying) {
-				GetComponent<AudioSource>().Play ();
-			}
         }
     }
    

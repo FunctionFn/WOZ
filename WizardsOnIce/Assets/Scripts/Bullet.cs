@@ -14,6 +14,7 @@ public class Bullet : MonoBehaviour
     void Start()
     {
         Physics.IgnoreLayerCollision(10, gameObject.layer);
+        GetComponent<TrailRenderer>().material = transform.GetChild(0).GetComponent<Renderer>().material;
     }
 
     // Update is called once per frame
@@ -32,7 +33,7 @@ public class Bullet : MonoBehaviour
 
     }
 
-    void OnTriggerEnter(Collider other)
+    public virtual void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.GetComponent<PlayerController>() && other.gameObject.GetComponent<PlayerController>().PlayerNumber != shooter)
         {

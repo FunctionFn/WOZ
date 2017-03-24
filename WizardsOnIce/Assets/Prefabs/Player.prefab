@@ -1044,35 +1044,59 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PlayerNumber: 0
-  maxHealth: 10
-  currentHealth: 0
+  Skill: 0
   mainCamera: {fileID: 0}
   missilePrefab: {fileID: 1000011816276132, guid: 9934efbff3871de45bead5491db78df5,
     type: 2}
   grabBox: {fileID: 1000011281330154}
+  IceBrake: {fileID: 0}
+  cdtext: {fileID: 0}
+  color: {fileID: 0}
+  indicatorColor: {fileID: 0}
   playerCenter: {fileID: 4000013151245776}
   gravity: 20
   jumpSpeed: 10
   missileSpawnLocation: {fileID: 4000014131375244}
+  iceWallSpawn: {fileID: 0}
   VIPHoldLocation: {fileID: 4000012838728180}
   throwForce: 500
   speed: 7
+  rollSpeed: 0
   airSpeedModifier: 0.75
   missileSpeed: 35
-  FireTime: 0.32
+  maxSpeed: 0
+  maxSpeedDecay: 0
+  brakeSpeed: 0
+  currentMaxSpeed: 0
+  dashCooldown: 0
+  turnRate: 0
+  DashTime: 0
   GrabTime: 0.2
   DeathStunTime: 5
   MaxHoldTime: 3
-  FireTimer: 0
+  iTime: 0
+  AbilityTimer: 0
+  DashTimer: 0
   GrabTimer: 0
   StunTimer: 0
   HoldTimer: 0
+  iTimer: 0
+  dead: 0
   moveDirection: {x: 0, y: 0, z: 0}
   heldObject: {fileID: 0}
+  playerSkill: {fileID: 0}
   beingHeld: 0
   movementState: 0
   holder: {fileID: 0}
   grabTime: 0
+  environmentDamage: 0
+  enter: 0
+  Skating: {fileID: 0}
+  DeathSound: {fileID: 0}
+  WindDash: {fileID: 0}
+  Brake: {fileID: 0}
+  volume: 0
+  startTime: 3
 --- !u!114 &114000013703221150
 MonoBehaviour:
   m_ObjectHideFlags: 1
