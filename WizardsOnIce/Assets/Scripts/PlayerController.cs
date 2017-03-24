@@ -82,6 +82,7 @@ public class PlayerController : MonoBehaviour
     public float grabTime;
 
     public float environmentDamage;
+    float tempedamage;
 
 	public bool enter;
 
@@ -91,6 +92,8 @@ public class PlayerController : MonoBehaviour
 	public AudioClip Brake;
 	public float volume;
 	AudioSource audio;
+
+    public float startTime;
 
     void Awake()
     {
@@ -152,6 +155,10 @@ public class PlayerController : MonoBehaviour
 
         IceBrake.GetComponent<Renderer>().enabled = false;
 
+        tempedamage = environmentDamage;
+        environmentDamage = 0;
+        Stun(startTime);
+
     }
 
     // Update is called once per frame
@@ -170,8 +177,7 @@ public class PlayerController : MonoBehaviour
 			}
 
 			
-			//audio.Play ();
-			//audio.Pause (); Further assistance required for skating sound - Eddie
+			
         }
 
         rb.angularVelocity = Vector3.zero;
@@ -224,7 +230,7 @@ public class PlayerController : MonoBehaviour
         }
     
 
-        cdtext.text = AbilityTimer.ToString();
+        cdtext.text = Mathf.Ceil(AbilityTimer).ToString();
 
         if(AbilityTimer <= 0)
         {
@@ -252,6 +258,11 @@ public class PlayerController : MonoBehaviour
         {
 
             ChangeMovementState(State.GroundedMovement);
+
+            if(environmentDamage < tempedamage)
+            {
+                environmentDamage = tempedamage;
+            }
         }
         if (beingHeld && HoldTimer <= 0)
         {

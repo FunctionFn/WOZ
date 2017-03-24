@@ -298,6 +298,6 @@ MonoBehaviour:
   chargeAmt: 0
   minCharge: 0.1
   maxSpeedHitModifier: 4
-  groundDamage: 30
+  groundDamage: 35
   gravity: 7
   jumpSpeed: 3
