@@ -453,6 +453,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 4000013852843564}
+  - 82: {fileID: 82000013386191288}
   m_Layer: 0
   m_Name: IceWallSpawn
   m_TagString: Untagged
@@ -2680,6 +2681,80 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 0
+--- !u!82 &82000013386191288
+AudioSource:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000011208273308}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 0425501ff69e215468444638a8557bf3, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
 --- !u!95 &95000012011536880
 Animator:
   serializedVersion: 3
@@ -2771,9 +2846,14 @@ MonoBehaviour:
   movementState: 0
   holder: {fileID: 0}
   grabTime: 0
-  environmentDamage: 0.1
+  environmentDamage: 0.15
   enter: 0
-  DeathScream: {fileID: 0}
+  Skating: {fileID: 0}
+  DeathSound: {fileID: 8300000, guid: 261b77af022ea4b4a900517af20d870a, type: 3}
+  WindDash: {fileID: 8300000, guid: f6cb9eb09d5d89444856506299e1baa7, type: 3}
+  Brake: {fileID: 8300000, guid: 78dc4072212f63047bf5f939eb9561cc, type: 3}
+  volume: 100
+  startTime: 1.5
 --- !u!114 &114000010869953802
 MonoBehaviour:
   m_ObjectHideFlags: 1
