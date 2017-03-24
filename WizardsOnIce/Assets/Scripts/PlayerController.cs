@@ -162,6 +162,14 @@ public class PlayerController : MonoBehaviour
             Vector3 v = GetComponent<Rigidbody>().velocity.normalized* currentMaxSpeed;
 
             GetComponent<Rigidbody>().velocity = new Vector3(v.x, GetComponent<Rigidbody>().velocity.y, v.z);
+
+			if (audio.isPlaying == false) 
+			{
+				audio.Play ();
+
+			}
+
+			
 			//audio.Play ();
 			//audio.Pause (); Further assistance required for skating sound - Eddie
         }
@@ -494,19 +502,6 @@ public class PlayerController : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        //if (other.GetComponent<EnemyBase>())
-        //{
-        //    Damage(other.GetComponent<EnemyBase>().damage);
-        //    Destroy(other.gameObject);
-
-        //    iTween.PunchPosition(mainCamera, new Vector3(0.0f, cameraPunchStrength, 0.0f), cameraPunchTime);
-        //}
-        //else if (other.GetComponent<Costume>())
-        //{
-        //    ChangeCostume();
-        //    Destroy(other.gameObject);
-        //}
-        //Destroy(other.gameObject);
         if (other.GetComponent<Killbox>())
         {
 
@@ -588,9 +583,6 @@ public class PlayerController : MonoBehaviour
             dead = true;
             GameManager.Inst.SubPlayer(this.GetComponent<PlayerController>());
             Destroy(gameObject);
-			if (!GetComponent<AudioSource>().isPlaying) {
-				GetComponent<AudioSource>().Play ();
-			}
         }
     }
    

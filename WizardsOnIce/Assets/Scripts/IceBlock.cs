@@ -10,12 +10,12 @@ public class IceBlock : MonoBehaviour {
     public float rper;
     public float gper;
     public float bper;
+    //public AudioSource audioS;
 
+    // Use this for initialization
+    void Start () {
 
-	// Use this for initialization
-	void Start () {
-
-
+       
         currentHealth = maxhealth;
 
         startingColor = GetComponent<Renderer>().material.GetColor("_Color");

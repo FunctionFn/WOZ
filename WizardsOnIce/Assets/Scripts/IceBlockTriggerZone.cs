@@ -29,6 +29,11 @@ public class IceBlockTriggerZone : MonoBehaviour {
         else if(other.GetComponent<Meteor>())
         {
             ib.Decay(other.GetComponent<Meteor>().environmentDamage * Time.deltaTime * 60);
+            //if(ib.audioS && !ib.audioS.isPlaying)
+            //{
+            //    ib.audioS.Play();
+            //}
+                
         }
         else if(other.GetComponent<IceWall>())
         {

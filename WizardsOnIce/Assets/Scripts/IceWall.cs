@@ -19,7 +19,7 @@ public class IceWall : MonoBehaviour
 
 	public AudioClip IceShatter;
 	public float volume;
-	AudioSource audio;
+    AudioSource audio;
 
 
     void Start()
@@ -48,7 +48,7 @@ public class IceWall : MonoBehaviour
 
         if (currentHealth <= 0.0f)
         {
-			AudioSource.PlayClipAtPoint (IceShatter, new Vector3(0,18,0));
+			//AudioSource.PlayClipAtPoint (IceShatter, new Vector3(0,18,0));
 			Destroy (gameObject);
 
 
