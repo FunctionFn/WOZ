@@ -1298,6 +1298,11 @@ Prefab:
       propertyPath: Brake
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 23000011302300904, guid: 63e40eb59c87a164ebfebebbde3967c2,
+        type: 2}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 15ed9fb952aa1584ab77dc49fa2dfd9c, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 63e40eb59c87a164ebfebebbde3967c2, type: 2}
   m_IsPrefabParent: 0
@@ -13918,6 +13923,11 @@ Prefab:
       propertyPath: Skating
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 23000011302300904, guid: 63e40eb59c87a164ebfebebbde3967c2,
+        type: 2}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: d22a69a6d7fbb0d44a01186ebcdb0c4e, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 63e40eb59c87a164ebfebebbde3967c2, type: 2}
   m_IsPrefabParent: 0
@@ -15399,6 +15409,11 @@ Prefab:
       propertyPath: Skating
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 23000011302300904, guid: 63e40eb59c87a164ebfebebbde3967c2,
+        type: 2}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: eba58649e449d4a4fbf565ef85a75b19, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 63e40eb59c87a164ebfebebbde3967c2, type: 2}
   m_IsPrefabParent: 0

@@ -62,6 +62,7 @@ public class MagneticBlastAbility : PlayerAbility {
             }
         }
 
+        playerObject.GetComponent<PlayerController>().SetAbilityTimer(abilityTime);
     }
 
     public override void Fire()
