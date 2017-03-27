@@ -17,9 +17,16 @@ public class IceWall : MonoBehaviour
     public float gper;
     public float bper;
 
+	public AudioClip IceShatter;
+	public float volume;
+    AudioSource audio;
+
+
     void Start()
     {
-        currentHealth = maxHealth;
+		audio = GetComponent<AudioSource> ();
+
+		currentHealth = maxHealth;
 
         startingColor = GetComponent<Renderer>().material.GetColor("_Color");
 
@@ -27,8 +34,6 @@ public class IceWall : MonoBehaviour
         gper = startingColor.g / 100;
         bper = startingColor.b / 100;
 
-        
-        
     }
 
     // Update is called once per frame
@@ -43,7 +48,10 @@ public class IceWall : MonoBehaviour
 
         if (currentHealth <= 0.0f)
         {
-            Destroy(gameObject);
+			//AudioSource.PlayClipAtPoint (IceShatter, new Vector3(0,18,0));
+			Destroy (gameObject);
+
+
         }
 
         GetComponent<Renderer>().material.SetColor("_Color", new Color(rper * currentHealth, gper * currentHealth, bper * currentHealth));
@@ -58,7 +66,9 @@ public class IceWall : MonoBehaviour
     {
         if(other.GetComponent<Meteor>())
         {
-            Destroy(gameObject);
+			//AudioSource.PlayClipAtPoint (IceShatter, new Vector3(0,18,0));
+			//rare chance it will try play the sound at every frame and cause the game to slow down - Eddie
+			Destroy(gameObject);
         }
         else if(other.GetComponent<Bullet>() && !other.GetComponent<EarthBullet>())
         {
@@ -70,7 +80,7 @@ public class IceWall : MonoBehaviour
     {
         if(other.gameObject.GetComponent<IceBullet>())
         {
-            currentHealth -= bulletDamage;
+			currentHealth -= bulletDamage;
         }
     }
 
@@ -78,4 +88,5 @@ public class IceWall : MonoBehaviour
     {
         currentHealth -= dmg;
     }
+		
 }

@@ -4,8 +4,9 @@ using System.Collections;
 public class MagneticBlastAbility : PlayerAbility {
 
     public float radius = 3.0F;
-    public float power = 2000.0F;
-
+    public float power;
+    public float onhitpower;
+    public float indicatorTimer;
     // Use this for initialization
     void Start()
     {
@@ -13,33 +14,55 @@ public class MagneticBlastAbility : PlayerAbility {
         missilePrefab = (GameObject)(Resources.Load("MagnetBullet"));
         // CAN BE CHANGED FOR BALANCE
         abilityTime = 5.0f;
-        FireTime = 0.5f;
-        missileSpeed = 15.0f;
-        // CAN BE CHANGED FOR BALANCE
+        FireTime = 0.6f;
+        missileSpeed = 12.0f;
+        power = 10.0f;
+        onhitpower = 8.0f;
+    // CAN BE CHANGED FOR BALANCE
 
 
-        Physics.IgnoreLayerCollision(10, gameObject.layer);
+    Physics.IgnoreLayerCollision(10, gameObject.layer);
     }
 
     // Update is called once per frame
     void Update()
     {
         FireTimer -= Time.deltaTime;
+
+        
     }
 
     public override void TriggerAbility()
     {
         GameObject go = (GameObject)Instantiate(abilityPrefab, playerObject.transform.position, playerObject.transform.rotation);
+        
+        go.transform.GetChild(0).GetComponent<Renderer>().material = indicatorColor;
+        go.GetComponent<Animator>().speed = 5.0f;
+
+        go.GetComponent<MeteorIndicator>().countdown = true;
 
         Vector3 explosionPos = playerObject.transform.position;
         Collider[] colliders = Physics.OverlapSphere(explosionPos, radius);
         foreach (Collider hit in colliders)
         {
-            Rigidbody rb = hit.GetComponent<Rigidbody>();
+            if (hit.gameObject.GetComponent<PlayerController>() && hit != playerObject.GetComponent<Collider>())
+            {
+                Rigidbody rb = hit.GetComponent<Rigidbody>();
+                Vector3 proj = Vector3.Project(rb.velocity, Quaternion.AngleAxis(-90, Vector3.up) * (rb.position - playerObject.GetComponent<Rigidbody>().position));
+                rb.velocity = proj/* + rb.velocity) * .5f*/;
 
-            if (rb != null)
-                rb.AddExplosionForce(power, explosionPos, radius, -2.0F);
+                Vector3 disNorm = (rb.position - playerObject.GetComponent<Rigidbody>().position);
+                disNorm.Normalize();
+                if (rb != null)
+                {
+                    hit.gameObject.GetComponent<Rigidbody>().AddForce(disNorm * power, ForceMode.Impulse);
+
+                }
+                hit.gameObject.GetComponent<PlayerController>().OnHit(onhitpower);
+            }
         }
+
+        playerObject.GetComponent<PlayerController>().SetAbilityTimer(abilityTime);
     }
 
     public override void Fire()

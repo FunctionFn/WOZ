@@ -67,6 +67,8 @@ public class EarthAbility : PlayerAbility
         go.GetComponent<Bullet>().shooter = playerNumber;
         go.transform.GetChild(0).GetComponent<Renderer>().material = playerColor;
         FireTimer = FireTime;
+
+        playerObject.GetComponent<PlayerController>().SetAbilityTimer(abilityTime);
     }
 
     public override void Fire()

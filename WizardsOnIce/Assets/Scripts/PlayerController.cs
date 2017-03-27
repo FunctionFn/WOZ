@@ -6,7 +6,7 @@ using System.Collections;
 public class PlayerController : MonoBehaviour
 {
 
-    public enum SkillID {Meteor, IceWall, Earth, MagneticBlast, None};
+    public enum SkillID {Meteor, Earth, MagneticBlast, None};
 
     public string PlayerNumber;
     [SerializeField] private SkillID Skill;
@@ -82,11 +82,19 @@ public class PlayerController : MonoBehaviour
     public float grabTime;
 
     public float environmentDamage;
+    float tempedamage;
 
 	public bool enter;
 
-	public AudioClip DeathScream;
-	private AudioSource source;
+	public AudioClip Skating;
+	public AudioClip DeathSound;
+	public AudioClip WindDash;
+	public AudioClip Brake;
+	public float volume;
+	AudioSource audio;
+
+    public float startTime;
+
     void Awake()
     {
 
@@ -96,6 +104,7 @@ public class PlayerController : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+		audio = GetComponent<AudioSource> ();
 
         rb = GetComponent<Rigidbody>();
 
@@ -108,15 +117,17 @@ public class PlayerController : MonoBehaviour
         int.TryParse(PlayerNumber, out output);
         if (GameManager.Inst.PlayerSkills.Count > output && Skill == SkillID.None)
             Skill = GameManager.Inst.PlayerSkills[output];
+        else
+            Skill = SkillID.Meteor;
 
         if (Skill == SkillID.Meteor)
         {
             playerSkill = gameObject.AddComponent<MeteorAbility>();
         }
-        else if (Skill == SkillID.IceWall)
-        {
-            playerSkill = gameObject.AddComponent<IceWallAbility>();
-        }
+        //else if (Skill == SkillID.IceWall)
+        //{
+        //    playerSkill = gameObject.AddComponent<IceWallAbility>();
+        //}
         else if (Skill == SkillID.MagneticBlast)
         {
             playerSkill = gameObject.AddComponent<MagneticBlastAbility>();
@@ -144,6 +155,10 @@ public class PlayerController : MonoBehaviour
 
         IceBrake.GetComponent<Renderer>().enabled = false;
 
+        tempedamage = environmentDamage;
+        environmentDamage = 0;
+        Stun(startTime);
+
     }
 
     // Update is called once per frame
@@ -154,6 +169,15 @@ public class PlayerController : MonoBehaviour
             Vector3 v = GetComponent<Rigidbody>().velocity.normalized* currentMaxSpeed;
 
             GetComponent<Rigidbody>().velocity = new Vector3(v.x, GetComponent<Rigidbody>().velocity.y, v.z);
+
+			if (audio.isPlaying == false) 
+			{
+				audio.Play ();
+
+			}
+
+			
+			
         }
 
         rb.angularVelocity = Vector3.zero;
@@ -186,6 +210,8 @@ public class PlayerController : MonoBehaviour
 
             if (movementState != State.Braking)
             {
+
+				//audio.PlayOneShot (Brake, 1.0f); need help so it doesn't play every frame
                 currentMaxSpeed = maxSpeed;
                 IceBrake.GetComponent<Renderer>().enabled = false;
             }
@@ -204,7 +230,7 @@ public class PlayerController : MonoBehaviour
         }
     
 
-        cdtext.text = AbilityTimer.ToString();
+        cdtext.text = Mathf.Ceil(AbilityTimer).ToString();
 
         if(AbilityTimer <= 0)
         {
@@ -232,6 +258,11 @@ public class PlayerController : MonoBehaviour
         {
 
             ChangeMovementState(State.GroundedMovement);
+
+            if(environmentDamage < tempedamage)
+            {
+                environmentDamage = tempedamage;
+            }
         }
         if (beingHeld && HoldTimer <= 0)
         {
@@ -256,6 +287,8 @@ public class PlayerController : MonoBehaviour
         if(movementState == State.Dash && state != State.Dash)
         {
             rb.useGravity = true;
+
+
         }
 
         
@@ -264,7 +297,9 @@ public class PlayerController : MonoBehaviour
 
         if(movementState == State.Dash)
         {
-            rb.useGravity = false;
+			AudioSource.PlayClipAtPoint (WindDash, new Vector3 (0,19,0));
+
+			rb.useGravity = false;
         }
 
         
@@ -396,11 +431,18 @@ public class PlayerController : MonoBehaviour
         {
             playerSkill.TriggerAbility();
 
-            AbilityTimer = playerSkill.GetAbilityTime();
+            //AbilityTimer = playerSkill.GetAbilityTime();
 
-            cdtext.enabled = true;
-            cdtext.text = AbilityTimer.ToString();
-        }
+            //cdtext.enabled = true;
+            //cdtext.text = AbilityTimer.ToString();
+       }
+    }
+
+    public void SetAbilityTimer(float t)
+    {
+        AbilityTimer = t;
+        cdtext.enabled = true;
+        cdtext.text = AbilityTimer.ToString();
     }
 
     public void Grab(Pickupable p)
@@ -478,21 +520,10 @@ public class PlayerController : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        //if (other.GetComponent<EnemyBase>())
-        //{
-        //    Damage(other.GetComponent<EnemyBase>().damage);
-        //    Destroy(other.gameObject);
-
-        //    iTween.PunchPosition(mainCamera, new Vector3(0.0f, cameraPunchStrength, 0.0f), cameraPunchTime);
-        //}
-        //else if (other.GetComponent<Costume>())
-        //{
-        //    ChangeCostume();
-        //    Destroy(other.gameObject);
-        //}
-        //Destroy(other.gameObject);
         if (other.GetComponent<Killbox>())
         {
+
+			AudioSource.PlayClipAtPoint (DeathSound, new Vector3(0, 18, 0));
             Kill();
         }
 
@@ -570,9 +601,6 @@ public class PlayerController : MonoBehaviour
             dead = true;
             GameManager.Inst.SubPlayer(this.GetComponent<PlayerController>());
             Destroy(gameObject);
-			if (!GetComponent<AudioSource>().isPlaying) {
-				GetComponent<AudioSource>().Play ();
-			}
         }
     }
    
