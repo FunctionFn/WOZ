@@ -26,7 +26,7 @@ GameObject:
   - 136: {fileID: 136000013665981620}
   - 82: {fileID: 82000013999331320}
   m_Layer: 8
-  m_Name: MagnetBullet
+  m_Name: WindBullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
