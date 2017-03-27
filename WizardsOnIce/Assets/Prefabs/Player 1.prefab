@@ -2886,7 +2886,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PlayerNumber: 0
-  Skill: 3
+  Skill: 4
   mainCamera: {fileID: 0}
   missilePrefab: {fileID: 1000011816276132, guid: 9934efbff3871de45bead5491db78df5,
     type: 2}

@@ -6,7 +6,7 @@ using System.Collections;
 public class PlayerController : MonoBehaviour
 {
 
-    public enum SkillID {Meteor, Earth, MagneticBlast, None};
+    public enum SkillID {Meteor, Earth, MagneticBlast, Lightning, None};
 
     public string PlayerNumber;
     [SerializeField] private SkillID Skill;
@@ -117,7 +117,7 @@ public class PlayerController : MonoBehaviour
         int.TryParse(PlayerNumber, out output);
         if (GameManager.Inst.PlayerSkills.Count > output && Skill == SkillID.None)
             Skill = GameManager.Inst.PlayerSkills[output];
-        else
+        else if(Skill == SkillID.None)
             Skill = SkillID.Meteor;
 
         if (Skill == SkillID.Meteor)
@@ -135,6 +135,10 @@ public class PlayerController : MonoBehaviour
         else if(Skill == SkillID.Earth)
         {
             playerSkill = gameObject.AddComponent<EarthAbility>();
+        }
+        else if(Skill == SkillID.Lightning)
+        {
+            playerSkill = gameObject.AddComponent<LightningAbility>();
         }
         // Change this to be added by menu system!!
 
