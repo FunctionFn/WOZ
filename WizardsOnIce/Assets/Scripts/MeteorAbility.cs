@@ -8,7 +8,7 @@ public class MeteorAbility : PlayerAbility {
     // CAN BE CHANGED FOR BALANCE
 
     public GameObject meteorIndicator;
-
+    public GameObject meteorReticle;
     public Transform meteorSpawn;
 
 
@@ -24,16 +24,27 @@ public class MeteorAbility : PlayerAbility {
         // CAN BE CHANGED FOR BALANCE
 
         meteorSpawn = playerObject.transform.Find("PlayerCenter/MeteorSpawn");
-
+        meteorReticle = playerObject.transform.Find("PlayerCenter/TargetReticle/Shockwave_Export/ShockWave").gameObject;
         Physics.IgnoreLayerCollision(10, gameObject.layer);
     }
 	
 	// Update is called once per frame
 	void Update () {
         FireTimer -= Time.deltaTime;
+
+        if (Input.GetButtonUp("AbilityTrigger" + playerObject.GetComponent<PlayerController>().PlayerNumber) && playerObject.GetComponent<PlayerController>().AbilityTimer <= 0)
+        {
+            LaunchMeteor();
+            meteorReticle.GetComponent<SkinnedMeshRenderer>().enabled = false;
+        }
+
+        if(Input.GetButton("AbilityTrigger" + playerObject.GetComponent<PlayerController>().PlayerNumber) && playerObject.GetComponent<PlayerController>().AbilityTimer <= 0)
+        {
+            meteorReticle.GetComponent<SkinnedMeshRenderer>().enabled = true;
+        }
     }
 
-    public override void TriggerAbility()
+    public void LaunchMeteor()
     {
         GameObject go = (GameObject)Instantiate(abilityPrefab, meteorSpawn.position, meteorSpawn.rotation);
 
@@ -47,6 +58,13 @@ public class MeteorAbility : PlayerAbility {
         GameObject go2 = (GameObject)Instantiate(meteorIndicator, target.position, playerTransform.rotation);
 
         go2.transform.GetChild(0).GetComponent<Renderer>().material = indicatorColor;
+
+        playerObject.GetComponent<PlayerController>().SetAbilityTimer(abilityTime);
+    }
+
+    public override void TriggerAbility()
+    {
+        meteorReticle.GetComponent<SkinnedMeshRenderer>().enabled = true;
     }
 
     public override void Fire()

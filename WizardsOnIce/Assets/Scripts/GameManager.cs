@@ -133,6 +133,11 @@ public class GameManager : MonoBehaviour
                 {
                     playerScores[j] = 0;
                 }
+
+                for (int j = 0; j < PlayerSkills.Count; j++)
+                {
+                    PlayerSkills[j] = 0;
+                }
             }
         }
         LoadNextScene();

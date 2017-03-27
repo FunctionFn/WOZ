@@ -431,11 +431,18 @@ public class PlayerController : MonoBehaviour
         {
             playerSkill.TriggerAbility();
 
-            AbilityTimer = playerSkill.GetAbilityTime();
+            //AbilityTimer = playerSkill.GetAbilityTime();
 
-            cdtext.enabled = true;
-            cdtext.text = AbilityTimer.ToString();
-        }
+            //cdtext.enabled = true;
+            //cdtext.text = AbilityTimer.ToString();
+       }
+    }
+
+    public void SetAbilityTimer(float t)
+    {
+        AbilityTimer = t;
+        cdtext.enabled = true;
+        cdtext.text = AbilityTimer.ToString();
     }
 
     public void Grab(Pickupable p)
