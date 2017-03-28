@@ -85,6 +85,7 @@ public class EarthAbility : PlayerAbility
             chargingBullet.GetComponent<BoxCollider>().enabled = false;
             charging = true;
             
+            
         }
         else
         {

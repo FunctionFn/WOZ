@@ -9,10 +9,7 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour 
 
 {
-
     public List<PlayerController> PlayersAlive;
-    
-
 
     private static GameManager _inst;
     public static GameManager Inst { get { return _inst; } }

@@ -13,8 +13,8 @@ public class LightningAbility : PlayerAbility
     public Transform meteorSpawn;
 
     public bool charging;
-    public float currentCharge;
-    public float chargeSpeed;
+
+    
 
     public GameObject AreaOfAffect;
 
@@ -27,7 +27,6 @@ public class LightningAbility : PlayerAbility
         abilityTime = 5.0f;
         FireTime = 0.5f;
         missileSpeed = 5.0f;
-        chargeSpeed = 0.75f;
         stunRockSpeed = 12.0f;
         // CAN BE CHANGED FOR BALANCE
 
@@ -46,16 +45,12 @@ public class LightningAbility : PlayerAbility
             ReleaseChargeShot();
         }
 
-        if (charging)
+        if(charging)
         {
-            float OldRange = 1.0f;
-            float NewRange = (1.5f - .3f);
-            float chargeper = (((currentCharge) * NewRange) / OldRange) + .3f;
-            chargeper = Mathf.Clamp(chargeper, 0.1f, 1.5f);
             AreaOfAffect.transform.position = missileSpawnLocation.position;
             AreaOfAffect.transform.rotation = missileSpawnLocation.rotation;
-            //AreaOfAffect.transform.localScale = new Vector3(chargeper, chargeper, chargeper);
         }
+        
     }
 
     public override void TriggerAbility()
@@ -77,18 +72,14 @@ public class LightningAbility : PlayerAbility
         {
             AreaOfAffect = (GameObject)Instantiate(missilePrefab, missileSpawnLocation.position, missileSpawnLocation.rotation);
 
-
-            //go.GetComponent<Rigidbody>().velocity = (missileSpawnLocation.transform.forward) * missileSpeed;
-            //AreaOfAffect.GetComponent<Bullet>().shooter = playerNumber;
-            //AreaOfAffect.transform.GetChild(0).GetComponent<Renderer>().material = playerColor;
-            AreaOfAffect.GetComponent<Transform>().parent = playerObject.transform.GetChild(0);
-            //AreaOfAffect.GetComponent<BoxCollider>().enabled = false;
             charging = true;
-
+            
+            AreaOfAffect.transform.GetChild(0).GetComponent<LightningAttack>().shooterPlayerObject = playerObject;
+            AreaOfAffect.transform.GetChild(0).GetComponent<LightningAttack>().shooter = playerNumber;
         }
         else
         {
-            currentCharge += chargeSpeed * Time.deltaTime;
+            
         }
     }
 
@@ -96,11 +87,7 @@ public class LightningAbility : PlayerAbility
     {
         if (charging)
         {
-            AreaOfAffect.GetComponent<Transform>().parent = null;
-            AreaOfAffect.GetComponent<BoxCollider>().enabled = true;
-            AreaOfAffect.GetComponent<Rigidbody>().velocity = (missileSpawnLocation.transform.forward) * missileSpeed;
-            //AreaOfAffect.GetComponent<EarthBullet>().SetChargeAmount(currentCharge);
-            currentCharge = 0;
+            Destroy(AreaOfAffect);
             charging = false;
         }
     }
