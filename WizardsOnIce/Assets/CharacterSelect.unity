@@ -619,6 +619,8 @@ MonoBehaviour:
       m_Image: {fileID: 0}
     - m_Text: Magnetic Blast
       m_Image: {fileID: 0}
+    - m_Text: Lightning
+      m_Image: {fileID: 0}
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
@@ -1231,6 +1233,8 @@ MonoBehaviour:
     - m_Text: Boulder
       m_Image: {fileID: 0}
     - m_Text: Magnetic Blast
+      m_Image: {fileID: 0}
+    - m_Text: Lightning
       m_Image: {fileID: 0}
   m_OnValueChanged:
     m_PersistentCalls:
@@ -3445,6 +3449,8 @@ MonoBehaviour:
       m_Image: {fileID: 0}
     - m_Text: Magnetic Blast
       m_Image: {fileID: 0}
+    - m_Text: Lightning
+      m_Image: {fileID: 0}
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
@@ -5047,6 +5053,8 @@ MonoBehaviour:
     - m_Text: Boulder
       m_Image: {fileID: 0}
     - m_Text: Magnetic Blast
+      m_Image: {fileID: 0}
+    - m_Text: Lightning
       m_Image: {fileID: 0}
   m_OnValueChanged:
     m_PersistentCalls:

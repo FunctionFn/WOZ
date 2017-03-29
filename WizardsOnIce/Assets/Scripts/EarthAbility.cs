@@ -31,6 +31,8 @@ public class EarthAbility : PlayerAbility
         stunRockSpeed = 12.0f;
         // CAN BE CHANGED FOR BALANCE
 
+        currentCharge = 0.0f;
+
         meteorSpawn = playerObject.transform.Find("PlayerCenter/MeteorSpawn");
 
         Physics.IgnoreLayerCollision(10, gameObject.layer);
@@ -84,6 +86,7 @@ public class EarthAbility : PlayerAbility
             //chargingBullet.GetComponent<Transform>().parent = playerObject.transform.GetChild(0);
             chargingBullet.GetComponent<BoxCollider>().enabled = false;
             charging = true;
+            
             
         }
         else
