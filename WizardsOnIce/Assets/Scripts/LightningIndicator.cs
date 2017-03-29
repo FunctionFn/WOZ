@@ -5,6 +5,7 @@ public class LightningIndicator : MonoBehaviour {
 
     public int lifetimeFrames;
     int lifeCounter;
+    public float environmentalDamage;
 	// Use this for initialization
 	void Start () {
         lifeCounter = 0;

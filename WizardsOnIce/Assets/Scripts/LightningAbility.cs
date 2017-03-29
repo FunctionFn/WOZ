@@ -23,31 +23,52 @@ public class LightningAbility : PlayerAbility
     public float chargeSpeed;
 
     float baseTurnSpeed;
+
+
+    // overheat stuff
+    public bool overheating;
+    public float overCoolAmount;
+    public float currentAmmo;
+    public float ammoDrainSpeed;
+    public float ammoGainSpeed;
     
 
     public GameObject AreaOfAffect;
     public GameObject chargingLaser;
+
+    public GameObject chargeIndicatorPrefab;
+    public GameObject chargeIndicator;
+    public Transform chargeIndicatorPos;
     // Use this for initialization
     void Start()
     {
         abilityPrefab = (GameObject)(Resources.Load("Laserorigin"));
         missilePrefab = (GameObject)(Resources.Load("LightningAoEOrigin"));
+        chargeIndicatorPrefab = (GameObject)(Resources.Load("CooldownIndicator"));
+        overheating = false;
+        currentAmmo = 100.0f;
+
         // CAN BE CHANGED FOR BALANCE
         abilityTime = 5.0f;
         FireTime = 0.5f;
         missileSpeed = 5.0f;
         stunRockSpeed = 12.0f;
         chargeSpeed = 0.65f;
-        chargingTurnSpeed = 200.0f;
+        chargingTurnSpeed = 50.0f;
+        overCoolAmount = 25.0f;
+        ammoDrainSpeed = 33.3f;
+        ammoGainSpeed = 33.3f;
         // CAN BE CHANGED FOR BALANCE
 
         currentCharge = 0.0f;
 
         meteorSpawn = playerObject.transform.Find("PlayerCenter/MeteorSpawn");
-
+        chargeIndicatorPos = playerObject.transform.Find("PlayerCenter/CooldownLocation");
+        chargeIndicator = (GameObject)Instantiate(chargeIndicatorPrefab, chargeIndicatorPos.position, chargeIndicatorPos.rotation);
         Physics.IgnoreLayerCollision(10, gameObject.layer);
 
         baseTurnSpeed = playerObject.GetComponent<PlayerController>().turnRate;
+        
     }
 
     // Update is called once per frame
@@ -64,16 +85,39 @@ public class LightningAbility : PlayerAbility
         {
             AreaOfAffect.transform.position = missileSpawnLocation.position;
             AreaOfAffect.transform.rotation = missileSpawnLocation.rotation;
+
+            currentAmmo -= ammoDrainSpeed * Time.deltaTime;
+            Debug.Log(currentAmmo);
+            if(currentAmmo <= 0)
+            {
+                overheating = true;
+                ReleaseChargeShot();
+            }
+        }
+        else
+        {
+            currentAmmo += ammoGainSpeed * Time.deltaTime;
+            Debug.Log(currentAmmo);
+            if (currentAmmo >= 100.0f + overCoolAmount && overheating)
+            {
+                currentAmmo = 100.0f;
+                overheating = false;
+            }
+            else if(currentAmmo > 100.0f && !overheating)
+            {
+                currentAmmo = 100.0f;
+            }
         }
 
-        if (Input.GetButtonUp("AbilityTrigger" + playerObject.GetComponent<PlayerController>().PlayerNumber) && playerObject.GetComponent<PlayerController>().AbilityTimer <= 0 && currentCharge >= 0)
+        if (Input.GetButtonUp("AbilityTrigger" + playerObject.GetComponent<PlayerController>().PlayerNumber) && playerObject.GetComponent<PlayerController>().AbilityTimer <= 0 && charging)
         {
             LightningLaser();
             playerObject.GetComponent<PlayerController>().turnRate = baseTurnSpeed;
             //meteorReticle.GetComponent<SkinnedMeshRenderer>().enabled = false;
         }
 
-        if (Input.GetButton("AbilityTrigger" + playerObject.GetComponent<PlayerController>().PlayerNumber) && playerObject.GetComponent<PlayerController>().AbilityTimer <= 0)
+        //if (Input.GetButton("AbilityTrigger" + playerObject.GetComponent<PlayerController>().PlayerNumber) && playerObject.GetComponent<PlayerController>().AbilityTimer <= 0)
+        if(charging)
         {
             //meteorReticle.GetComponent<SkinnedMeshRenderer>().enabled = true;
             playerObject.GetComponent<PlayerController>().turnRate = chargingTurnSpeed;
@@ -92,7 +136,9 @@ public class LightningAbility : PlayerAbility
             chargingLaser.transform.rotation = missileSpawnLocation.rotation;
             chargingLaser.transform.localScale = new Vector3(chargeper, chargeper, 1);
         }
-
+        chargeIndicator.GetComponent<Renderer>().material.color = new Color(1.0f, currentAmmo / 100.0f, currentAmmo / 100.0f);
+        chargeIndicator.transform.position = chargeIndicatorPos.position;
+        chargeIndicator.transform.rotation = chargeIndicatorPos.rotation;
     }
 
     public void LightningLaser()
@@ -101,11 +147,17 @@ public class LightningAbility : PlayerAbility
 
 
         //go.GetComponent<Rigidbody>().velocity = (missileSpawnLocation.transform.forward) * stunRockSpeed;
-        //go.GetComponent<Bullet>().shooter = playerNumber;
+        chargingLaser.transform.GetChild(0).GetComponent<LightningLaser>().shooter = playerNumber;
         //go.transform.GetChild(0).GetComponent<Renderer>().material = playerColor;
         //FireTimer = FireTime;
+        chargingLaser.transform.GetChild(0).GetComponent<LightningLaser>().active = true;
+        chargingLaser.transform.GetChild(0).GetComponent<Renderer>().material = playerColor;
+        chargingLaser.transform.GetChild(0).GetComponent<BoxCollider>().enabled = true;
+        chargingLaser.transform.GetChild(0).GetComponent<LightningLaser>().SetChargeAmount(currentCharge);
+        playerObject.GetComponent<PlayerController>().SetAbilityTimer(abilityTime);
 
-        //playerObject.GetComponent<PlayerController>().SetAbilityTimer(abilityTime);
+        currentCharge = 0;
+        charging = false;
     }
 
     public override void TriggerAbility()
@@ -132,7 +184,7 @@ public class LightningAbility : PlayerAbility
 
     public override void Fire()
     {
-        if (!shooting)
+        if (!shooting && !overheating)
         {
             AreaOfAffect = (GameObject)Instantiate(missilePrefab, missileSpawnLocation.position, missileSpawnLocation.rotation);
 
