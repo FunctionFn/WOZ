@@ -11,7 +11,8 @@ public class MeteorAbility : PlayerAbility {
     public GameObject meteorReticle;
     public Transform meteorSpawn;
 
-
+    public float aimTurnRate;
+    public float baseTurnRate;
     // Use this for initialization
     void Start () {
         abilityPrefab = (GameObject)(Resources.Load("Meteor"));
@@ -21,11 +22,14 @@ public class MeteorAbility : PlayerAbility {
         abilityTime = 5.0f;
         FireTime = 0.5f;
         missileSpeed = 15.0f;
+        aimTurnRate = 200.0f;
         // CAN BE CHANGED FOR BALANCE
 
         meteorSpawn = playerObject.transform.Find("PlayerCenter/MeteorSpawn");
         meteorReticle = playerObject.transform.Find("PlayerCenter/TargetReticle/Shockwave_Export/ShockWave").gameObject;
         Physics.IgnoreLayerCollision(10, gameObject.layer);
+
+        baseTurnRate = playerObject.GetComponent<PlayerController>().turnRate;
     }
 	
 	// Update is called once per frame
@@ -36,11 +40,14 @@ public class MeteorAbility : PlayerAbility {
         {
             LaunchMeteor();
             meteorReticle.GetComponent<SkinnedMeshRenderer>().enabled = false;
+            playerObject.GetComponent<PlayerController>().turnRate = baseTurnRate;
         }
 
         if(Input.GetButton("AbilityTrigger" + playerObject.GetComponent<PlayerController>().PlayerNumber) && playerObject.GetComponent<PlayerController>().AbilityTimer <= 0)
         {
             meteorReticle.GetComponent<SkinnedMeshRenderer>().enabled = true;
+            
+            playerObject.GetComponent<PlayerController>().turnRate = aimTurnRate;
         }
     }
 

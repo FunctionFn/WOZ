@@ -177,13 +177,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   strengthModifier: 1
-  fullChargeBonus: 5
+  fullChargeBonus: 1
   chargeAmt: 0
   minCharge: 0.1
-  maxSpeedHitModifier: 4
-  strength: 6
+  maxSpeedHitModifier: 8
+  strength: 12
   shooter: 
-  environmentalDamage: 50
+  environmentalDamage: 65
   active: 0
   duration: 0.5
   wallDamage: 50

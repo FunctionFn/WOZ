@@ -152,6 +152,7 @@ MonoBehaviour:
   shooterPlayerObject: {fileID: 0}
   arcRange: 5
   arcStrength: 350
+  maxSpeedDmg: 3
   LightningIndicator: {fileID: 1000011431169952, guid: 8c289d23d89c7d9408075bec65768014,
     type: 2}
   PlayersHit: []

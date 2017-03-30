@@ -66,8 +66,8 @@ public class LightningLaser : MonoBehaviour {
     {
         if (other.gameObject.GetComponent<PlayerController>() && other.gameObject.GetComponent<PlayerController>().PlayerNumber != shooter)
         {
-            Vector3 proj = Vector3.Project(other.gameObject.GetComponent<Rigidbody>().velocity, left.position - GetComponent<Transform>().position);
-            other.gameObject.GetComponent<Rigidbody>().velocity = (proj + other.gameObject.GetComponent<Rigidbody>().velocity) * .5f;
+            Vector3 proj = Vector3.Project(other.gameObject.GetComponent<Rigidbody>().velocity, left.position - GetComponent<Transform>().parent.position);
+            other.gameObject.GetComponent<Rigidbody>().velocity = (proj)/* + other.gameObject.GetComponent<Rigidbody>().velocity) * .5f*/;
 
             Vector3 dir = transform.forward;
 

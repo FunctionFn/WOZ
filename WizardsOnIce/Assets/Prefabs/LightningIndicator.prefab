@@ -107,7 +107,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lifetimeFrames: 2
-  environmentalDamage: 0.8
+  environmentalDamage: 0.5
 --- !u!136 &136000013618646648
 CapsuleCollider:
   m_ObjectHideFlags: 1
