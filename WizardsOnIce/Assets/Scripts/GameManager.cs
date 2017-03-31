@@ -144,39 +144,8 @@ public class GameManager : MonoBehaviour
     }
 
 
-    public void SetPlayerSkill(Dropdown selector)
+    public void SetPlayerSkill(int playerNum, int skillNum)
     {
-        int playernum;
-
-
-
-        switch (selector.name)
-        {
-            case "Player1Selector":
-                playernum = 0;
-                break;
-
-            case "Player2Selector":
-                playernum = 1;
-                break;
-
-            case "Player3Selector":
-                playernum = 2;
-                break;
-
-            case "Player4Selector":
-                playernum = 3;
-                break;
-
-            default:
-                Debug.Log("Character select playernum error");
-                playernum = 0;
-                break;
-        }
-
-
-        Inst.PlayerSkills[playernum] = (PlayerController.SkillID)selector.value;
-
-        
+        Inst.PlayerSkills[playerNum] = (PlayerController.SkillID)skillNum;
     }
 }
