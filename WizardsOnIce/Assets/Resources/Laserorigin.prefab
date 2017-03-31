@@ -180,7 +180,7 @@ MonoBehaviour:
   fullChargeBonus: 1
   chargeAmt: 0
   minCharge: 0.1
-  maxSpeedHitModifier: 8
+  maxSpeedHitModifier: 6
   strength: 12
   shooter: 
   environmentalDamage: 65
