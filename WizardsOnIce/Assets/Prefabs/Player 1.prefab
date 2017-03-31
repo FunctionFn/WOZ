@@ -509,6 +509,21 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &1000011356397056
+GameObject:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 4000013251911036}
+  m_Layer: 0
+  m_Name: CooldownLocation
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1000011460981664
 GameObject:
   m_ObjectHideFlags: 1
@@ -2069,6 +2084,7 @@ Transform:
   - {fileID: 4000012262394146}
   - {fileID: 4000013852843564}
   - {fileID: 4000012170722998}
+  - {fileID: 4000013251911036}
   m_Father: {fileID: 4000012856157736}
   m_RootOrder: 0
 --- !u!4 &4000012775769046
@@ -2104,7 +2120,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000010765101244}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.47, y: -1.6, z: 2.45}
+  m_LocalPosition: {x: -8.05, y: -1.6, z: 4.19}
   m_LocalScale: {x: 0.6, y: 0.6, z: 0.6}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
@@ -2240,6 +2256,19 @@ Transform:
   - {fileID: 4000012775769046}
   m_Father: {fileID: 4000010009600614}
   m_RootOrder: 1
+--- !u!4 &4000013251911036
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000011356397056}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -1.488, y: 1.38, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Children: []
+  m_Father: {fileID: 4000012718752920}
+  m_RootOrder: 9
 --- !u!4 &4000013311229682
 Transform:
   m_ObjectHideFlags: 1
@@ -2886,7 +2915,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PlayerNumber: 0
-  Skill: 3
+  Skill: 4
   mainCamera: {fileID: 0}
   missilePrefab: {fileID: 1000011816276132, guid: 9934efbff3871de45bead5491db78df5,
     type: 2}
@@ -2911,7 +2940,7 @@ MonoBehaviour:
   brakeSpeed: 6
   currentMaxSpeed: 0
   dashCooldown: 1.5
-  turnRate: 500
+  turnRate: 1000
   DashTime: 0.35
   GrabTime: 0.2
   DeathStunTime: 5
@@ -2932,12 +2961,12 @@ MonoBehaviour:
   holder: {fileID: 0}
   grabTime: 0
   environmentDamage: 0.15
-  enter: 0
+  enter: 1
   Skating: {fileID: 0}
   DeathSound: {fileID: 8300000, guid: 261b77af022ea4b4a900517af20d870a, type: 3}
   WindDash: {fileID: 8300000, guid: f6cb9eb09d5d89444856506299e1baa7, type: 3}
-  Brake: {fileID: 8300000, guid: 78dc4072212f63047bf5f939eb9561cc, type: 3}
-  volume: 100
+  Brake: {fileID: 0}
+  volume: 20
   startTime: 1.5
 --- !u!114 &114000010869953802
 MonoBehaviour:
