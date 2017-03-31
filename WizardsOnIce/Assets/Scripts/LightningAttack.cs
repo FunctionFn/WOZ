@@ -46,7 +46,7 @@ public class LightningAttack : MonoBehaviour {
 
 
 
-                //other.GetComponent<PlayerController>().OnHit(maxSpeedDmg * Time.deltaTime );
+                other.GetComponent<PlayerController>().OnHit(maxSpeedDmg * Time.deltaTime);
                 PlayersHit.Add(other.GetComponent<PlayerController>());
                 recursiveLightning(other.GetComponent<PlayerController>());
 

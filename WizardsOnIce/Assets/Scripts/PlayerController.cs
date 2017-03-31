@@ -221,7 +221,7 @@ public class PlayerController : MonoBehaviour
             {
 
 				//audio.PlayOneShot (Brake, 1.0f); need help so it doesn't play every frame
-                //currentMaxSpeed = maxSpeed;
+                currentMaxSpeed = maxSpeed;
                 IceBrake.GetComponent<Renderer>().enabled = false;
             }
             else
