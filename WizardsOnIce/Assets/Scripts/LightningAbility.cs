@@ -76,7 +76,7 @@ public class LightningAbility : PlayerAbility
     {
         FireTimer -= Time.deltaTime;
 
-        if (Input.GetAxis("Trigger" + playerNumber) < 0.5f && Input.GetAxis("Trigger" + playerNumber) > -0.5f)
+        if ((Input.GetAxis("Trigger" + playerNumber) < 0.5f && Input.GetAxis("Trigger" + playerNumber) > -0.5f))
         {
             ReleaseChargeShot();
         }
@@ -87,7 +87,7 @@ public class LightningAbility : PlayerAbility
             AreaOfAffect.transform.rotation = missileSpawnLocation.rotation;
 
             currentAmmo -= ammoDrainSpeed * Time.deltaTime;
-            Debug.Log(currentAmmo);
+            
             if(currentAmmo <= 0)
             {
                 overheating = true;
@@ -97,7 +97,7 @@ public class LightningAbility : PlayerAbility
         else
         {
             currentAmmo += ammoGainSpeed * Time.deltaTime;
-            Debug.Log(currentAmmo);
+            
             if (currentAmmo >= 100.0f + overCoolAmount && overheating)
             {
                 currentAmmo = 100.0f;
@@ -108,8 +108,10 @@ public class LightningAbility : PlayerAbility
                 currentAmmo = 100.0f;
             }
         }
-
-        if (Input.GetButtonUp("AbilityTrigger" + playerObject.GetComponent<PlayerController>().PlayerNumber) && playerObject.GetComponent<PlayerController>().AbilityTimer <= 0 && charging)
+        
+        if ((Input.GetButtonUp("AbilityTrigger" + playerObject.GetComponent<PlayerController>().PlayerNumber) || currentCharge >= 1.0f)
+            && playerObject.GetComponent<PlayerController>().AbilityTimer <= 0 
+            && charging)
         {
             LightningLaser();
             playerObject.GetComponent<PlayerController>().turnRate = baseTurnSpeed;

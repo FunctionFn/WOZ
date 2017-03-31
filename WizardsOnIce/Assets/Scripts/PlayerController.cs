@@ -184,6 +184,11 @@ public class PlayerController : MonoBehaviour
 			
         }
 
+        if(PlayerNumber == "0" && currentMaxSpeed > maxSpeed)
+        {
+            Debug.Log(currentMaxSpeed);
+        }
+
         rb.angularVelocity = Vector3.zero;
 
         ControlUpdate();

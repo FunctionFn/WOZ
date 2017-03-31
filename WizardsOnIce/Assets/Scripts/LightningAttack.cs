@@ -8,6 +8,7 @@ public class LightningAttack : MonoBehaviour {
     public GameObject shooterPlayerObject;
     public float arcRange;
     public float arcStrength;
+    public float maxSpeedDmg;
 
     public GameObject LightningIndicator;
 
@@ -45,7 +46,7 @@ public class LightningAttack : MonoBehaviour {
 
 
 
-                other.GetComponent<PlayerController>().OnHit();
+                other.GetComponent<PlayerController>().OnHit(maxSpeedDmg * Time.deltaTime);
                 PlayersHit.Add(other.GetComponent<PlayerController>());
                 recursiveLightning(other.GetComponent<PlayerController>());
 
