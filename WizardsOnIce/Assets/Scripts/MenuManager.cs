@@ -1,58 +1,161 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
+using UnityEngine.EventSystems;
 
 public class MenuManager : MonoBehaviour {
+    public Button[] player1Buttons;
+    public Button[] player2Buttons;
+    public Button[] player3Buttons;
+    public Button[] player4Buttons;
 
+    public int p1CurrentButton;
+    public int p2CurrentButton;
+    public int p3CurrentButton;
+    public int p4CurrentButton;
 
-    public Image[] images;
+    public bool p1AxisUsed;
+    public bool p2AxisUsed;
+    public bool p3AxisUsed;
+    public bool p4AxisUsed;
 
 	// Use this for initialization
-	void Start () {
-	
+	void Start ()
+    {
+        p1CurrentButton = 0;
+        p2CurrentButton = 0;
+        p3CurrentButton = 0;
+        p4CurrentButton = 0;
+
+        p1AxisUsed = false;
+        p2AxisUsed = false;
+        p3AxisUsed = false;
+        p4AxisUsed = false;
 	}
 	
 	// Update is called once per frame
 	void Update () {
-        if(Input.GetButtonDown("RollDash0"))
+
+        // Button Selection
+        if ((Input.GetAxis("Horizontal0") > 0.5 || Input.GetAxis("DPHorizontal0") > 0.5) && p1CurrentButton < player1Buttons.Length - 1 && !p1AxisUsed)
         {
-            images[0].enabled = true;
+            ExecuteEvents.Execute(player1Buttons[p1CurrentButton].gameObject, new PointerEventData(EventSystem.current), ExecuteEvents.pointerExitHandler);
+            p1CurrentButton++;
+            p1AxisUsed = true;
+        }
+        else if ((Input.GetAxis("Horizontal0") < -0.5 || Input.GetAxis("DPHorizontal0") < -0.5) && p1CurrentButton > 0 && !p1AxisUsed)
+        {
+            ExecuteEvents.Execute(player1Buttons[p1CurrentButton].gameObject, new PointerEventData(EventSystem.current), ExecuteEvents.pointerExitHandler);
+            p1CurrentButton--;
+            p1AxisUsed = true;
         }
 
-        if (Input.GetButtonDown("RollDash1"))
+        if (((Input.GetAxis("Horizontal0") < 0.5 && Input.GetAxis("DPHorizontal0") < 0.5) && (Input.GetAxis("Horizontal0") > -0.5 && Input.GetAxis("DPHorizontal0") > -0.5)) && p1AxisUsed)
         {
-            images[1].enabled = true;
+            p1AxisUsed = false;
         }
 
-        if (Input.GetButtonDown("RollDash2"))
+        if ((Input.GetAxis("Horizontal1") > 0.5 || Input.GetAxis("DPHorizontal1") > 0.5) && p2CurrentButton < player2Buttons.Length - 1 && !p2AxisUsed)
         {
-            images[2].enabled = true;
+            ExecuteEvents.Execute(player2Buttons[p2CurrentButton].gameObject, new PointerEventData(EventSystem.current), ExecuteEvents.pointerExitHandler);
+            p2CurrentButton++;
+            p2AxisUsed = true;
+        }
+        else if ((Input.GetAxis("Horizontal1") < -0.5 || Input.GetAxis("DPHorizontal1") < -0.5) && p2CurrentButton > 0 && !p2AxisUsed)
+        {
+            ExecuteEvents.Execute(player2Buttons[p2CurrentButton].gameObject, new PointerEventData(EventSystem.current), ExecuteEvents.pointerExitHandler);
+            p2CurrentButton--;
+            p2AxisUsed = true;
         }
 
-        if (Input.GetButtonDown("RollDash3"))
+        if (((Input.GetAxis("Horizontal1") < 0.5 && Input.GetAxis("DPHorizontal1") < 0.5) && (Input.GetAxis("Horizontal1") > -0.5 && Input.GetAxis("DPHorizontal1") > -0.5)) && p2AxisUsed)
         {
-            images[3].enabled = true;
+            p2AxisUsed = false;
+        }
+
+        if ((Input.GetAxis("Horizontal2") > 0.5 || Input.GetAxis("DPHorizontal2") > 0.5) && p3CurrentButton < player3Buttons.Length - 1 && !p3AxisUsed)
+        {
+            ExecuteEvents.Execute(player3Buttons[p3CurrentButton].gameObject, new PointerEventData(EventSystem.current), ExecuteEvents.pointerExitHandler);
+            p3CurrentButton++;
+            p3AxisUsed = true;
+        }
+        else if ((Input.GetAxis("Horizontal2") < -0.5 || Input.GetAxis("DPHorizontal2") < -0.5) && p3CurrentButton > 0 && !p3AxisUsed)
+        {
+            ExecuteEvents.Execute(player3Buttons[p3CurrentButton].gameObject, new PointerEventData(EventSystem.current), ExecuteEvents.pointerExitHandler);
+            p3CurrentButton--;
+            p3AxisUsed = true;
+        }
+
+        if (((Input.GetAxis("Horizontal2") < 0.5 && Input.GetAxis("DPHorizontal2") < 0.5) && (Input.GetAxis("Horizontal2") > -0.5 && Input.GetAxis("DPHorizontal2") > -0.5)) && p3AxisUsed)
+        {
+            p3AxisUsed = false;
+        }
+
+        if ((Input.GetAxis("Horizontal3") > 0.5 || Input.GetAxis("DPHorizontal3") > 0.5) && p4CurrentButton < player4Buttons.Length - 1 && !p4AxisUsed)
+        {
+            ExecuteEvents.Execute(player4Buttons[p4CurrentButton].gameObject, new PointerEventData(EventSystem.current), ExecuteEvents.pointerExitHandler);
+            p4CurrentButton++;
+            p4AxisUsed = true;
+        }
+        else if ((Input.GetAxis("Horizontal3") < -0.5 || Input.GetAxis("DPHorizontal3") < -0.5) && p4CurrentButton > 0 && !p4AxisUsed)
+        {
+            ExecuteEvents.Execute(player4Buttons[p4CurrentButton].gameObject, new PointerEventData(EventSystem.current), ExecuteEvents.pointerExitHandler);
+            p4CurrentButton--;
+            p4AxisUsed = true;
+        }
+
+        if (((Input.GetAxis("Horizontal3") < 0.5 && Input.GetAxis("DPHorizontal3") < 0.5) && (Input.GetAxis("Horizontal3") > -0.5 && Input.GetAxis("DPHorizontal3") > -0.5)) && p4AxisUsed)
+        {
+            p4AxisUsed = false;
         }
 
 
-        if (Input.GetButtonUp("RollDash0"))
-        {
-            images[0].enabled = false;
-        }
+        // Button Highlighting
+        ExecuteEvents.Execute(player1Buttons[p1CurrentButton].gameObject, new PointerEventData(EventSystem.current), ExecuteEvents.pointerEnterHandler);
+        ExecuteEvents.Execute(player2Buttons[p2CurrentButton].gameObject, new PointerEventData(EventSystem.current), ExecuteEvents.pointerEnterHandler);
+        ExecuteEvents.Execute(player3Buttons[p3CurrentButton].gameObject, new PointerEventData(EventSystem.current), ExecuteEvents.pointerEnterHandler);
+        ExecuteEvents.Execute(player4Buttons[p4CurrentButton].gameObject, new PointerEventData(EventSystem.current), ExecuteEvents.pointerEnterHandler);
 
-        if (Input.GetButtonUp("RollDash1"))
+        // Activate Buttons
+        if (Input.GetButton("RollDash0"))
         {
-            images[1].enabled = false;
+            GameManager.Inst.SetPlayerSkill(0, p1CurrentButton);
+            ExecuteEvents.Execute(player1Buttons[p1CurrentButton].gameObject, new PointerEventData(EventSystem.current), ExecuteEvents.pointerDownHandler);
         }
-
-        if (Input.GetButtonUp("RollDash2"))
+        else
         {
-            images[2].enabled = false;
+            ExecuteEvents.Execute(player1Buttons[p1CurrentButton].gameObject, new PointerEventData(EventSystem.current), ExecuteEvents.deselectHandler);
+            ExecuteEvents.Execute(player1Buttons[p1CurrentButton].gameObject, new PointerEventData(EventSystem.current), ExecuteEvents.pointerUpHandler);
         }
-
-        if (Input.GetButtonUp("RollDash3"))
+        if (Input.GetButton("RollDash1"))
         {
-            images[3].enabled = false;
+            GameManager.Inst.SetPlayerSkill(1, p2CurrentButton);
+            ExecuteEvents.Execute(player2Buttons[p2CurrentButton].gameObject, new PointerEventData(EventSystem.current), ExecuteEvents.pointerDownHandler);
+        }
+        else
+        {
+            ExecuteEvents.Execute(player2Buttons[p2CurrentButton].gameObject, new PointerEventData(EventSystem.current), ExecuteEvents.deselectHandler);
+            ExecuteEvents.Execute(player2Buttons[p2CurrentButton].gameObject, new PointerEventData(EventSystem.current), ExecuteEvents.pointerUpHandler);
+        }
+        if (Input.GetButton("RollDash2"))
+        {
+            GameManager.Inst.SetPlayerSkill(2, p3CurrentButton);
+            ExecuteEvents.Execute(player3Buttons[p3CurrentButton].gameObject, new PointerEventData(EventSystem.current), ExecuteEvents.pointerDownHandler);
+        }
+        else
+        {
+            ExecuteEvents.Execute(player3Buttons[p3CurrentButton].gameObject, new PointerEventData(EventSystem.current), ExecuteEvents.deselectHandler);
+            ExecuteEvents.Execute(player3Buttons[p3CurrentButton].gameObject, new PointerEventData(EventSystem.current), ExecuteEvents.pointerUpHandler);
+        }
+        if (Input.GetButton("RollDash3"))
+        {
+            GameManager.Inst.SetPlayerSkill(3, p4CurrentButton);
+            ExecuteEvents.Execute(player4Buttons[p4CurrentButton].gameObject, new PointerEventData(EventSystem.current), ExecuteEvents.pointerDownHandler);
+        }
+        else
+        {
+            ExecuteEvents.Execute(player4Buttons[p4CurrentButton].gameObject, new PointerEventData(EventSystem.current), ExecuteEvents.deselectHandler);
+            ExecuteEvents.Execute(player4Buttons[p4CurrentButton].gameObject, new PointerEventData(EventSystem.current), ExecuteEvents.pointerUpHandler);
         }
     }
 }
