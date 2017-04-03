@@ -170,7 +170,7 @@ public class PlayerController : MonoBehaviour
     {
         if(GetComponent<Rigidbody>().velocity.magnitude > currentMaxSpeed)
         {
-            Vector3 v = GetComponent<Rigidbody>().velocity.normalized* currentMaxSpeed;
+            Vector3 v = GetComponent<Rigidbody>().velocity.normalized * currentMaxSpeed;
 
             GetComponent<Rigidbody>().velocity = new Vector3(v.x, GetComponent<Rigidbody>().velocity.y, v.z);
 
@@ -562,6 +562,7 @@ public class PlayerController : MonoBehaviour
         if ((time <= StunTimer || StunTimer <= 0) || force)
         {
             StunTimer = time;
+            GetComponent<Rigidbody>().velocity = Vector3.zero;
             
         }
         if(holding)
