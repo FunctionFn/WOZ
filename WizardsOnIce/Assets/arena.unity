@@ -1643,7 +1643,6 @@ Prefab:
     - target: {fileID: 114000010592206144, guid: 63e40eb59c87a164ebfebebbde3967c2,
         type: 2}
       propertyPath: Skill
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 63e40eb59c87a164ebfebebbde3967c2, type: 2}

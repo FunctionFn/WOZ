@@ -148,10 +148,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shooter: 
-  strength: 500
+  strength: 750
   shooterPlayerObject: {fileID: 0}
   arcRange: 5
-  arcStrength: 350
+  arcStrength: 500
   maxSpeedDmg: 7
   LightningIndicator: {fileID: 1000011431169952, guid: 8c289d23d89c7d9408075bec65768014,
     type: 2}
