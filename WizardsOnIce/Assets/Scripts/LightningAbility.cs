@@ -194,6 +194,7 @@ public class LightningAbility : PlayerAbility
             
             AreaOfAffect.transform.GetChild(0).GetComponent<LightningAttack>().shooterPlayerObject = playerObject;
             AreaOfAffect.transform.GetChild(0).GetComponent<LightningAttack>().shooter = playerNumber;
+            AreaOfAffect.transform.GetChild(1).GetComponent<Renderer>().material = indicatorColor;
         }
         else
         {

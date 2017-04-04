@@ -89,7 +89,7 @@ public class LightningAttack : MonoBehaviour {
 
         go.transform.localScale = new Vector3(.5f, Vector3.Distance(p2.transform.position, p1.transform.position) * width, width);
 
-        go.GetComponent<Renderer>().material = shooterPlayerObject.GetComponent<PlayerController>().color;
+        go.GetComponent<Renderer>().material = shooterPlayerObject.GetComponent<PlayerController>().indicatorColor;
 
     }
 }
