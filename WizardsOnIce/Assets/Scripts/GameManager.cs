@@ -21,7 +21,7 @@ public class GameManager : MonoBehaviour
     public float winScore;
 
     public Dictionary<int, PlayerController.SkillID> PlayerSkills;
-	public AudioSource click;
+	//public AudioSource click;
 
     void Awake()
     {
