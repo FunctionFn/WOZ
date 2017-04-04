@@ -18,6 +18,8 @@ public class GameManager : MonoBehaviour
     public string[] levelList;
     public int nextLevel;
 
+    public Dictionary<string, bool> levelsEnabled;
+
     public float winScore;
 
     public Dictionary<int, PlayerController.SkillID> PlayerSkills;
@@ -47,7 +49,10 @@ public class GameManager : MonoBehaviour
         Inst.PlayerSkills.Add(2, 0);
         Inst.PlayerSkills.Add(3, 0);
 
-
+        for (int i = 0; i < levelList.Length; i++)
+        {
+            levelsEnabled.Add(levelList[i], true);
+        }
     }
     void Update()
     {
@@ -144,5 +149,15 @@ public class GameManager : MonoBehaviour
     public void SetPlayerSkill(int playerNum, int skillNum)
     {
         Inst.PlayerSkills[playerNum] = (PlayerController.SkillID)skillNum;
+    }
+
+    public void LevelSelectToggle(Toggle t)
+    {
+        levelsEnabled[t.transform.GetChild(0).GetComponent<Text>().text] = t.isOn;
+    }
+
+    public void ReconstructLevelList()
+    {
+        // TODO
     }
 }
