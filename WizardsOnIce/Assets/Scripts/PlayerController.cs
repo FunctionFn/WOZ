@@ -91,7 +91,7 @@ public class PlayerController : MonoBehaviour
 	public AudioClip WindDash;
 	public AudioClip Brake;
 	public float volume;
-	AudioSource audio;
+	//AudioSource audio;
 
     public float startTime;
 
@@ -104,7 +104,7 @@ public class PlayerController : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-		audio = GetComponent<AudioSource> ();
+		//audio = GetComponent<AudioSource> ();
 
         rb = GetComponent<Rigidbody>();
 
@@ -174,11 +174,7 @@ public class PlayerController : MonoBehaviour
 
             GetComponent<Rigidbody>().velocity = new Vector3(v.x, GetComponent<Rigidbody>().velocity.y, v.z);
 
-			if (audio.isPlaying == false) 
-			{
-				audio.Play ();
-
-			}
+			
 
 			
 			
@@ -306,7 +302,7 @@ public class PlayerController : MonoBehaviour
 
         if(movementState == State.Dash)
         {
-			AudioSource.PlayClipAtPoint (WindDash, new Vector3 (0,19,0));
+			//AudioSource.PlayClipAtPoint (WindDash, new Vector3 (0,19,0));
 
 			rb.useGravity = false;
         }
@@ -532,7 +528,7 @@ public class PlayerController : MonoBehaviour
         if (other.GetComponent<Killbox>())
         {
 
-			AudioSource.PlayClipAtPoint (DeathSound, new Vector3(0, 18, 0));
+			
             Kill();
         }
 

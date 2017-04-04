@@ -3,23 +3,23 @@ using System.Collections;
 
 public class PlayDeathScream : MonoBehaviour {
 
-	public AudioClip SoundToPlay;
+	//public AudioClip SoundToPlay;
 	public float volume;
-	AudioSource audio;
+	//AudioSource audio;
 	public bool alreadyPlayed = false;
 
 
 	void Start () {
 	
-		audio = GetComponent<AudioSource> ();
+		//audio = GetComponent<AudioSource> ();
 	}
 
 	void OnTriggerEnter () {
 
 		if (!alreadyPlayed) {
 		
-			audio.PlayOneShot (SoundToPlay, volume);
-			alreadyPlayed = true;
+			//audio.PlayOneShot (SoundToPlay, volume);
+			//alreadyPlayed = true;
 		}
 	}
 
