@@ -63,6 +63,11 @@ public class GameManager : MonoBehaviour
 	{
        SceneManager.LoadScene(levelList[nextLevel]);
 	}
+    public void LoadNextScene(int levelNum)
+    {
+        SceneManager.LoadScene(levelList[levelNum]);
+    }
+
     public void QuitGame()
     {
         Application.Quit();

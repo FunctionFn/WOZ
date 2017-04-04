@@ -2,12 +2,17 @@
 using UnityEngine.UI;
 using System.Collections;
 using UnityEngine.EventSystems;
+using UnityEngine.SceneManagement;
 
 public class MenuManager : MonoBehaviour {
     public Button[] player1Buttons;
     public Button[] player2Buttons;
     public Button[] player3Buttons;
     public Button[] player4Buttons;
+
+    public Button startButton;
+
+    public Image[] playerSkillHighlights;
 
     public int p1CurrentButton;
     public int p2CurrentButton;
@@ -121,6 +126,7 @@ public class MenuManager : MonoBehaviour {
         {
             GameManager.Inst.SetPlayerSkill(0, p1CurrentButton);
             ExecuteEvents.Execute(player1Buttons[p1CurrentButton].gameObject, new PointerEventData(EventSystem.current), ExecuteEvents.pointerDownHandler);
+            playerSkillHighlights[0].rectTransform.localPosition = new Vector3(player1Buttons[p1CurrentButton].GetComponent<RectTransform>().localPosition.x, playerSkillHighlights[0].rectTransform.localPosition.y, playerSkillHighlights[0].rectTransform.localPosition.z);
         }
         else
         {
@@ -131,6 +137,7 @@ public class MenuManager : MonoBehaviour {
         {
             GameManager.Inst.SetPlayerSkill(1, p2CurrentButton);
             ExecuteEvents.Execute(player2Buttons[p2CurrentButton].gameObject, new PointerEventData(EventSystem.current), ExecuteEvents.pointerDownHandler);
+            playerSkillHighlights[1].rectTransform.localPosition = new Vector3(player2Buttons[p2CurrentButton].GetComponent<RectTransform>().localPosition.x, playerSkillHighlights[1].rectTransform.localPosition.y, playerSkillHighlights[1].rectTransform.localPosition.z);
         }
         else
         {
@@ -141,6 +148,7 @@ public class MenuManager : MonoBehaviour {
         {
             GameManager.Inst.SetPlayerSkill(2, p3CurrentButton);
             ExecuteEvents.Execute(player3Buttons[p3CurrentButton].gameObject, new PointerEventData(EventSystem.current), ExecuteEvents.pointerDownHandler);
+            playerSkillHighlights[2].rectTransform.localPosition = new Vector3(player3Buttons[p3CurrentButton].GetComponent<RectTransform>().localPosition.x, playerSkillHighlights[2].rectTransform.localPosition.y, playerSkillHighlights[2].rectTransform.localPosition.z);
         }
         else
         {
@@ -151,11 +159,20 @@ public class MenuManager : MonoBehaviour {
         {
             GameManager.Inst.SetPlayerSkill(3, p4CurrentButton);
             ExecuteEvents.Execute(player4Buttons[p4CurrentButton].gameObject, new PointerEventData(EventSystem.current), ExecuteEvents.pointerDownHandler);
+            playerSkillHighlights[3].rectTransform.localPosition = new Vector3(player4Buttons[p4CurrentButton].GetComponent<RectTransform>().localPosition.x, playerSkillHighlights[3].rectTransform.localPosition.y, playerSkillHighlights[3].rectTransform.localPosition.z);
         }
         else
         {
             ExecuteEvents.Execute(player4Buttons[p4CurrentButton].gameObject, new PointerEventData(EventSystem.current), ExecuteEvents.deselectHandler);
             ExecuteEvents.Execute(player4Buttons[p4CurrentButton].gameObject, new PointerEventData(EventSystem.current), ExecuteEvents.pointerUpHandler);
+        }
+
+        if (Input.GetButtonDown("Start0") || Input.GetButtonDown("Start1") || Input.GetButtonDown("Start2") || Input.GetButtonDown("Start3"))
+        {
+            // A little janky
+            // Load level 1
+            ExecuteEvents.Execute(startButton.gameObject, new PointerEventData(EventSystem.current), ExecuteEvents.pointerUpHandler);
+            GameManager.Inst.LoadNextScene(1);
         }
     }
 }
