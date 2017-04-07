@@ -19,12 +19,12 @@ public class IceWall : MonoBehaviour
 
 	public AudioClip IceShatter;
 	public float volume;
-    AudioSource audio;
+    //AudioSource audio;
 
 
     void Start()
     {
-		audio = GetComponent<AudioSource> ();
+		//audio = GetComponent<AudioSource> ();
 
 		currentHealth = maxHealth;
 

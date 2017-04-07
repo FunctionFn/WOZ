@@ -6,7 +6,7 @@ using System.Collections;
 public class PlayerController : MonoBehaviour
 {
 
-    public enum SkillID {Meteor, Earth, MagneticBlast, None};
+    public enum SkillID {Meteor, Earth, MagneticBlast, Lightning, None};
 
     public string PlayerNumber;
     [SerializeField] private SkillID Skill;
@@ -91,7 +91,7 @@ public class PlayerController : MonoBehaviour
 	public AudioClip WindDash;
 	public AudioClip Brake;
 	public float volume;
-	AudioSource audio;
+	//AudioSource audio;
 
     public float startTime;
 
@@ -104,7 +104,7 @@ public class PlayerController : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-		audio = GetComponent<AudioSource> ();
+		//audio = GetComponent<AudioSource> ();
 
         rb = GetComponent<Rigidbody>();
 
@@ -117,7 +117,7 @@ public class PlayerController : MonoBehaviour
         int.TryParse(PlayerNumber, out output);
         if (GameManager.Inst.PlayerSkills.Count > output && Skill == SkillID.None)
             Skill = GameManager.Inst.PlayerSkills[output];
-        else
+        else if(Skill == SkillID.None)
             Skill = SkillID.Meteor;
 
         if (Skill == SkillID.Meteor)
@@ -135,6 +135,10 @@ public class PlayerController : MonoBehaviour
         else if(Skill == SkillID.Earth)
         {
             playerSkill = gameObject.AddComponent<EarthAbility>();
+        }
+        else if(Skill == SkillID.Lightning)
+        {
+            playerSkill = gameObject.AddComponent<LightningAbility>();
         }
         // Change this to be added by menu system!!
 
@@ -166,18 +170,19 @@ public class PlayerController : MonoBehaviour
     {
         if(GetComponent<Rigidbody>().velocity.magnitude > currentMaxSpeed)
         {
-            Vector3 v = GetComponent<Rigidbody>().velocity.normalized* currentMaxSpeed;
+            Vector3 v = GetComponent<Rigidbody>().velocity.normalized * currentMaxSpeed;
 
             GetComponent<Rigidbody>().velocity = new Vector3(v.x, GetComponent<Rigidbody>().velocity.y, v.z);
 
-			if (audio.isPlaying == false) 
-			{
-				audio.Play ();
-
-			}
+			
 
 			
 			
+        }
+
+        if(PlayerNumber == "0" && currentMaxSpeed > maxSpeed)
+        {
+            Debug.Log(currentMaxSpeed);
         }
 
         rb.angularVelocity = Vector3.zero;
@@ -297,7 +302,7 @@ public class PlayerController : MonoBehaviour
 
         if(movementState == State.Dash)
         {
-			AudioSource.PlayClipAtPoint (WindDash, new Vector3 (0,19,0));
+			//AudioSource.PlayClipAtPoint (WindDash, new Vector3 (0,19,0));
 
 			rb.useGravity = false;
         }
@@ -431,11 +436,18 @@ public class PlayerController : MonoBehaviour
         {
             playerSkill.TriggerAbility();
 
-            AbilityTimer = playerSkill.GetAbilityTime();
+            //AbilityTimer = playerSkill.GetAbilityTime();
 
-            cdtext.enabled = true;
-            cdtext.text = AbilityTimer.ToString();
-        }
+            //cdtext.enabled = true;
+            //cdtext.text = AbilityTimer.ToString();
+       }
+    }
+
+    public void SetAbilityTimer(float t)
+    {
+        AbilityTimer = t;
+        cdtext.enabled = true;
+        cdtext.text = AbilityTimer.ToString();
     }
 
     public void Grab(Pickupable p)
@@ -516,7 +528,7 @@ public class PlayerController : MonoBehaviour
         if (other.GetComponent<Killbox>())
         {
 
-			AudioSource.PlayClipAtPoint (DeathSound, new Vector3(0, 18, 0));
+			
             Kill();
         }
 
@@ -546,6 +558,7 @@ public class PlayerController : MonoBehaviour
         if ((time <= StunTimer || StunTimer <= 0) || force)
         {
             StunTimer = time;
+            GetComponent<Rigidbody>().velocity = Vector3.zero;
             
         }
         if(holding)

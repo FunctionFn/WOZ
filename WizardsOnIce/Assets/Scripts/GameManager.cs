@@ -9,10 +9,7 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour 
 
 {
-
     public List<PlayerController> PlayersAlive;
-    
-
 
     private static GameManager _inst;
     public static GameManager Inst { get { return _inst; } }
@@ -24,7 +21,7 @@ public class GameManager : MonoBehaviour
     public float winScore;
 
     public Dictionary<int, PlayerController.SkillID> PlayerSkills;
-	public AudioSource click;
+	//public AudioSource click;
 
     void Awake()
     {
@@ -66,6 +63,11 @@ public class GameManager : MonoBehaviour
 	{
        SceneManager.LoadScene(levelList[nextLevel]);
 	}
+    public void LoadNextScene(int levelNum)
+    {
+        SceneManager.LoadScene(levelList[levelNum]);
+    }
+
     public void QuitGame()
     {
         Application.Quit();
@@ -133,45 +135,19 @@ public class GameManager : MonoBehaviour
                 {
                     playerScores[j] = 0;
                 }
+
+                for (int j = 0; j < PlayerSkills.Count; j++)
+                {
+                    PlayerSkills[j] = 0;
+                }
             }
         }
         LoadNextScene();
     }
 
 
-    public void SetPlayerSkill(Dropdown selector)
+    public void SetPlayerSkill(int playerNum, int skillNum)
     {
-        int playernum;
-
-
-
-        switch (selector.name)
-        {
-            case "Player1Selector":
-                playernum = 0;
-                break;
-
-            case "Player2Selector":
-                playernum = 1;
-                break;
-
-            case "Player3Selector":
-                playernum = 2;
-                break;
-
-            case "Player4Selector":
-                playernum = 3;
-                break;
-
-            default:
-                Debug.Log("Character select playernum error");
-                playernum = 0;
-                break;
-        }
-
-
-        Inst.PlayerSkills[playernum] = (PlayerController.SkillID)selector.value;
-
-        
+        Inst.PlayerSkills[playerNum] = (PlayerController.SkillID)skillNum;
     }
 }

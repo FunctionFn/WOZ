@@ -3,7 +3,7 @@ using System.Collections;
 
 public class AudioManager : MonoBehaviour {
 
-    public AudioSource bgmusic;
+    //public AudioSource bgmusic;
     private static AudioManager _inst;
     public static AudioManager Inst { get { return _inst; } }
 
@@ -22,9 +22,9 @@ public class AudioManager : MonoBehaviour {
     void Start () {
         DontDestroyOnLoad(gameObject);
 
-        bgmusic.loop = true;
-        bgmusic.Play();
-        bgmusic.loop = true;
+        //bgmusic.loop = true;
+        //bgmusic.Play();
+        //bgmusic.loop = true;
 	}
 	
 	// Update is called once per frame
