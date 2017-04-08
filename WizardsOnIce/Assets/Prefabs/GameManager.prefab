@@ -130,9 +130,8 @@ MonoBehaviour:
   playerScores: 00000000000000000000000000000000
   levelList:
   - CharacterSelect
-  - arena3
-  - arena2
-  - arena
+  - Pit
+  - Cross
+  - Final Destination
   nextLevel: 0
   winScore: 3
-  click: {fileID: 0}

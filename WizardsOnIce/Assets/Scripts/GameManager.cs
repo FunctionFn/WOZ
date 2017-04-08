@@ -2,6 +2,7 @@
 using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using UnityEngine.SceneManagement;
 
 
@@ -17,6 +18,8 @@ public class GameManager : MonoBehaviour
     public int[] playerScores = new int[4];
     public string[] levelList;
     public int nextLevel;
+
+    public OrderedDictionary levelsEnabled;
 
     public float winScore;
 
@@ -37,7 +40,8 @@ public class GameManager : MonoBehaviour
 
         DontDestroyOnLoad(gameObject);
         PlayerSkills = new Dictionary<int, PlayerController.SkillID>();
-        
+        levelsEnabled = new OrderedDictionary();
+
     }
 
     void Start()
@@ -47,16 +51,39 @@ public class GameManager : MonoBehaviour
         Inst.PlayerSkills.Add(2, 0);
         Inst.PlayerSkills.Add(3, 0);
 
-
+        for (int i = 0; i < levelList.Length; i++)
+        {
+            Inst.levelsEnabled.Add(levelList[i], true);
+        }
     }
     void Update()
     {
-        if (Input.GetButtonDown("Submit"))
+        if(Input.GetButtonUp("Submit") && SceneManager.GetActiveScene().name == "GameSettings")
         {
-            // Load level 1
-            nextLevel = 1;
-            LoadNextScene();
+            ReconstructLevelList();
+            if (levelList.Length > 1)
+            {
+                nextLevel = 0;
+                LoadNextScene();
+            }
         }
+
+        if (Input.GetButtonUp("Submit") && SceneManager.GetActiveScene().name == "CharacterSelect")
+        {
+            nextLevel = 0;
+            LoadNextScene("GameSettings");
+            ResetLevelsSelected();
+
+        }
+
+
+
+        //if (Input.GetButtonDown("Submit"))
+        //{
+        //    // Load level 1
+        //    nextLevel = 1;
+        //    LoadNextScene();
+        //}
     }
 
 	public void LoadNextScene()
@@ -65,7 +92,13 @@ public class GameManager : MonoBehaviour
 	}
     public void LoadNextScene(int levelNum)
     {
-        SceneManager.LoadScene(levelList[levelNum]);
+        nextLevel = levelNum;
+        SceneManager.LoadScene(levelList[nextLevel]);
+    }
+
+    public void LoadNextScene(string name)
+    {
+        SceneManager.LoadScene(name);
     }
 
     public void QuitGame()
@@ -149,5 +182,48 @@ public class GameManager : MonoBehaviour
     public void SetPlayerSkill(int playerNum, int skillNum)
     {
         Inst.PlayerSkills[playerNum] = (PlayerController.SkillID)skillNum;
+    }
+
+    public void LevelSelectToggle(Toggle t)
+    {
+        Inst.levelsEnabled[t.transform.GetChild(1).GetComponent<Text>().text] = t.isOn;
+    }
+
+    public void ReconstructLevelList()
+    {
+
+        int numLevels = 0;
+        for (int i = 0; i < levelsEnabled.Count; i++)
+        {
+            if((bool)levelsEnabled[i])
+            {
+                numLevels++;
+            }
+        }
+
+
+        levelList = new string[numLevels];
+        string[] myKeys = new string[levelsEnabled.Count];
+        levelsEnabled.Keys.CopyTo(myKeys, 0);
+
+        int n = 0;
+        for (int i = 0; i < levelsEnabled.Count; i++)
+        {
+            if ((bool)levelsEnabled[i])
+            {
+                levelList[n] = myKeys[i];
+                n++;
+            }
+        }
+        // TODO
+        Debug.Log("here");
+    }
+
+    public void ResetLevelsSelected()
+    {
+        for (int i = 0; i < levelsEnabled.Count; i++)
+        {
+            levelsEnabled[i] = true;
+        }
     }
 }
