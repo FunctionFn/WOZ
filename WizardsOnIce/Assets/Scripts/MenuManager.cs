@@ -171,8 +171,12 @@ public class MenuManager : MonoBehaviour {
         {
             // A little janky
             // Load level 1
-            ExecuteEvents.Execute(startButton.gameObject, new PointerEventData(EventSystem.current), ExecuteEvents.pointerUpHandler);
-            GameManager.Inst.LoadNextScene(1);
+            if(GameManager.Inst.CheckNumPlayersSelected() >= 2)
+            {
+                ExecuteEvents.Execute(startButton.gameObject, new PointerEventData(EventSystem.current), ExecuteEvents.pointerUpHandler);
+                GameManager.Inst.LoadNextScene(1);
+            }
+            
         }
     }
 }

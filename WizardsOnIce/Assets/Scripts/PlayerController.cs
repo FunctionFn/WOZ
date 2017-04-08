@@ -132,13 +132,18 @@ public class PlayerController : MonoBehaviour
         {
             playerSkill = gameObject.AddComponent<MagneticBlastAbility>();
         }
-        else if(Skill == SkillID.Earth)
+        else if (Skill == SkillID.Earth)
         {
             playerSkill = gameObject.AddComponent<EarthAbility>();
         }
-        else if(Skill == SkillID.Lightning)
+        else if (Skill == SkillID.Lightning)
         {
             playerSkill = gameObject.AddComponent<LightningAbility>();
+        }
+        else if (Skill == SkillID.None)
+        {
+            playerSkill = gameObject.AddComponent<MeteorAbility>();
+
         }
         // Change this to be added by menu system!!
 
@@ -162,6 +167,8 @@ public class PlayerController : MonoBehaviour
         tempedamage = environmentDamage;
         environmentDamage = 0;
         Stun(startTime);
+
+        
 
     }
 
@@ -273,10 +280,14 @@ public class PlayerController : MonoBehaviour
         {
             holder.Chuck();
         }
-			
 
 
-        
+        if (Skill == SkillID.None)
+        {
+            Kill();
+
+        }
+
     }
 
 
