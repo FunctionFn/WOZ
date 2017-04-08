@@ -58,12 +58,25 @@ public class GameManager : MonoBehaviour
     }
     void Update()
     {
-        if(Input.GetButtonDown("Submit") && SceneManager.GetActiveScene().name == "GameSettings")
+        if(Input.GetButtonUp("Submit") && SceneManager.GetActiveScene().name == "GameSettings")
         {
             ReconstructLevelList();
-            nextLevel = 0;
-            LoadNextScene();
+            if (levelList.Length > 1)
+            {
+                nextLevel = 0;
+                LoadNextScene();
+            }
         }
+
+        if (Input.GetButtonUp("Submit") && SceneManager.GetActiveScene().name == "CharacterSelect")
+        {
+            nextLevel = 0;
+            LoadNextScene("GameSettings");
+            ResetLevelsSelected();
+
+        }
+
+
 
         //if (Input.GetButtonDown("Submit"))
         //{
@@ -79,7 +92,13 @@ public class GameManager : MonoBehaviour
 	}
     public void LoadNextScene(int levelNum)
     {
-        SceneManager.LoadScene(levelList[levelNum]);
+        nextLevel = levelNum;
+        SceneManager.LoadScene(levelList[nextLevel]);
+    }
+
+    public void LoadNextScene(string name)
+    {
+        SceneManager.LoadScene(name);
     }
 
     public void QuitGame()
@@ -198,5 +217,13 @@ public class GameManager : MonoBehaviour
         }
         // TODO
         Debug.Log("here");
+    }
+
+    public void ResetLevelsSelected()
+    {
+        for (int i = 0; i < levelsEnabled.Count; i++)
+        {
+            levelsEnabled[i] = true;
+        }
     }
 }
