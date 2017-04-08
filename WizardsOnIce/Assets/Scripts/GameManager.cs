@@ -46,10 +46,10 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        Inst.PlayerSkills.Add(0, 0);
-        Inst.PlayerSkills.Add(1, 0);
-        Inst.PlayerSkills.Add(2, 0);
-        Inst.PlayerSkills.Add(3, 0);
+        Inst.PlayerSkills.Add(0, PlayerController.SkillID.None);
+        Inst.PlayerSkills.Add(1, PlayerController.SkillID.None);
+        Inst.PlayerSkills.Add(2, PlayerController.SkillID.None);
+        Inst.PlayerSkills.Add(3, PlayerController.SkillID.None);
 
         for (int i = 0; i < levelList.Length; i++)
         {
@@ -171,7 +171,7 @@ public class GameManager : MonoBehaviour
 
                 for (int j = 0; j < PlayerSkills.Count; j++)
                 {
-                    PlayerSkills[j] = 0;
+                    PlayerSkills[j] = PlayerController.SkillID.None;
                 }
             }
         }
@@ -225,5 +225,18 @@ public class GameManager : MonoBehaviour
         {
             levelsEnabled[i] = true;
         }
+    }
+
+    public int CheckNumPlayersSelected()
+    {
+        int count = 0;
+        for (int i = 0; i < PlayerSkills.Count; i++)
+        {
+            if(PlayerSkills[i] != PlayerController.SkillID.None)
+            {
+                count++;
+            }
+        }
+        return count;
     }
 }
