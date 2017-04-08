@@ -2,6 +2,7 @@
 using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using UnityEngine.SceneManagement;
 
 
@@ -18,7 +19,7 @@ public class GameManager : MonoBehaviour
     public string[] levelList;
     public int nextLevel;
 
-    public Dictionary<string, bool> levelsEnabled;
+    public OrderedDictionary levelsEnabled;
 
     public float winScore;
 
@@ -39,7 +40,8 @@ public class GameManager : MonoBehaviour
 
         DontDestroyOnLoad(gameObject);
         PlayerSkills = new Dictionary<int, PlayerController.SkillID>();
-        
+        levelsEnabled = new OrderedDictionary();
+
     }
 
     void Start()
@@ -51,17 +53,24 @@ public class GameManager : MonoBehaviour
 
         for (int i = 0; i < levelList.Length; i++)
         {
-            levelsEnabled.Add(levelList[i], true);
+            Inst.levelsEnabled.Add(levelList[i], true);
         }
     }
     void Update()
     {
-        if (Input.GetButtonDown("Submit"))
+        if(Input.GetButtonDown("Submit") && SceneManager.GetActiveScene().name == "GameSettings")
         {
-            // Load level 1
-            nextLevel = 1;
+            ReconstructLevelList();
+            nextLevel = 0;
             LoadNextScene();
         }
+
+        //if (Input.GetButtonDown("Submit"))
+        //{
+        //    // Load level 1
+        //    nextLevel = 1;
+        //    LoadNextScene();
+        //}
     }
 
 	public void LoadNextScene()
@@ -153,11 +162,36 @@ public class GameManager : MonoBehaviour
 
     public void LevelSelectToggle(Toggle t)
     {
-        levelsEnabled[t.transform.GetChild(0).GetComponent<Text>().text] = t.isOn;
+        Inst.levelsEnabled[t.transform.GetChild(1).GetComponent<Text>().text] = t.isOn;
     }
 
     public void ReconstructLevelList()
     {
+
+        int numLevels = 0;
+        for (int i = 0; i < levelsEnabled.Count; i++)
+        {
+            if((bool)levelsEnabled[i])
+            {
+                numLevels++;
+            }
+        }
+
+
+        levelList = new string[numLevels];
+        string[] myKeys = new string[levelsEnabled.Count];
+        levelsEnabled.Keys.CopyTo(myKeys, 0);
+
+        int n = 0;
+        for (int i = 0; i < levelsEnabled.Count; i++)
+        {
+            if ((bool)levelsEnabled[i])
+            {
+                levelList[n] = myKeys[i];
+                n++;
+            }
+        }
         // TODO
+        Debug.Log("here");
     }
 }
