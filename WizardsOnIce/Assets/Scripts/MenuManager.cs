@@ -41,6 +41,12 @@ public class MenuManager : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
+        // TODO: convert this mess into something readable:
+        // make a function readinput that accepts a player number 0-3
+        // includes one version of each of the following if's
+        // call that function 4 times, once for each player
+
+
         // Button Selection
         if ((Input.GetAxis("Horizontal0") > 0.5 || Input.GetAxis("DPHorizontal0") > 0.5) && p1CurrentButton < player1Buttons.Length - 1 && !p1AxisUsed)
         {
