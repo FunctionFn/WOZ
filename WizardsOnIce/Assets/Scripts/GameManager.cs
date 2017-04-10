@@ -26,6 +26,8 @@ public class GameManager : MonoBehaviour
     public Dictionary<int, PlayerController.SkillID> PlayerSkills;
 
     public int winner;
+
+    public Sprite[] CDIndicators;
 	//public AudioSource click;
 
     void Awake()

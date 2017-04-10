@@ -1473,7 +1473,7 @@ Prefab:
         type: 2}
       propertyPath: cdtext
       value: 
-      objectReference: {fileID: 348334639}
+      objectReference: {fileID: 1105101227}
     - target: {fileID: 1000010765101244, guid: 63e40eb59c87a164ebfebebbde3967c2, type: 2}
       propertyPath: m_Name
       value: Player 4 (1)
@@ -2696,12 +2696,6 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 60f0a3bca800d2a43a14a12c3b1b464e, type: 2}
   m_IsPrefabParent: 0
---- !u!114 &348334639 stripped
-MonoBehaviour:
-  m_PrefabParentObject: {fileID: 114000012781329538, guid: 09e87bbfd4c156e47baf9f2f21276776,
-    type: 2}
-  m_PrefabInternal: {fileID: 1105101226}
-  m_Script: {fileID: 708705254, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
 --- !u!4 &351593980 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4000011813474782, guid: 60f0a3bca800d2a43a14a12c3b1b464e,
@@ -4221,12 +4215,6 @@ Transform:
   m_PrefabParentObject: {fileID: 4000011813474782, guid: 60f0a3bca800d2a43a14a12c3b1b464e,
     type: 2}
   m_PrefabInternal: {fileID: 1687645282}
---- !u!114 &556083920 stripped
-MonoBehaviour:
-  m_PrefabParentObject: {fileID: 114000013194893936, guid: 09e87bbfd4c156e47baf9f2f21276776,
-    type: 2}
-  m_PrefabInternal: {fileID: 1105101226}
-  m_Script: {fileID: 708705254, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
 --- !u!1001 &560911781
 Prefab:
   m_ObjectHideFlags: 0
@@ -7576,12 +7564,6 @@ Transform:
   m_PrefabParentObject: {fileID: 4000011813474782, guid: 60f0a3bca800d2a43a14a12c3b1b464e,
     type: 2}
   m_PrefabInternal: {fileID: 880866614}
---- !u!114 &983105576 stripped
-MonoBehaviour:
-  m_PrefabParentObject: {fileID: 114000011723013754, guid: 09e87bbfd4c156e47baf9f2f21276776,
-    type: 2}
-  m_PrefabInternal: {fileID: 1105101226}
-  m_Script: {fileID: 708705254, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
 --- !u!1001 &983359396
 Prefab:
   m_ObjectHideFlags: 0
@@ -8970,6 +8952,30 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 09e87bbfd4c156e47baf9f2f21276776, type: 2}
   m_IsPrefabParent: 0
+--- !u!114 &1105101227 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114000010705781506, guid: 09e87bbfd4c156e47baf9f2f21276776,
+    type: 2}
+  m_PrefabInternal: {fileID: 1105101226}
+  m_Script: {fileID: -765806418, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+--- !u!114 &1105101228 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114000011052261616, guid: 09e87bbfd4c156e47baf9f2f21276776,
+    type: 2}
+  m_PrefabInternal: {fileID: 1105101226}
+  m_Script: {fileID: -765806418, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+--- !u!114 &1105101229 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114000011276834042, guid: 09e87bbfd4c156e47baf9f2f21276776,
+    type: 2}
+  m_PrefabInternal: {fileID: 1105101226}
+  m_Script: {fileID: -765806418, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+--- !u!114 &1105101230 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114000013743329252, guid: 09e87bbfd4c156e47baf9f2f21276776,
+    type: 2}
+  m_PrefabInternal: {fileID: 1105101226}
+  m_Script: {fileID: -765806418, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
 --- !u!4 &1107797967 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4000011813474782, guid: 60f0a3bca800d2a43a14a12c3b1b464e,
@@ -10914,7 +10920,7 @@ Prefab:
         type: 2}
       propertyPath: cdtext
       value: 
-      objectReference: {fileID: 556083920}
+      objectReference: {fileID: 1105101228}
     - target: {fileID: 114000010592206144, guid: 63e40eb59c87a164ebfebebbde3967c2,
         type: 2}
       propertyPath: DeathSound
@@ -11338,7 +11344,7 @@ Prefab:
         type: 2}
       propertyPath: cdtext
       value: 
-      objectReference: {fileID: 1976923117}
+      objectReference: {fileID: 1105101229}
     - target: {fileID: 4000014084170550, guid: 63e40eb59c87a164ebfebebbde3967c2, type: 2}
       propertyPath: m_LocalPosition.x
       value: -1.79
@@ -16948,12 +16954,6 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 60f0a3bca800d2a43a14a12c3b1b464e, type: 2}
   m_IsPrefabParent: 0
---- !u!114 &1976923117 stripped
-MonoBehaviour:
-  m_PrefabParentObject: {fileID: 114000010203393142, guid: 09e87bbfd4c156e47baf9f2f21276776,
-    type: 2}
-  m_PrefabInternal: {fileID: 1105101226}
-  m_Script: {fileID: 708705254, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
 --- !u!1001 &1978079276
 Prefab:
   m_ObjectHideFlags: 0
@@ -17002,7 +17002,7 @@ Prefab:
         type: 2}
       propertyPath: cdtext
       value: 
-      objectReference: {fileID: 983105576}
+      objectReference: {fileID: 1105101230}
     - target: {fileID: 1000010765101244, guid: 63e40eb59c87a164ebfebebbde3967c2, type: 2}
       propertyPath: m_Name
       value: Player 1 (1)

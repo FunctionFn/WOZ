@@ -17,7 +17,7 @@ public class PlayerController : MonoBehaviour
 
     public GameObject IceBrake;
 
-    public Text cdtext;
+    public Image cdtext;
 
     public Material color;
     public Material indicatorColor;
@@ -95,6 +95,8 @@ public class PlayerController : MonoBehaviour
 
     public float startTime;
 
+    float AbilityTime;
+
     void Awake()
     {
 
@@ -123,6 +125,7 @@ public class PlayerController : MonoBehaviour
         if (Skill == SkillID.Meteor)
         {
             playerSkill = gameObject.AddComponent<MeteorAbility>();
+            
         }
         //else if (Skill == SkillID.IceWall)
         //{
@@ -145,6 +148,16 @@ public class PlayerController : MonoBehaviour
             playerSkill = gameObject.AddComponent<MeteorAbility>();
 
         }
+
+        if(Skill != SkillID.None)
+        {
+            cdtext.sprite = GameManager.Inst.CDIndicators[(int)Skill];
+        }
+        else
+        {
+            cdtext.sprite = GameManager.Inst.CDIndicators[(int)SkillID.Meteor];
+        }
+        
         // Change this to be added by menu system!!
 
         playerSkill.Initialize(color, indicatorColor, PlayerNumber, gameObject, missileSpawnLocation);
@@ -168,7 +181,8 @@ public class PlayerController : MonoBehaviour
         environmentDamage = 0;
         Stun(startTime);
 
-        
+        cdtext.type = Image.Type.Filled;
+        cdtext.fillMethod = Image.FillMethod.Radial360;
 
     }
 
@@ -237,7 +251,7 @@ public class PlayerController : MonoBehaviour
         }
     
 
-        cdtext.text = Mathf.Ceil(AbilityTimer).ToString();
+        //cdtext.text = Mathf.Ceil(AbilityTimer).ToString();
 
         if(AbilityTimer <= 0)
         {
@@ -279,7 +293,7 @@ public class PlayerController : MonoBehaviour
 
         }
 
-        CooldownPositionUpdate();
+        CooldownUpdate();
 
     }
 
@@ -449,9 +463,14 @@ public class PlayerController : MonoBehaviour
 
     public void SetAbilityTimer(float t)
     {
+        
         AbilityTimer = t;
+        AbilityTime = t;
+        cdtext.fillAmount = 1 - AbilityTimer / AbilityTime;
         cdtext.enabled = true;
-        cdtext.text = AbilityTimer.ToString();
+        
+        
+        //cdtext.text = AbilityTimer.ToString();
     }
 
     public void Grab(Pickupable p)
@@ -614,8 +633,9 @@ public class PlayerController : MonoBehaviour
         }
     }
    
-    public void CooldownPositionUpdate()
+    public void CooldownUpdate()
     {
+        cdtext.fillAmount = 1 - AbilityTimer / AbilityTime;
         //GameObject WorldObject;
 
         //this is the ui element
@@ -634,6 +654,7 @@ public class PlayerController : MonoBehaviour
 
         //now you can set the position of the ui element
         cdtext.GetComponent<RectTransform>().anchoredPosition = WorldObject_ScreenPosition;
+        
     }
 }
 
