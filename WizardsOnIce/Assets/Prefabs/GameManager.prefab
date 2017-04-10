@@ -60,7 +60,7 @@ MonoBehaviour:
   - Final Destination
   nextLevel: 0
   winScore: 3
-  winner: 0
+  winner: -1
   CDIndicators:
   - {fileID: 21300000, guid: 067f6c3aeb3bade44861b170243c008c, type: 3}
   - {fileID: 21300000, guid: 479a0a554635ea2458d822c594347a1c, type: 3}
