@@ -24,6 +24,8 @@ public class GameManager : MonoBehaviour
     public float winScore;
 
     public Dictionary<int, PlayerController.SkillID> PlayerSkills;
+
+    public int winner;
 	//public AudioSource click;
 
     void Awake()
@@ -55,6 +57,10 @@ public class GameManager : MonoBehaviour
         {
             Inst.levelsEnabled.Add(levelList[i], true);
         }
+
+        winner = -1;
+
+        
     }
     void Update()
     {
@@ -161,6 +167,7 @@ public class GameManager : MonoBehaviour
         {
             if (playerScores[i] >= winScore)
             {
+                winner = i;
                 // Go to character select menu
                 nextLevel = 0;
 
