@@ -24,6 +24,8 @@ public class MenuManager : MonoBehaviour {
     public bool p3AxisUsed;
     public bool p4AxisUsed;
 
+    public Image[] winIndicators;
+
 	// Use this for initialization
 	void Start ()
     {
@@ -36,6 +38,11 @@ public class MenuManager : MonoBehaviour {
         p2AxisUsed = false;
         p3AxisUsed = false;
         p4AxisUsed = false;
+
+        if(GameManager.Inst.winner != -1)
+        {
+            winIndicators[GameManager.Inst.winner].enabled = true;
+        }
 	}
 	
 	// Update is called once per frame
