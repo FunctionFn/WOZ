@@ -1468,7 +1468,7 @@ Prefab:
         type: 2}
       propertyPath: mainCamera
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1382345165}
     - target: {fileID: 114000010592206144, guid: 63e40eb59c87a164ebfebebbde3967c2,
         type: 2}
       propertyPath: cdtext
@@ -10909,7 +10909,7 @@ Prefab:
         type: 2}
       propertyPath: mainCamera
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1382345165}
     - target: {fileID: 114000010592206144, guid: 63e40eb59c87a164ebfebebbde3967c2,
         type: 2}
       propertyPath: cdtext
@@ -11333,7 +11333,7 @@ Prefab:
         type: 2}
       propertyPath: mainCamera
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1382345165}
     - target: {fileID: 114000010592206144, guid: 63e40eb59c87a164ebfebebbde3967c2,
         type: 2}
       propertyPath: cdtext
@@ -11734,6 +11734,11 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b6d703e6c929a81428a86e5df1a4842c, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &1382345165 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1000010962803182, guid: b6d703e6c929a81428a86e5df1a4842c,
+    type: 2}
+  m_PrefabInternal: {fileID: 1382345164}
 --- !u!1 &1390091571
 GameObject:
   m_ObjectHideFlags: 0
@@ -16992,7 +16997,7 @@ Prefab:
         type: 2}
       propertyPath: mainCamera
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1382345165}
     - target: {fileID: 114000010592206144, guid: 63e40eb59c87a164ebfebebbde3967c2,
         type: 2}
       propertyPath: cdtext
