@@ -4,7 +4,7 @@ using System.Collections;
 public class MeteorAbility : PlayerAbility {
 
     // CAN BE CHANGED FOR BALANCE
-    public float meteorSpeed = 10.0f;
+    public float meteorSpeed = 15.0f;
     // CAN BE CHANGED FOR BALANCE
 
     public GameObject meteorIndicator;
