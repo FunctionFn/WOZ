@@ -17,7 +17,7 @@ public class PlayerController : MonoBehaviour
 
     public GameObject IceBrake;
 
-    public Text cdtext;
+    public Image cdtext;
 
     public Material color;
     public Material indicatorColor;
@@ -95,6 +95,8 @@ public class PlayerController : MonoBehaviour
 
     public float startTime;
 
+    float AbilityTime;
+
     void Awake()
     {
 
@@ -123,6 +125,7 @@ public class PlayerController : MonoBehaviour
         if (Skill == SkillID.Meteor)
         {
             playerSkill = gameObject.AddComponent<MeteorAbility>();
+            
         }
         //else if (Skill == SkillID.IceWall)
         //{
@@ -132,14 +135,29 @@ public class PlayerController : MonoBehaviour
         {
             playerSkill = gameObject.AddComponent<MagneticBlastAbility>();
         }
-        else if(Skill == SkillID.Earth)
+        else if (Skill == SkillID.Earth)
         {
             playerSkill = gameObject.AddComponent<EarthAbility>();
         }
-        else if(Skill == SkillID.Lightning)
+        else if (Skill == SkillID.Lightning)
         {
             playerSkill = gameObject.AddComponent<LightningAbility>();
         }
+        else if (Skill == SkillID.None)
+        {
+            playerSkill = gameObject.AddComponent<MeteorAbility>();
+
+        }
+
+        if(Skill != SkillID.None)
+        {
+            cdtext.sprite = GameManager.Inst.CDIndicators[(int)Skill];
+        }
+        else
+        {
+            cdtext.sprite = GameManager.Inst.CDIndicators[(int)SkillID.Meteor];
+        }
+        
         // Change this to be added by menu system!!
 
         playerSkill.Initialize(color, indicatorColor, PlayerNumber, gameObject, missileSpawnLocation);
@@ -163,6 +181,9 @@ public class PlayerController : MonoBehaviour
         environmentDamage = 0;
         Stun(startTime);
 
+        cdtext.type = Image.Type.Filled;
+        cdtext.fillMethod = Image.FillMethod.Radial360;
+
     }
 
     // Update is called once per frame
@@ -178,11 +199,6 @@ public class PlayerController : MonoBehaviour
 
 			
 			
-        }
-
-        if(PlayerNumber == "0" && currentMaxSpeed > maxSpeed)
-        {
-            Debug.Log(currentMaxSpeed);
         }
 
         rb.angularVelocity = Vector3.zero;
@@ -235,17 +251,13 @@ public class PlayerController : MonoBehaviour
         }
     
 
-        cdtext.text = Mathf.Ceil(AbilityTimer).ToString();
+        //cdtext.text = Mathf.Ceil(AbilityTimer).ToString();
 
         if(AbilityTimer <= 0)
         {
             cdtext.enabled = false;
+            
         }
-
-        
-        
-        
-        
 
         if (GrabTimer <= 0)
         {
@@ -273,10 +285,16 @@ public class PlayerController : MonoBehaviour
         {
             holder.Chuck();
         }
-			
 
 
-        
+        if (Skill == SkillID.None)
+        {
+            Kill();
+
+        }
+
+        CooldownUpdate();
+
     }
 
 
@@ -445,9 +463,14 @@ public class PlayerController : MonoBehaviour
 
     public void SetAbilityTimer(float t)
     {
+        
         AbilityTimer = t;
+        AbilityTime = t;
+        cdtext.fillAmount = 1 - AbilityTimer / AbilityTime;
         cdtext.enabled = true;
-        cdtext.text = AbilityTimer.ToString();
+        
+        
+        //cdtext.text = AbilityTimer.ToString();
     }
 
     public void Grab(Pickupable p)
@@ -610,5 +633,28 @@ public class PlayerController : MonoBehaviour
         }
     }
    
+    public void CooldownUpdate()
+    {
+        cdtext.fillAmount = 1 - AbilityTimer / AbilityTime;
+        //GameObject WorldObject;
+
+        //this is the ui element
+        //RectTransform UI_Element;
+
+        //first you need the RectTransform component of your canvas
+        RectTransform CanvasRect = cdtext.canvas.GetComponent<RectTransform>();
+
+        //then you calculate the position of the UI element
+        //0,0 for the canvas is at the center of the screen, whereas WorldToViewPortPoint treats the lower left corner as 0,0. Because of this, you need to subtract the height / width of the canvas * 0.5 to get the correct position.
+
+        Vector2 ViewportPosition = mainCamera.GetComponent<Camera>().WorldToViewportPoint(transform.position);
+        Vector2 WorldObject_ScreenPosition = new Vector2(
+        ((ViewportPosition.x * CanvasRect.sizeDelta.x) - (CanvasRect.sizeDelta.x * 0.5f)),
+        ((ViewportPosition.y * CanvasRect.sizeDelta.y) - (CanvasRect.sizeDelta.y * 0.5f)));
+
+        //now you can set the position of the ui element
+        cdtext.GetComponent<RectTransform>().anchoredPosition = WorldObject_ScreenPosition;
+        
+    }
 }
 

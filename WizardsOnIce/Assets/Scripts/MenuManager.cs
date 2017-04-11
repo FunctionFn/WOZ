@@ -24,6 +24,8 @@ public class MenuManager : MonoBehaviour {
     public bool p3AxisUsed;
     public bool p4AxisUsed;
 
+    public Image[] winIndicators;
+
 	// Use this for initialization
 	void Start ()
     {
@@ -36,10 +38,21 @@ public class MenuManager : MonoBehaviour {
         p2AxisUsed = false;
         p3AxisUsed = false;
         p4AxisUsed = false;
+
+        if(GameManager.Inst.winner != -1)
+        {
+            winIndicators[GameManager.Inst.winner].enabled = true;
+        }
 	}
 	
 	// Update is called once per frame
 	void Update () {
+
+        // TODO: convert this mess into something readable:
+        // make a function readinput that accepts a player number 0-3
+        // includes one version of each of the following if's
+        // call that function 4 times, once for each player
+
 
         // Button Selection
         if ((Input.GetAxis("Horizontal0") > 0.5 || Input.GetAxis("DPHorizontal0") > 0.5) && p1CurrentButton < player1Buttons.Length - 1 && !p1AxisUsed)
@@ -171,8 +184,12 @@ public class MenuManager : MonoBehaviour {
         {
             // A little janky
             // Load level 1
-            ExecuteEvents.Execute(startButton.gameObject, new PointerEventData(EventSystem.current), ExecuteEvents.pointerUpHandler);
-            GameManager.Inst.LoadNextScene(1);
+            if(GameManager.Inst.CheckNumPlayersSelected() >= 2)
+            {
+                ExecuteEvents.Execute(startButton.gameObject, new PointerEventData(EventSystem.current), ExecuteEvents.pointerUpHandler);
+                GameManager.Inst.LoadNextScene(1);
+            }
+            
         }
     }
 }
