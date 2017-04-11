@@ -19,6 +19,9 @@ public class UIManager : MonoBehaviour {
 
         for (int i = 0; i < playerFillScores.Length; i++)
         {
+            if (GameManager.Inst.playerScores[i] == 0)
+                playerEmptyScores[i].enabled = false;
+
             playerFillScores[i].type = Image.Type.Filled;
             playerFillScores[i].fillMethod = Image.FillMethod.Horizontal;
             playerFillScores[i].fillAmount = (float)GameManager.Inst.playerScores[i] / (float)GameManager.Inst.winScore;
