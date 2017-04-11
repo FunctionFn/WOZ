@@ -18,6 +18,7 @@ public class PlayerController : MonoBehaviour
     public GameObject IceBrake;
 
     public Image cdtext;
+    public Image dashCDImage;
 
     public Material color;
     public Material indicatorColor;
@@ -257,6 +258,15 @@ public class PlayerController : MonoBehaviour
         {
             cdtext.enabled = false;
             
+        }
+
+        if(DashTimer <= 0)
+        {
+            dashCDImage.enabled = false;
+        }
+        else
+        {
+            dashCDImage.enabled = true;
         }
 
         if (GrabTimer <= 0)
@@ -602,6 +612,9 @@ public class PlayerController : MonoBehaviour
             currentMaxSpeed = 9999999.0f;
             DashTimer = DashTime + dashCooldown;
 
+            dashCDImage.fillAmount = 1 - DashTimer / (DashTime + dashCooldown);
+            dashCDImage.enabled = true;
+
             ChangeMovementState(State.Dash);
 		}
 	}
@@ -628,14 +641,18 @@ public class PlayerController : MonoBehaviour
 		if (!dead) 
         {
             dead = true;
+            cdtext.enabled = false;
+            dashCDImage.enabled = false;
             GameManager.Inst.SubPlayer(this.GetComponent<PlayerController>());
             Destroy(gameObject);
+            
         }
     }
    
     public void CooldownUpdate()
     {
         cdtext.fillAmount = 1 - AbilityTimer / AbilityTime;
+        dashCDImage.fillAmount = 1 - DashTimer / (DashTime + dashCooldown);
         //GameObject WorldObject;
 
         //this is the ui element
@@ -654,7 +671,7 @@ public class PlayerController : MonoBehaviour
 
         //now you can set the position of the ui element
         cdtext.GetComponent<RectTransform>().anchoredPosition = WorldObject_ScreenPosition;
-        
+        dashCDImage.GetComponent<RectTransform>().anchoredPosition = WorldObject_ScreenPosition;
     }
 }
 

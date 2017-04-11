@@ -191,6 +191,30 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 09e87bbfd4c156e47baf9f2f21276776, type: 2}
   m_IsPrefabParent: 0
+--- !u!114 &63476603 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114000010179016588, guid: 09e87bbfd4c156e47baf9f2f21276776,
+    type: 2}
+  m_PrefabInternal: {fileID: 63476602}
+  m_Script: {fileID: -765806418, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+--- !u!114 &63476604 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114000010305150324, guid: 09e87bbfd4c156e47baf9f2f21276776,
+    type: 2}
+  m_PrefabInternal: {fileID: 63476602}
+  m_Script: {fileID: -765806418, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+--- !u!114 &63476605 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114000012608505572, guid: 09e87bbfd4c156e47baf9f2f21276776,
+    type: 2}
+  m_PrefabInternal: {fileID: 63476602}
+  m_Script: {fileID: -765806418, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+--- !u!114 &63476606 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114000013470386154, guid: 09e87bbfd4c156e47baf9f2f21276776,
+    type: 2}
+  m_PrefabInternal: {fileID: 63476602}
+  m_Script: {fileID: -765806418, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
 --- !u!114 &63476607 stripped
 MonoBehaviour:
   m_PrefabParentObject: {fileID: 114000010705781506, guid: 09e87bbfd4c156e47baf9f2f21276776,
@@ -310,12 +334,12 @@ Prefab:
         type: 2}
       propertyPath: cdtext
       value: 
-      objectReference: {fileID: 63476610}
+      objectReference: {fileID: 63476606}
     - target: {fileID: 114000010592206144, guid: 63e40eb59c87a164ebfebebbde3967c2,
         type: 2}
-      propertyPath: Skill
-      value: 4
-      objectReference: {fileID: 0}
+      propertyPath: dashCDImage
+      value: 
+      objectReference: {fileID: 63476605}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 63e40eb59c87a164ebfebebbde3967c2, type: 2}
   m_IsPrefabParent: 0
@@ -598,6 +622,11 @@ Prefab:
       propertyPath: Skill
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 114000010592206144, guid: 63e40eb59c87a164ebfebebbde3967c2,
+        type: 2}
+      propertyPath: dashCDImage
+      value: 
+      objectReference: {fileID: 63476610}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 63e40eb59c87a164ebfebebbde3967c2, type: 2}
   m_IsPrefabParent: 0
@@ -857,6 +886,11 @@ Prefab:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 15ed9fb952aa1584ab77dc49fa2dfd9c, type: 2}
+    - target: {fileID: 114000010592206144, guid: 63e40eb59c87a164ebfebebbde3967c2,
+        type: 2}
+      propertyPath: dashCDImage
+      value: 
+      objectReference: {fileID: 63476604}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 63e40eb59c87a164ebfebebbde3967c2, type: 2}
   m_IsPrefabParent: 0
@@ -1264,6 +1298,11 @@ Prefab:
       propertyPath: Skill
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 114000010592206144, guid: 63e40eb59c87a164ebfebebbde3967c2,
+        type: 2}
+      propertyPath: dashCDImage
+      value: 
+      objectReference: {fileID: 63476603}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 63e40eb59c87a164ebfebebbde3967c2, type: 2}
   m_IsPrefabParent: 0

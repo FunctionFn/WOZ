@@ -75,7 +75,7 @@ public class LightningLaser : MonoBehaviour {
             other.gameObject.GetComponent<PlayerController>().OnHit(maxSpeedHitModifier + (chargeBonus * 2));
 
             //fully charged shot disables dash
-            if (chargeBonus >= 0)
+            if (chargeBonus > 0)
                 other.gameObject.GetComponent<PlayerController>().DashTimer = other.gameObject.GetComponent<PlayerController>().DashTime + other.gameObject.GetComponent<PlayerController>().dashCooldown;
         }
         else if(other.GetComponent<IceBlockTriggerZone>())
