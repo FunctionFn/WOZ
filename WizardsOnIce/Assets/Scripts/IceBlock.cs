@@ -41,7 +41,11 @@ public class IceBlock : MonoBehaviour {
             GetComponent<BoxCollider>().enabled = true;
         }
 
-
+        //float OldRange = 1.0f;
+        //float NewRange = (1.0f - .5f);
+        //float nrper = (((rper) * NewRange) / OldRange);
+        //float ngper = (((gper) * NewRange) / OldRange);
+        //float nbper = (((bper) * NewRange) / OldRange);
         GetComponent<Renderer>().material.SetColor("_Color", new Color(rper * currentHealth, gper * currentHealth, bper * currentHealth));
 	}
 
