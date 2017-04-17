@@ -2969,6 +2969,8 @@ MonoBehaviour:
   Brake: {fileID: 8300000, guid: 78dc4072212f63047bf5f939eb9561cc, type: 3}
   volume: 20
   startTime: 1.5
+  recoveryModifier: 5
+  recoveryBase: 1
 --- !u!114 &114000010869953802
 MonoBehaviour:
   m_ObjectHideFlags: 1

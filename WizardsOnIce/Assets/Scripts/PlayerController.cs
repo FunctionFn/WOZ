@@ -98,6 +98,9 @@ public class PlayerController : MonoBehaviour
 
     float AbilityTime;
 
+    public float recoveryModifier;
+    public float recoveryBase;
+
     void Awake()
     {
 
@@ -607,6 +610,9 @@ public class PlayerController : MonoBehaviour
             moveDirection = new Vector3 (Input.GetAxis ("Horizontal" + PlayerNumber), moveDirection.y, Input.GetAxis ("Vertical" + PlayerNumber));
 			moveDirection.x *= rollSpeed;
 			moveDirection.z *= rollSpeed;
+
+            if(transform.position.y < -1.9f)
+                moveDirection.y = (Mathf.Log((-1.9f - transform.position.y + 1))) * recoveryModifier;
             rb.AddForce(moveDirection, ForceMode.Impulse);
 
             currentMaxSpeed = 9999999.0f;
