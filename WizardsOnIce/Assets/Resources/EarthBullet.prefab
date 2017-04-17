@@ -294,7 +294,7 @@ MonoBehaviour:
   environmentDamage: 0
   left: {fileID: 4000012229508354}
   strengthModifier: 1
-  fullChargeBonus: 3
+  fullChargeBonus: 2
   chargeAmt: 0
   minCharge: 0.1
   maxSpeedHitModifier: 4
