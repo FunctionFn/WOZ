@@ -19,7 +19,7 @@ public class MeteorAbility : PlayerAbility {
         meteorIndicator = (GameObject)(Resources.Load("MeteorIndicator"));
         missilePrefab = (GameObject)(Resources.Load("Bullet"));
         // CAN BE CHANGED FOR BALANCE
-        abilityTime = 5.0f;
+        abilityTime = 3.5f;
         FireTime = 0.5f;
         missileSpeed = 15.0f;
         aimTurnRate = 200.0f;
