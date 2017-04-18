@@ -16,6 +16,7 @@ public class GameManager : MonoBehaviour
     public static GameManager Inst { get { return _inst; } }
 
     public int[] playerScores = new int[4];
+    public int[] playerWins = new int[4];
     public string[] levelList;
     public int nextLevel;
 
@@ -62,6 +63,10 @@ public class GameManager : MonoBehaviour
 
         winner = -1;
 
+        for(int i = 0; i < playerWins.Length; i++)
+        {
+            playerWins[i] = 0;
+        }
         
     }
     void Update()
@@ -170,6 +175,7 @@ public class GameManager : MonoBehaviour
             if (playerScores[i] >= winScore)
             {
                 winner = i;
+                playerWins[i]++;
                 // Go to character select menu
                 nextLevel = 0;
 
@@ -182,6 +188,8 @@ public class GameManager : MonoBehaviour
                 {
                     PlayerSkills[j] = PlayerController.SkillID.None;
                 }
+
+
             }
         }
         LoadNextScene();

@@ -53,7 +53,7 @@ public class LightningAbility : PlayerAbility
         FireTime = 0.5f;
         missileSpeed = 5.0f;
         stunRockSpeed = 12.0f;
-        chargeSpeed = 0.65f;
+        chargeSpeed = 0.45f;
         chargingTurnSpeed = 50.0f;
         overCoolAmount = 25.0f;
         ammoDrainSpeed = 33.3f;
