@@ -25,9 +25,9 @@ public class MenuManager : MonoBehaviour {
     public bool p4AxisUsed;
 
     public Image[] winIndicators;
-
-	// Use this for initialization
-	void Start ()
+    public Text[] winCounters;
+    // Use this for initialization
+    void Start ()
     {
         p1CurrentButton = 0;
         p2CurrentButton = 0;
@@ -42,6 +42,19 @@ public class MenuManager : MonoBehaviour {
         if(GameManager.Inst.winner != -1)
         {
             winIndicators[GameManager.Inst.winner].enabled = true;
+        }
+
+        for(int i = 0; i < GameManager.Inst.playerWins.Length; i++)
+        {
+            if(GameManager.Inst.playerWins[i] > 0)
+            {
+                winCounters[i].enabled = true;
+                winCounters[i].text = GameManager.Inst.playerWins[i].ToString();
+            }
+            else
+            {
+                winCounters[i].enabled = false;
+            }
         }
 	}
 	

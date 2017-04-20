@@ -13,8 +13,8 @@ public class MagneticBlastAbility : PlayerAbility {
         abilityPrefab = (GameObject)(Resources.Load("MeteorIndicator"));
         missilePrefab = (GameObject)(Resources.Load("MagnetBullet"));
         // CAN BE CHANGED FOR BALANCE
-        abilityTime = 5.0f;
-        FireTime = 0.6f;
+        abilityTime = 3.0f;
+        FireTime = 0.5f;
         missileSpeed = 12.0f;
         power = 10.0f;
         onhitpower = 8.0f;

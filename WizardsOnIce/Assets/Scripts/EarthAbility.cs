@@ -27,7 +27,7 @@ public class EarthAbility : PlayerAbility
         abilityTime = 5.0f;
         FireTime = 0.5f;
         missileSpeed = 5.0f;
-        chargeSpeed = 0.75f;
+        chargeSpeed = .5f;
         stunRockSpeed = 12.0f;
         // CAN BE CHANGED FOR BALANCE
 
