@@ -332,6 +332,7 @@ MonoBehaviour:
   groundDamage: 35
   gravity: 7
   jumpSpeed: 3
+  particles: {fileID: 1000013135579308}
 --- !u!198 &198000010794828028
 ParticleSystem:
   m_ObjectHideFlags: 1
