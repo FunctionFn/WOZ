@@ -14,6 +14,7 @@ public class PlayerController : MonoBehaviour
     public GameObject mainCamera;
     public GameObject missilePrefab;
     public GameObject grabBox;
+    public GameObject particles;
 
     public GameObject IceBrake;
 
@@ -204,6 +205,13 @@ public class PlayerController : MonoBehaviour
 			
 			
         }
+
+        // Control particle emission based on velocity
+        var em = particles.GetComponent<ParticleSystem>().emission;
+        var rate = new ParticleSystem.MinMaxCurve();
+        rate.constantMax = GetComponent<Rigidbody>().velocity.magnitude * 2.0f;
+        em.rate = rate;
+
 
         rb.angularVelocity = Vector3.zero;
 
@@ -396,6 +404,7 @@ public class PlayerController : MonoBehaviour
         //moveDirection = transform.TransformDirection(moveDirection);
         moveDirection.x *= speed;
         moveDirection.z *= speed;
+
     }
 
     void AimControl()

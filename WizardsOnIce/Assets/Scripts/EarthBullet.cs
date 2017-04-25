@@ -14,6 +14,9 @@ public class EarthBullet : Bullet
 
     public float gravity;
     public float jumpSpeed;
+
+    public GameObject particles;
+
     void Start()
     {
         chargeBonus = 0.0f;
@@ -84,6 +87,7 @@ public class EarthBullet : Bullet
         {
             GetComponent<Rigidbody>().velocity = new Vector3(GetComponent<Rigidbody>().velocity.x, jumpSpeed, GetComponent<Rigidbody>().velocity.z);
             other.GetComponent<IceBlock>().Decay(groundDamage * chargeAmt * chargeAmt);
+            particles.GetComponent<ParticleSystem>().Play();
         }
 
         else if(other.GetComponent<IceWall>())

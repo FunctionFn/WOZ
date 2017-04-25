@@ -2946,11 +2946,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PlayerNumber: 0
-  Skill: 1
+  Skill: 4
   mainCamera: {fileID: 0}
   missilePrefab: {fileID: 1000011816276132, guid: 9934efbff3871de45bead5491db78df5,
     type: 2}
   grabBox: {fileID: 1000010913025764}
+  particles: {fileID: 1000014171475612}
   IceBrake: {fileID: 1000011146211426}
   cdtext: {fileID: 0}
   dashCDImage: {fileID: 0}
