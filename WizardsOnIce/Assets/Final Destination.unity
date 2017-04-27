@@ -579,24 +579,15 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: df96332c350dab946ae68f9d295834eb, type: 2}
   m_IsPrefabParent: 0
-<<<<<<< HEAD
 --- !u!1 &689122736
-=======
---- !u!1 &481763542
->>>>>>> refs/remotes/origin/master
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   serializedVersion: 4
   m_Component:
-<<<<<<< HEAD
   - 4: {fileID: 689122738}
   - 20: {fileID: 689122737}
-=======
-  - 4: {fileID: 481763544}
-  - 20: {fileID: 481763543}
->>>>>>> refs/remotes/origin/master
   m_Layer: 0
   m_Name: Water4AdvancedReflectionSceneCamera
   m_TagString: Untagged
@@ -604,20 +595,12 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
-<<<<<<< HEAD
 --- !u!20 &689122737
-=======
---- !u!20 &481763543
->>>>>>> refs/remotes/origin/master
 Camera:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-<<<<<<< HEAD
   m_GameObject: {fileID: 689122736}
-=======
-  m_GameObject: {fileID: 481763542}
->>>>>>> refs/remotes/origin/master
   m_Enabled: 0
   serializedVersion: 2
   m_ClearFlags: 1
@@ -646,24 +629,14 @@ Camera:
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
   m_StereoMirrorMode: 0
-<<<<<<< HEAD
 --- !u!4 &689122738
-=======
---- !u!4 &481763544
->>>>>>> refs/remotes/origin/master
 Transform:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-<<<<<<< HEAD
   m_GameObject: {fileID: 689122736}
   m_LocalRotation: {x: -0.6096515, y: 0, z: 0, w: 0.7926696}
   m_LocalPosition: {x: 0, y: -47.271935, z: -9.55}
-=======
-  m_GameObject: {fileID: 481763542}
-  m_LocalRotation: {x: -0.20209096, y: 0.5161844, z: 0.12681866, w: 0.8225753}
-  m_LocalPosition: {x: -17.084608, y: -35.24694, z: -5.87451}
->>>>>>> refs/remotes/origin/master
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
