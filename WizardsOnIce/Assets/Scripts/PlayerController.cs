@@ -14,7 +14,10 @@ public class PlayerController : MonoBehaviour
     public GameObject mainCamera;
     public GameObject missilePrefab;
     public GameObject grabBox;
+
     public GameObject particles;
+    public GameObject dashParticles;
+    public GameObject bloodParticles;
 
     public GameObject IceBrake;
 
@@ -199,11 +202,6 @@ public class PlayerController : MonoBehaviour
             Vector3 v = GetComponent<Rigidbody>().velocity.normalized * currentMaxSpeed;
 
             GetComponent<Rigidbody>().velocity = new Vector3(v.x, GetComponent<Rigidbody>().velocity.y, v.z);
-
-			
-
-			
-			
         }
 
         // Control particle emission based on velocity
@@ -218,7 +216,7 @@ public class PlayerController : MonoBehaviour
         ControlUpdate();
         PowerUpdate();
 
-       
+        Fireball();
 
         
         GrabTimer -= Time.deltaTime;
@@ -617,7 +615,11 @@ public class PlayerController : MonoBehaviour
 		{
 			GetComponent<Rigidbody> ().velocity = Vector3.zero;
             moveDirection = new Vector3 (Input.GetAxis ("Horizontal" + PlayerNumber), moveDirection.y, Input.GetAxis ("Vertical" + PlayerNumber));
-			moveDirection.x *= rollSpeed;
+
+            // Dash Particles
+            GameObject dashP = (GameObject)Instantiate(dashParticles, gameObject.transform.localPosition, Quaternion.LookRotation(-moveDirection));
+
+            moveDirection.x *= rollSpeed;
 			moveDirection.z *= rollSpeed;
             moveDirection.y = 0.0f;
             if (transform.position.y < -2.0f)
@@ -649,7 +651,9 @@ public class PlayerController : MonoBehaviour
         //    currentMaxSpeed = maxSpeed;
         //}
 	    currentMaxSpeed += hit;
-	}
+
+        GameObject bloodP = (GameObject)Instantiate(bloodParticles, gameObject.transform.localPosition, Quaternion.identity);
+    }
 
     public void Kill()
     {
