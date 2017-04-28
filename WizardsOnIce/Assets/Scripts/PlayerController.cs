@@ -210,14 +210,10 @@ public class PlayerController : MonoBehaviour
         rate.constantMax = GetComponent<Rigidbody>().velocity.magnitude * 2.0f;
         em.rate = rate;
 
-
         rb.angularVelocity = Vector3.zero;
 
         ControlUpdate();
         PowerUpdate();
-
-        Fireball();
-
         
         GrabTimer -= Time.deltaTime;
         HoldTimer -= Time.deltaTime;
