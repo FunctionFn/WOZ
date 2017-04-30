@@ -2150,7 +2150,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000010765101244}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -11.25, y: -1.6, z: 6.42}
+  m_LocalPosition: {x: -3.47, y: -1.6, z: 2.45}
   m_LocalScale: {x: 0.6, y: 0.6, z: 0.6}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
@@ -2951,6 +2951,11 @@ MonoBehaviour:
   missilePrefab: {fileID: 1000011816276132, guid: 9934efbff3871de45bead5491db78df5,
     type: 2}
   grabBox: {fileID: 1000010913025764}
+  particles: {fileID: 1000014171475612}
+  dashParticles: {fileID: 1000013910268608, guid: 7a14f36abb0d5894984c9d93cca26b64,
+    type: 2}
+  bloodParticles: {fileID: 1000011819049182, guid: e3e2ae9505dd30447b3cd430f9e681d8,
+    type: 2}
   IceBrake: {fileID: 1000011146211426}
   cdtext: {fileID: 0}
   dashCDImage: {fileID: 0}
