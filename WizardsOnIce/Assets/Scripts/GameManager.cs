@@ -28,6 +28,9 @@ public class GameManager : MonoBehaviour
 
     public int winner;
 
+    public float endCountdown;
+    public bool end;
+
     public Sprite[] CDIndicators;
 	//public AudioSource click;
 
@@ -89,8 +92,13 @@ public class GameManager : MonoBehaviour
 
         }
 
+        endCountdown -= Time.deltaTime * 2;
 
-
+        if (endCountdown <= 0 && end)
+        {
+            PlayersAlive.Clear();
+            GameOver();
+        }
         //if (Input.GetButtonDown("Submit"))
         //{
         //    // Load level 1
@@ -152,8 +160,9 @@ public class GameManager : MonoBehaviour
                     break;
             }
 
-            PlayersAlive.Clear();
-            GameOver();
+            end = true;
+
+            endCountdown = 5;
 
         }
     }
@@ -192,6 +201,7 @@ public class GameManager : MonoBehaviour
 
             }
         }
+        end = false;
         LoadNextScene();
     }
 
