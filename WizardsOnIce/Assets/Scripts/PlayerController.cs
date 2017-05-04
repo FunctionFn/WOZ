@@ -74,7 +74,7 @@ public class PlayerController : MonoBehaviour
 
     public PlayerAbility playerSkill;
 
-    public enum State { NoMovement, GroundedMovement, Jumping, Dash, Braking } 
+    public enum State { NoMovement, GroundedMovement, Jumping, Dash, Braking, Countdown } 
     
     bool holding;
     public bool beingHeld;
@@ -187,7 +187,7 @@ public class PlayerController : MonoBehaviour
 
         tempedamage = environmentDamage;
         environmentDamage = 0;
-        Stun(startTime);
+        Countdown(startTime);
 
         cdtext.type = Image.Type.Filled;
         cdtext.fillMethod = Image.FillMethod.Radial360;
@@ -286,7 +286,7 @@ public class PlayerController : MonoBehaviour
             currentMaxSpeed = maxSpeed;
         }
 
-        if (movementState == State.NoMovement && StunTimer <= 0)
+        if ((movementState == State.NoMovement || movementState == State.Countdown) && StunTimer <= 0)
         {
 
             ChangeMovementState(State.GroundedMovement);
@@ -322,6 +322,13 @@ public class PlayerController : MonoBehaviour
         //    Destroy(gameObject.GetComponent<Pickupable>());
         //    transform.parent = null;
         //}
+
+        if(movementState == State.Countdown)
+        {
+            GetComponent<Rigidbody>().isKinematic = false;
+            GetComponent<Rigidbody>().useGravity = true;
+        }
+
         if(movementState == State.Dash && state != State.Dash)
         {
             rb.useGravity = true;
@@ -354,7 +361,7 @@ public class PlayerController : MonoBehaviour
         //}
 
 
-        if (movementState == State.NoMovement || movementState == State.Dash)
+        if (movementState == State.NoMovement || movementState == State.Dash || movementState == State.Countdown)
         {
             
         }
@@ -415,7 +422,7 @@ public class PlayerController : MonoBehaviour
 
     void PowerUpdate()
     {
-        if (movementState != State.NoMovement && movementState != State.Dash)
+        if (movementState != State.NoMovement && movementState != State.Dash && movementState != State.Countdown)
         {
             if (!holding)
             {
@@ -605,7 +612,24 @@ public class PlayerController : MonoBehaviour
         
     }
 
-	public void RollDash ()
+    public void Countdown(float time, bool force = false)
+    {
+        iTimer = iTime;
+        ChangeMovementState(State.Countdown);
+        if ((time <= StunTimer || StunTimer <= 0) || force)
+        {
+            StunTimer = time;
+            GetComponent<Rigidbody>().velocity = Vector3.zero;
+
+        }
+        if (holding)
+            Chuck();
+
+        GetComponent<Rigidbody>().isKinematic = true;
+        GetComponent<Rigidbody>().useGravity = false;
+    }
+
+    public void RollDash ()
 	{
 		if (DashTimer <= 0) 
 		{

@@ -10,8 +10,13 @@ public class IceBlock : MonoBehaviour {
     public float rper;
     public float gper;
     public float bper;
+
+    public float t;
     //public AudioSource audioS;
 
+    public float startingOffset;
+    Vector3 pos;
+    
     // Use this for initialization
     void Start () {
 
@@ -23,10 +28,16 @@ public class IceBlock : MonoBehaviour {
         rper = startingColor.r / 100;
         gper = startingColor.g / 100;
         bper = startingColor.b / 100;
-	}
+
+        pos = transform.position;
+        transform.position = new Vector3(pos.x, pos.y + startingOffset, pos.z);
+        iTween.MoveTo(gameObject, iTween.Hash("position", pos, "easeType", "easeInOutExpo", "time", Random.Range(1.0f, 1.5f)));
+
+    }
 	
 	// Update is called once per frame
 	void Update () {
+
 
         if (currentHealth <= 0)
         {
@@ -40,7 +51,7 @@ public class IceBlock : MonoBehaviour {
             GetComponent<Renderer>().enabled = true;
             GetComponent<BoxCollider>().enabled = true;
         }
-
+        
         /*
         OldRange = (OldMax - OldMin)  
         NewRange = (NewMax - NewMin)  

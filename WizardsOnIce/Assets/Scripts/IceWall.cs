@@ -19,8 +19,11 @@ public class IceWall : MonoBehaviour
 
 	public AudioClip IceShatter;
 	public float volume;
+
+    public float startingOffset;
     //AudioSource audio;
 
+    public Vector3 pos;
 
     void Start()
     {
@@ -34,6 +37,9 @@ public class IceWall : MonoBehaviour
         gper = startingColor.g / 100;
         bper = startingColor.b / 100;
 
+        pos = transform.position;
+        transform.position = new Vector3(pos.x, pos.y + startingOffset, pos.z);
+        iTween.MoveTo(gameObject, iTween.Hash("position", pos, "easeType", "easeInOutExpo", "time", Random.Range(1.0f, 1.5f)));
     }
 
     // Update is called once per frame
