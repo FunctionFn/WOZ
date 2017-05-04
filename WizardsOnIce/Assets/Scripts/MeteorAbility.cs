@@ -36,14 +36,16 @@ public class MeteorAbility : PlayerAbility {
 	void Update () {
         FireTimer -= Time.deltaTime;
 
-        if (Input.GetButtonUp("AbilityTrigger" + playerObject.GetComponent<PlayerController>().PlayerNumber) && playerObject.GetComponent<PlayerController>().AbilityTimer <= 0)
+        if (Input.GetButtonUp("AbilityTrigger" + playerObject.GetComponent<PlayerController>().PlayerNumber) && playerObject.GetComponent<PlayerController>().AbilityTimer <= 0 
+            && playerObject.GetComponent<PlayerController>().movementState != PlayerController.State.NoMovement)
         {
             LaunchMeteor();
             meteorReticle.GetComponent<SkinnedMeshRenderer>().enabled = false;
             playerObject.GetComponent<PlayerController>().turnRate = baseTurnRate;
         }
 
-        if(Input.GetButton("AbilityTrigger" + playerObject.GetComponent<PlayerController>().PlayerNumber) && playerObject.GetComponent<PlayerController>().AbilityTimer <= 0)
+        if(Input.GetButton("AbilityTrigger" + playerObject.GetComponent<PlayerController>().PlayerNumber) && playerObject.GetComponent<PlayerController>().AbilityTimer <= 0
+            && playerObject.GetComponent<PlayerController>().movementState != PlayerController.State.NoMovement)
         {
             meteorReticle.GetComponent<SkinnedMeshRenderer>().enabled = true;
             
