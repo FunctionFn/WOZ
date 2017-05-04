@@ -147,7 +147,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 514605d9f8f43cb45bccc4f5cc86f1b6, type: 2}
+  - {fileID: 2100000, guid: 3167044339dbc1a47826ae5a389f3e78, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_ProbeAnchor: {fileID: 0}
@@ -215,11 +215,14 @@ MonoBehaviour:
   environmentDamage: 0
   maxHealth: 100
   currentHealth: 0
+  healthDecay: 0
   bulletDamage: 20
   startingColor: {r: 0, g: 0, b: 0, a: 0}
   rper: 0
   gper: 0
   bper: 0
+  IceShatter: {fileID: 0}
+  volume: 0
 --- !u!114 &114000013500411124
 MonoBehaviour:
   m_ObjectHideFlags: 1
