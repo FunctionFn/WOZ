@@ -28,7 +28,10 @@ public class GameManager : MonoBehaviour
 
     public int winner;
 
+    public float endCountdownStart;
     public float endCountdown;
+    
+
     public bool end;
 
     public Sprite[] CDIndicators;
@@ -92,7 +95,7 @@ public class GameManager : MonoBehaviour
 
         }
 
-        endCountdown -= Time.deltaTime * 2;
+        endCountdown -= Time.deltaTime;
 
         if (endCountdown <= 0 && end)
         {
@@ -162,7 +165,7 @@ public class GameManager : MonoBehaviour
 
             end = true;
 
-            endCountdown = 5;
+            endCountdown = endCountdownStart;
 
         }
     }
