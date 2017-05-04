@@ -53,6 +53,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PlayersAlive: []
   playerScores: 00000000000000000000000000000000
+  playerWins: 00000000000000000000000000000000
   levelList:
   - CharacterSelect
   - Pit
@@ -61,6 +62,10 @@ MonoBehaviour:
   nextLevel: 0
   winScore: 3
   winner: -1
+  endCountdownStart: 2
+  endCountdown: 0
+  endTimeScale: 1
+  end: 0
   CDIndicators:
   - {fileID: 21300000, guid: 067f6c3aeb3bade44861b170243c008c, type: 3}
   - {fileID: 21300000, guid: 479a0a554635ea2458d822c594347a1c, type: 3}
