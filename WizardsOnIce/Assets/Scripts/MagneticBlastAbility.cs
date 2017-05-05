@@ -63,6 +63,8 @@ public class MagneticBlastAbility : PlayerAbility {
         }
 
         playerObject.GetComponent<PlayerController>().SetAbilityTimer(abilityTime);
+
+        iTween.PunchRotation(Camera.main.gameObject, new Vector3(0.0f, 0.0f, 3.0f), 1f);
     }
 
     public override void Fire()

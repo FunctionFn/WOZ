@@ -329,10 +329,14 @@ public class PlayerController : MonoBehaviour
             GetComponent<Rigidbody>().useGravity = true;
         }
 
-        if(movementState == State.Dash && state != State.Dash)
+        if (movementState == State.Dash)
+        {
+            //AudioSource.PlayClipAtPoint (WindDash, new Vector3 (0,19,0));
+        }
+
+        if (movementState == State.Dash && state != State.Dash)
         {
             rb.useGravity = true;
-
 
         }
 
@@ -342,11 +346,10 @@ public class PlayerController : MonoBehaviour
 
         if(movementState == State.Dash)
         {
-			//AudioSource.PlayClipAtPoint (WindDash, new Vector3 (0,19,0));
-
+            //AudioSource.PlayClipAtPoint (WindDash, new Vector3 (0,19,0));
 			rb.useGravity = false;
+            
         }
-
         
         
 
@@ -671,7 +674,7 @@ public class PlayerController : MonoBehaviour
         //    currentMaxSpeed = maxSpeed;
         //}
 	    currentMaxSpeed += hit;
-
+        iTween.PunchScale(this.transform.GetChild(0).gameObject, new Vector3(.2f, .2f, .2f), .3f);
         GameObject bloodP = (GameObject)Instantiate(bloodParticles, gameObject.transform.localPosition, Quaternion.identity);
     }
 

@@ -5,6 +5,7 @@ public class IceBlock : MonoBehaviour {
 
     public float maxhealth;
     public float currentHealth;
+    public float destroyThreshold = -5f;
 
     public Color startingColor;
     public float rper;
@@ -15,6 +16,9 @@ public class IceBlock : MonoBehaviour {
     //public AudioSource audioS;
 
     public float startingOffset;
+    public float endingOffset;
+    public bool ended;
+    public bool end;
     Vector3 pos;
     
     // Use this for initialization
@@ -31,8 +35,9 @@ public class IceBlock : MonoBehaviour {
 
         pos = transform.position;
         transform.position = new Vector3(pos.x, pos.y + startingOffset, pos.z);
-        iTween.MoveTo(gameObject, iTween.Hash("position", pos, "easeType", "easeInOutExpo", "time", Random.Range(1.0f, 1.5f)));
-
+        iTween.MoveTo(gameObject, iTween.Hash("position", pos, "easeType", "easeInOutBack", "time", Random.Range(1.0f, 1.5f)));
+        ended = false;
+        end = false;
     }
 	
 	// Update is called once per frame
@@ -42,16 +47,35 @@ public class IceBlock : MonoBehaviour {
         if (currentHealth <= 0)
         {
             //Destroy(gameObject);
+            //GetComponent<Renderer>().enabled = false;
+            //GetComponent<BoxCollider>().enabled = false;
+            end = true;
+        }
+
+        if(currentHealth <= destroyThreshold)
+        {
             GetComponent<Renderer>().enabled = false;
             GetComponent<BoxCollider>().enabled = false;
         }
 
-        if(GetComponent<Renderer>().enabled == false && currentHealth >= 0)
+        if(currentHealth <= destroyThreshold)
+        {
+            GetComponent<Renderer>().enabled = false;
+            GetComponent<BoxCollider>().enabled = false;
+        }
+
+        if (GetComponent<Renderer>().enabled == false && currentHealth >= 0)
         {
             GetComponent<Renderer>().enabled = true;
             GetComponent<BoxCollider>().enabled = true;
         }
         
+        if((GameManager.Inst.end == true || end == true) && ended == false)
+        {
+            iTween.MoveTo(gameObject, iTween.Hash("y", pos.y - endingOffset, "easeType", "easeInOutExpo", "time", Random.Range(1.0f, 1.5f)));
+            ended = true;
+        }
+
         /*
         OldRange = (OldMax - OldMin)  
         NewRange = (NewMax - NewMin)  
@@ -80,19 +104,16 @@ public class IceBlock : MonoBehaviour {
 
     public void Decay(float dmg)
     {
-        if ((currentHealth > 0 && dmg > 0) || (currentHealth < 100 && dmg < 0))
-        {
             currentHealth -= dmg;
             if(currentHealth > 100)
             {
                 currentHealth = 100;
             }
-            else if (currentHealth < 0)
-            {
-                currentHealth = -1.0f;
-            }
-
-        }
+            //else if (currentHealth < 0)
+            //{
+            //    currentHealth = -1.0f;
+            //}
+            
 
     }
 

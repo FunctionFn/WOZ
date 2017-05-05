@@ -15,6 +15,8 @@ public class EarthBullet : Bullet
     public float gravity;
     public float jumpSpeed;
 
+    public float punchAmt;
+
     public GameObject particles;
 
     void Start()
@@ -77,9 +79,11 @@ public class EarthBullet : Bullet
             other.gameObject.GetComponent<PlayerController>().OnHit(maxSpeedHitModifier + (chargeBonus * 2));
 
             //fully charged shot disables dash
-            if(chargeBonus > 0)
+            if (chargeBonus > 0)
+            {
+                iTween.PunchPosition(Camera.main.gameObject, new Vector3(0.0f, punchAmt * 5, 0.0f), 0.3f);
                 other.gameObject.GetComponent<PlayerController>().DashTimer = other.gameObject.GetComponent<PlayerController>().DashTime + other.gameObject.GetComponent<PlayerController>().dashCooldown;
-
+            }
             Destroy(gameObject);
         }
 
@@ -88,12 +92,20 @@ public class EarthBullet : Bullet
             GetComponent<Rigidbody>().velocity = new Vector3(GetComponent<Rigidbody>().velocity.x, jumpSpeed, GetComponent<Rigidbody>().velocity.z);
             other.GetComponent<IceBlock>().Decay(groundDamage * chargeAmt * chargeAmt);
             particles.GetComponent<ParticleSystem>().Play();
+            if(chargeBonus > 0)
+            {
+                iTween.PunchPosition(Camera.main.gameObject, new Vector3(0.0f, punchAmt, 0.0f), 0.3f);
+            }
         }
 
         else if(other.GetComponent<IceWall>())
         {
             other.GetComponent<IceWall>().Decay(groundDamage * chargeAmt * chargeAmt);
             Destroy(gameObject);
+            if (chargeBonus > 0)
+            {
+                iTween.PunchPosition(Camera.main.gameObject, new Vector3(0.0f, punchAmt, 0.0f), 0.3f);
+            }
         }
         
     }

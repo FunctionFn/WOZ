@@ -10,6 +10,8 @@ public class Meteor : MonoBehaviour
     public float environmentDamage;
 
 	public AudioClip Explosion;
+
+    public float punchAmt;
 	//AudioSource audio;
 
     void Start()
@@ -47,7 +49,10 @@ public class Meteor : MonoBehaviour
             other.GetComponent<PlayerController>().OnHit();
 
         }
-			
-       
+
+        if (other.GetComponent<IceBlock>() || other.GetComponent<IceWall>())
+        {
+            iTween.PunchPosition(Camera.main.gameObject, new Vector3(0.0f, punchAmt, 0.0f), 1f);
+        }
     }
 }

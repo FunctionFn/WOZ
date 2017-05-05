@@ -11,7 +11,7 @@ public class IceWall : MonoBehaviour
     public float currentHealth;
     public float healthDecay;
     public float bulletDamage;
-
+    public float destroyThreshold = -25f;
     public Color startingColor;
     public float rper;
     public float gper;
@@ -19,8 +19,10 @@ public class IceWall : MonoBehaviour
 
 	public AudioClip IceShatter;
 	public float volume;
-
+    public bool end;
+    public bool ended;
     public float startingOffset;
+    public float endingOffset;
     //AudioSource audio;
 
     public Vector3 pos;
@@ -40,6 +42,8 @@ public class IceWall : MonoBehaviour
         pos = transform.position;
         transform.position = new Vector3(pos.x, pos.y + startingOffset, pos.z);
         iTween.MoveTo(gameObject, iTween.Hash("position", pos, "easeType", "easeInOutExpo", "time", Random.Range(1.0f, 1.5f)));
+        end = false;
+        ended = false;
     }
 
     // Update is called once per frame
@@ -52,15 +56,37 @@ public class IceWall : MonoBehaviour
         //}
         Decay(healthDecay * Time.deltaTime);
 
-        if (currentHealth <= 0.0f)
+
+        if (currentHealth <= 0)
         {
-			//AudioSource.PlayClipAtPoint (IceShatter, new Vector3(0,18,0));
-			Destroy (gameObject);
-
-
+            //Destroy(gameObject);
+            //GetComponent<Renderer>().enabled = false;
+            //GetComponent<BoxCollider>().enabled = false;
+            end = true;
         }
 
-        GetComponent<Renderer>().material.SetColor("_Color", new Color(rper * currentHealth, gper * currentHealth, bper * currentHealth));
+        if (currentHealth <= destroyThreshold)
+        {
+            GetComponent<Renderer>().enabled = false;
+            GetComponent<BoxCollider>().enabled = false;
+        }
+
+        if ((GameManager.Inst.end == true || end == true) && ended == false)
+        {
+            iTween.MoveTo(gameObject, iTween.Hash("y", pos.y - endingOffset, "easeType", "easeInOutExpo", "time", Random.Range(1.0f, 1.5f)));
+            ended = true;
+        }
+
+        float OldRange = 100.0f;
+        float NewRange = 100.0f - 35.0f;
+        float r = (((currentHealth) * NewRange) / OldRange) + 35.0f;
+        float g = r;
+        float b = r;
+
+        r *= rper;
+        g *= gper;
+        b *= bper;
+        GetComponent<Renderer>().material.SetColor("_Color", new Color(r, g, b));
     }
 
     void OnDisable()
