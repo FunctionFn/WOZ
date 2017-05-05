@@ -15,9 +15,12 @@ public class PlayerController : MonoBehaviour
     public GameObject missilePrefab;
     public GameObject grabBox;
 
+    public Transform wizardModel;
+
     public GameObject particles;
     public GameObject dashParticles;
     public GameObject bloodParticles;
+    public GameObject warpParticles;
 
     public GameObject IceBrake;
 
@@ -107,7 +110,8 @@ public class PlayerController : MonoBehaviour
 
     void Awake()
     {
-
+        // Wizard Model
+        wizardModel = gameObject.transform.GetChild(0).GetChild(0);
     }
 
 
@@ -170,6 +174,8 @@ public class PlayerController : MonoBehaviour
 
         playerSkill.Initialize(color, indicatorColor, PlayerNumber, gameObject, missileSpawnLocation);
 
+        // Warp Particles
+        Instantiate(warpParticles, gameObject.transform.localPosition, Quaternion.identity);
 
         willFire = false;
 
@@ -323,23 +329,18 @@ public class PlayerController : MonoBehaviour
         //    transform.parent = null;
         //}
 
-        if(movementState == State.Countdown)
+        if (movementState == State.Countdown)
         {
             GetComponent<Rigidbody>().isKinematic = false;
             GetComponent<Rigidbody>().useGravity = true;
+            wizardModel.localScale = new Vector3(1.0f, 1.0f, 1.0f);
         }
 
-        if (movementState == State.Dash)
-        {
-            //AudioSource.PlayClipAtPoint (WindDash, new Vector3 (0,19,0));
-        }
-
-        if (movementState == State.Dash && state != State.Dash)
+        if(movementState == State.Dash && state != State.Dash)
         {
             rb.useGravity = true;
-
-        }
-
+            //AudioSource.PlayClipAtPoint (WindDash, new Vector3 (0,19,0));
+	}
         
 
         movementState = state;
@@ -350,8 +351,11 @@ public class PlayerController : MonoBehaviour
 			rb.useGravity = false;
             
         }
-        
-        
+
+        if (movementState == State.Countdown)
+        {
+            wizardModel.localScale = new Vector3(0.0f, 0.0f, 0.0f);
+        }
 
     }
 
