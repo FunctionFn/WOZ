@@ -339,24 +339,23 @@ public class PlayerController : MonoBehaviour
         if(movementState == State.Dash && state != State.Dash)
         {
             rb.useGravity = true;
-        }
-
+            //AudioSource.PlayClipAtPoint (WindDash, new Vector3 (0,19,0));
+	}
         
 
         movementState = state;
 
         if(movementState == State.Dash)
         {
-			//AudioSource.PlayClipAtPoint (WindDash, new Vector3 (0,19,0));
-
+            //AudioSource.PlayClipAtPoint (WindDash, new Vector3 (0,19,0));
 			rb.useGravity = false;
+            
         }
 
         if (movementState == State.Countdown)
         {
             wizardModel.localScale = new Vector3(0.0f, 0.0f, 0.0f);
         }
-
 
     }
 
@@ -679,7 +678,7 @@ public class PlayerController : MonoBehaviour
         //    currentMaxSpeed = maxSpeed;
         //}
 	    currentMaxSpeed += hit;
-
+        iTween.PunchScale(this.transform.GetChild(0).gameObject, new Vector3(.2f, .2f, .2f), .3f);
         GameObject bloodP = (GameObject)Instantiate(bloodParticles, gameObject.transform.localPosition, Quaternion.identity);
     }
 

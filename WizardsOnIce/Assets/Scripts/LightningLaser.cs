@@ -20,6 +20,8 @@ public class LightningLaser : MonoBehaviour {
 
     public float wallDamage;
 
+    public float punchAmt;
+
     public Transform left;
     // Use this for initialization
     void Start () {
@@ -44,6 +46,9 @@ public class LightningLaser : MonoBehaviour {
 
         environmentalDamage *= chargeAmt;
         environmentalDamage *= chargeAmt;
+
+        if(chargeBonus > 0)
+            iTween.PunchPosition(Camera.main.gameObject, new Vector3(0.0f, punchAmt, 0.0f), 0.3f);
     }
 
 

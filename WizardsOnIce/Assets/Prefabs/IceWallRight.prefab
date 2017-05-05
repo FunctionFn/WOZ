@@ -229,9 +229,15 @@ MonoBehaviour:
   currentHealth: 0
   healthDecay: 0
   bulletDamage: 20
+  destroyThreshold: -25
   startingColor: {r: 0, g: 0, b: 0, a: 0}
   rper: 0
   gper: 0
   bper: 0
   IceShatter: {fileID: 0}
   volume: 0
+  end: 0
+  ended: 0
+  startingOffset: 10
+  endingOffset: 20
+  pos: {x: 0, y: 0, z: 0}
