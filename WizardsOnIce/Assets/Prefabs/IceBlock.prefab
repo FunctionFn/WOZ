@@ -152,6 +152,8 @@ MonoBehaviour:
   rper: 0
   gper: 0
   bper: 0
+  t: 0
+  startingOffset: 10
 --- !u!114 &114000013889286004
 MonoBehaviour:
   m_ObjectHideFlags: 1
