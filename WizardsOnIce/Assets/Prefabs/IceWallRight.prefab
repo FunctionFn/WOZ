@@ -147,7 +147,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 514605d9f8f43cb45bccc4f5cc86f1b6, type: 2}
+  - {fileID: 2100000, guid: 3167044339dbc1a47826ae5a389f3e78, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_ProbeAnchor: {fileID: 0}
@@ -235,5 +235,3 @@ MonoBehaviour:
   bper: 0
   IceShatter: {fileID: 0}
   volume: 0
-  startingOffset: 10
-  pos: {x: 0, y: 0, z: 0}
