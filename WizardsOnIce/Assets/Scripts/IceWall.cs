@@ -98,8 +98,6 @@ public class IceWall : MonoBehaviour
     {
         if(other.GetComponent<Meteor>())
         {
-			//AudioSource.PlayClipAtPoint (IceShatter, new Vector3(0,18,0));
-			//rare chance it will try play the sound at every frame and cause the game to slow down - Eddie
 			Destroy(gameObject);
         }
         else if(other.GetComponent<Bullet>() && !other.GetComponent<EarthBullet>())

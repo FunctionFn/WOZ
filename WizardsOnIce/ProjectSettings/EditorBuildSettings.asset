@@ -25,3 +25,5 @@ EditorBuildSettings:
     path: Assets/Final Destination.unity
   - enabled: 1
     path: Assets/Pit.unity
+  - enabled: 1
+    path: Assets/Duels.unity
