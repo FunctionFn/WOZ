@@ -4,7 +4,7 @@ using System.Collections;
 public class MeteorAbility : PlayerAbility {
 
     // CAN BE CHANGED FOR BALANCE
-    public float meteorSpeed = 15.0f;
+    public float meteorSpeed = 14.0f;
     // CAN BE CHANGED FOR BALANCE
 
     public GameObject meteorIndicator;
@@ -19,7 +19,7 @@ public class MeteorAbility : PlayerAbility {
         meteorIndicator = (GameObject)(Resources.Load("MeteorIndicator"));
         missilePrefab = (GameObject)(Resources.Load("Bullet"));
         // CAN BE CHANGED FOR BALANCE
-        abilityTime = 3.5f;
+        abilityTime = 4.0f;
         FireTime = 0.5f;
         missileSpeed = 15.0f;
         aimTurnRate = 200.0f;

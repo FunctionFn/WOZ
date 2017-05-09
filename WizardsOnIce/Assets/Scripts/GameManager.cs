@@ -73,6 +73,8 @@ public class GameManager : MonoBehaviour
         {
             playerWins[i] = 0;
         }
+
+        ReconstructLevelList();
         
     }
     void Update()
@@ -138,6 +140,7 @@ public class GameManager : MonoBehaviour
     public void SubPlayer(PlayerController p)
     {
         PlayersAlive.Remove(p);
+        
         if (PlayersAlive.Count <= 1)
         {
             switch(PlayersAlive[0].PlayerNumber)
@@ -231,22 +234,37 @@ public class GameManager : MonoBehaviour
             }
         }
 
+        List<int> levelIndices = new List<int>();
+
+        for(int i = 1; i < numLevels; i++)
+        {
+            levelIndices.Add(i);
+        }
+        Shuffle<int>(levelIndices);
 
         levelList = new string[numLevels];
         string[] myKeys = new string[levelsEnabled.Count];
         levelsEnabled.Keys.CopyTo(myKeys, 0);
 
+
+
         int n = 0;
         for (int i = 0; i < levelsEnabled.Count; i++)
         {
-            if ((bool)levelsEnabled[i])
+            if(i == 0)
             {
                 levelList[n] = myKeys[i];
                 n++;
             }
+            else if ((bool)levelsEnabled[i])
+            {
+                
+                levelList[levelIndices[n - 1]] = myKeys[i];
+                n++;
+            }
         }
         // TODO
-        Debug.Log("here");
+        //Debug.Log("here");
     }
 
     public void ResetLevelsSelected()
@@ -269,4 +287,19 @@ public class GameManager : MonoBehaviour
         }
         return count;
     }
+
+    public void Shuffle<T>(IList<T> list)
+    {
+        int n = list.Count;
+        Random rnd = new Random();
+        while (n > 1)
+        {
+            int k = (Random.Range(0, n));
+            n--;
+            T value = list[k];
+            list[k] = list[n];
+            list[n] = value;
+        }
+    }
 }
+

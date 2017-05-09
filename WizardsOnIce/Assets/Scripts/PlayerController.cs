@@ -659,7 +659,13 @@ public class PlayerController : MonoBehaviour
 			moveDirection.z *= rollSpeed;
             moveDirection.y = 0.0f;
             if (transform.position.y < -2.0f)
+            {
                 moveDirection.y = (Mathf.Log10((-1.9f - transform.position.y + 1))) * recoveryModifier;
+                //Debug.Log(moveDirection.y);
+            }
+
+            moveDirection.y = Mathf.Clamp(moveDirection.y, 0.0f, 3.0f);
+            Debug.Log(moveDirection.y);
             rb.AddForce(moveDirection, ForceMode.Impulse);
 
             currentMaxSpeed = 9999999.0f;

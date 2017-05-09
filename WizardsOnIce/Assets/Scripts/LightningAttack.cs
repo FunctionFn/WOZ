@@ -71,7 +71,7 @@ public class LightningAttack : MonoBehaviour {
                     GameManager.Inst.PlayersAlive[i].GetComponent<Rigidbody>().AddForce(
                         vectorBetween * arcStrength * Time.deltaTime);
 
-                    CreateLightningIndicator(p, GameManager.Inst.PlayersAlive[i], vectorBetween, .25f);
+                    CreateLightningIndicator(p, GameManager.Inst.PlayersAlive[i], vectorBetween, .20f);
 
                     PlayersHit.Add(GameManager.Inst.PlayersAlive[i]);
                     recursiveLightning(GameManager.Inst.PlayersAlive[i]);
@@ -87,7 +87,7 @@ public class LightningAttack : MonoBehaviour {
                     p1.transform.position + .5f * Vector3.Distance(p2.transform.position, p1.transform.position) * vectorBetween,
                     Quaternion.FromToRotation(Vector3.up, vectorBetween)));
 
-        go.transform.localScale = new Vector3(.5f, Vector3.Distance(p2.transform.position, p1.transform.position) * width, width);
+        go.transform.localScale = new Vector3(width, Vector3.Distance(p2.transform.position, p1.transform.position) * .5f, width);
 
         go.GetComponent<Renderer>().material = shooterPlayerObject.GetComponent<PlayerController>().indicatorColor;
 
