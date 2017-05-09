@@ -21,6 +21,7 @@ public class PlayerController : MonoBehaviour
     public GameObject dashParticles;
     public GameObject bloodParticles;
     public GameObject warpParticles;
+    public GameObject cooldownParticles;
 
     public GameObject IceBrake;
 
@@ -137,7 +138,6 @@ public class PlayerController : MonoBehaviour
         if (Skill == SkillID.Meteor)
         {
             playerSkill = gameObject.AddComponent<MeteorAbility>();
-            
         }
         //else if (Skill == SkillID.IceWall)
         //{
@@ -175,7 +175,10 @@ public class PlayerController : MonoBehaviour
         playerSkill.Initialize(color, indicatorColor, PlayerNumber, gameObject, missileSpawnLocation);
 
         // Warp Particles
-        Instantiate(warpParticles, gameObject.transform.localPosition, Quaternion.identity);
+        if (Skill != SkillID.None)
+        {
+            Instantiate(warpParticles, gameObject.transform.localPosition, Quaternion.identity);
+        }
 
         willFire = false;
 
@@ -220,7 +223,7 @@ public class PlayerController : MonoBehaviour
 
         ControlUpdate();
         PowerUpdate();
-        
+
         GrabTimer -= Time.deltaTime;
         HoldTimer -= Time.deltaTime;
         StunTimer -= Time.deltaTime;
@@ -268,7 +271,9 @@ public class PlayerController : MonoBehaviour
         if(AbilityTimer <= 0)
         {
             cdtext.enabled = false;
-            
+            ParticleSystem.EmissionModule tempEm = cooldownParticles.GetComponent<ParticleSystem>().emission;
+            tempEm.enabled = false;
+            cooldownParticles.GetComponent<ParticleSystemCooldownParticle>().CooldownExplosion();
         }
 
         if(DashTimer <= 0)
@@ -482,13 +487,13 @@ public class PlayerController : MonoBehaviour
     {
         if (AbilityTimer <= 0)
         {
-            playerSkill.TriggerAbility();
+            playerSkill.TriggerAbility();            
 
             //AbilityTimer = playerSkill.GetAbilityTime();
 
             //cdtext.enabled = true;
             //cdtext.text = AbilityTimer.ToString();
-       }
+        }
     }
 
     public void SetAbilityTimer(float t)
@@ -498,8 +503,12 @@ public class PlayerController : MonoBehaviour
         AbilityTime = t;
         cdtext.fillAmount = 1 - AbilityTimer / AbilityTime;
         cdtext.enabled = true;
-        
-        
+
+        // Set Up Cooldown Particles
+        cooldownParticles.GetComponent<ParticleSystemCooldownParticle>().ResetRadius(AbilityTime);
+        ParticleSystem.EmissionModule tempEm = cooldownParticles.GetComponent<ParticleSystem>().emission;
+        tempEm.enabled = true;
+
         //cdtext.text = AbilityTimer.ToString();
     }
 
@@ -677,9 +686,12 @@ public class PlayerController : MonoBehaviour
         //{
         //    currentMaxSpeed = maxSpeed;
         //}
+        if(hit >= 4)
+        {
+            GameObject bloodP = (GameObject)Instantiate(bloodParticles, gameObject.transform.localPosition, Quaternion.identity);
+        }
 	    currentMaxSpeed += hit;
         iTween.PunchScale(this.transform.GetChild(0).gameObject, new Vector3(.2f, .2f, .2f), .3f);
-        GameObject bloodP = (GameObject)Instantiate(bloodParticles, gameObject.transform.localPosition, Quaternion.identity);
     }
 
     public void Kill()
