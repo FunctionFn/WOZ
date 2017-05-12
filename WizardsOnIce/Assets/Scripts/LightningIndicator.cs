@@ -9,7 +9,8 @@ public class LightningIndicator : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         lifeCounter = 0;
-	}
+        transform.localRotation = Quaternion.Euler(transform.localRotation.eulerAngles.x, transform.localRotation.eulerAngles.y, 90);
+    }
 	
 	// Update is called once per frame
 	void Update () {
@@ -18,5 +19,7 @@ public class LightningIndicator : MonoBehaviour {
         {
             Destroy(gameObject);
         }
-	}
+
+        transform.localRotation = Quaternion.Euler(90, transform.localRotation.eulerAngles.y, 90);
+    }
 }
