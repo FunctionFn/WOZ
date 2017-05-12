@@ -100,12 +100,16 @@ public class MenuManager : MonoBehaviour {
             {
                 GameManager.Inst.SetPlayerSkill(i, CurrentButton[i]);
                 ExecuteEvents.Execute(player4Buttons[CurrentButton[i]].gameObject, new PointerEventData(EventSystem.current), ExecuteEvents.pointerDownHandler);
-                
             }
             else
             {
                 ExecuteEvents.Execute(player4Buttons[CurrentButton[i]].gameObject, new PointerEventData(EventSystem.current), ExecuteEvents.deselectHandler);
                 ExecuteEvents.Execute(player4Buttons[CurrentButton[i]].gameObject, new PointerEventData(EventSystem.current), ExecuteEvents.pointerUpHandler);
+            }
+
+            if (Input.GetButton("Brake" + i.ToString()))
+            {
+                GameManager.Inst.SetPlayerSkill(i, 4);
             }
 
             playerSkillHighlights[i].rectTransform.localPosition = new Vector3(player4Buttons[CurrentButton[i]].GetComponent<RectTransform>().localPosition.x, playerSkillHighlights[i].rectTransform.localPosition.y, playerSkillHighlights[i].rectTransform.localPosition.z);
@@ -116,7 +120,7 @@ public class MenuManager : MonoBehaviour {
         // includes one version of each of the following if's
         // call that function 4 times, once for each player
 
-       
+
 
         // Button Selection
         //if ((Input.GetAxis("Horizontal0") > 0.5 || Input.GetAxis("DPHorizontal0") > 0.5) && p1CurrentButton < player1Buttons.Length - 1 && !p1AxisUsed)
@@ -243,6 +247,16 @@ public class MenuManager : MonoBehaviour {
         //    ExecuteEvents.Execute(player4Buttons[p4CurrentButton].gameObject, new PointerEventData(EventSystem.current), ExecuteEvents.deselectHandler);
         //    ExecuteEvents.Execute(player4Buttons[p4CurrentButton].gameObject, new PointerEventData(EventSystem.current), ExecuteEvents.pointerUpHandler);
         //}
+
+        // Make the start button appear if 2 players have selected!
+        if (GameManager.Inst.CheckNumPlayersSelected() >= 2)
+        {
+            startButton.gameObject.SetActive(true);
+        }
+        else
+        {
+            startButton.gameObject.SetActive(false);
+        }
 
         if (Input.GetButtonDown("Start0") || Input.GetButtonDown("Start1") || Input.GetButtonDown("Start2") || Input.GetButtonDown("Start3"))
         {
