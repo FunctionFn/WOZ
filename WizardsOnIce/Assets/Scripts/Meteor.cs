@@ -16,7 +16,7 @@ public class Meteor : MonoBehaviour
 
     void Start()
     {
-		//audio = GetComponent<AudioSource> ();
+        GetComponent<AudioSource>().time = .5f;
     }
 
     // Update is called once per frame
