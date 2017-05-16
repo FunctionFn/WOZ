@@ -35,7 +35,7 @@ public class MenuManager : MonoBehaviour {
     public Image[] winIndicators;
     public Text[] winCounters;
     // Use this for initialization
-    void Start ()
+    void Start()
     {
         p1CurrentButton = 0;
         p2CurrentButton = 0;
@@ -50,14 +50,14 @@ public class MenuManager : MonoBehaviour {
         p3AxisUsed = false;
         p4AxisUsed = false;
 
-        if(GameManager.Inst.winner != -1)
+        if (GameManager.Inst.winner != -1)
         {
             winIndicators[GameManager.Inst.winner].enabled = true;
         }
 
-        for(int i = 0; i < GameManager.Inst.playerWins.Length; i++)
+        for (int i = 0; i < GameManager.Inst.playerWins.Length; i++)
         {
-            if(GameManager.Inst.playerWins[i] > 0)
+            if (GameManager.Inst.playerWins[i] > 0)
             {
                 winCounters[i].enabled = true;
                 winCounters[i].text = GameManager.Inst.playerWins[i].ToString();
@@ -67,14 +67,19 @@ public class MenuManager : MonoBehaviour {
                 winCounters[i].enabled = false;
             }
         }
-	}
+
+        for (int i = 0; i < 4; ++i)
+        {
+            charactersSelected[i].enabled = false;
+        }
+    }
 	
 	// Update is called once per frame
 	void Update () {
 
         for(int i = 0; i < 4; ++i)
         {
-            charactersSelected[i].sprite = charactersSelectedSprites[(int)GameManager.Inst.PlayerSkills[i]];
+            charactersSelected[i].sprite = charactersSelectedSprites[(int)(GameManager.Inst.PlayerSkills[i] - 4) + ((i * 4) + 4)];
 
 
             if ((Input.GetAxis("Horizontal" + i.ToString()) > 0.5 || Input.GetAxis("DPHorizontal" + i.ToString()) > 0.5) && CurrentButton[i] < player4Buttons.Length - 1 && !AxisUsed[i])
@@ -99,6 +104,7 @@ public class MenuManager : MonoBehaviour {
             if (Input.GetButton("RollDash" + i.ToString()))
             {
                 GameManager.Inst.SetPlayerSkill(i, CurrentButton[i]);
+                charactersSelected[i].enabled = true;
                 ExecuteEvents.Execute(player4Buttons[CurrentButton[i]].gameObject, new PointerEventData(EventSystem.current), ExecuteEvents.pointerDownHandler);
             }
             else
@@ -110,6 +116,7 @@ public class MenuManager : MonoBehaviour {
             if (Input.GetButton("Brake" + i.ToString()))
             {
                 GameManager.Inst.SetPlayerSkill(i, 4);
+                charactersSelected[i].enabled = false;
             }
 
             playerSkillHighlights[i].rectTransform.localPosition = new Vector3(player4Buttons[CurrentButton[i]].GetComponent<RectTransform>().localPosition.x, playerSkillHighlights[i].rectTransform.localPosition.y, playerSkillHighlights[i].rectTransform.localPosition.z);
