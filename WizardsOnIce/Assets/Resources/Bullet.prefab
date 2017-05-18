@@ -157,7 +157,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000011816276132}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 9.1820545, y: -2.2138748, z: 8.500034}
+  m_LocalPosition: {x: -25.033014, y: -17.300003, z: 1.4198341}
   m_LocalScale: {x: 0.61, y: 0.2, z: 0.5}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
@@ -370,9 +370,10 @@ MonoBehaviour:
   strength: 7.5
   environmentDamage: 0.8
   fireSounds:
-  - {fileID: 8300000, guid: 2c52fac66b27a9d48be5a060524ad44b, type: 3}
-  - {fileID: 8300000, guid: d4d8321f57ebf6e438d07f5418d3e5e4, type: 3}
-  - {fileID: 8300000, guid: e6f2ee06b9b27784a8688140ac13361e, type: 3}
+  - {fileID: 8300000, guid: b522c986dadbeec45aae53fb7a5c3f36, type: 3}
+  - {fileID: 8300000, guid: 6783be3be5d35494b953e4d8276affea, type: 3}
+  - {fileID: 8300000, guid: f5e3d533bba7bc9479dafdc6d9cf2ef8, type: 3}
+  onHitSound: {fileID: 8300000, guid: 62ded850961dfbd4ea79405b5262beb0, type: 3}
   left: {fileID: 4000013155207636}
 --- !u!136 &136000013665981620
 CapsuleCollider:

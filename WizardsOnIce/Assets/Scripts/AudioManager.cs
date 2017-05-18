@@ -35,4 +35,9 @@ public class AudioManager : MonoBehaviour {
         AudioSource.PlayClipAtPoint(clip, pos, volume);
     }
     
+    public void ChangeMusic(AudioClip clip)
+    {
+        GetComponent<AudioSource>().clip = clip;
+        GetComponent<AudioSource>().Play();
+    }
 }

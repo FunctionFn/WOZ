@@ -9,14 +9,16 @@ public class Meteor : MonoBehaviour
     public float strength;
     public float environmentDamage;
 
-	public AudioClip Explosion;
+	public AudioClip MeteorHit;
 
     public float punchAmt;
+    public bool hasPlayedSound;
 	//AudioSource audio;
 
     void Start()
     {
         GetComponent<AudioSource>().time = .5f;
+        hasPlayedSound = false;
     }
 
     // Update is called once per frame
@@ -40,9 +42,6 @@ public class Meteor : MonoBehaviour
     {
         if (other.gameObject.GetComponent<PlayerController>())
         {
-			//AudioSource.PlayClipAtPoint (Explosion, new Vector3(0, 18, 0));
-        //other.gameObject.GetComponent<PlayerController>().Damage(1);
-
             Vector3 dir = other.GetComponent<Rigidbody>().position - GetComponent<Rigidbody>().position;
 
             other.GetComponent<Rigidbody>().AddForce(new Vector3(dir.x, 0, dir.z).normalized * strength);
@@ -53,6 +52,11 @@ public class Meteor : MonoBehaviour
         if (other.GetComponent<IceBlock>() || other.GetComponent<IceWall>())
         {
             iTween.PunchPosition(Camera.main.gameObject, new Vector3(0.0f, punchAmt, 0.0f), 1f);
+            if(!hasPlayedSound)
+            {
+                hasPlayedSound = true;
+                AudioSource.PlayClipAtPoint(MeteorHit, Camera.main.transform.position);
+            }
         }
     }
 }

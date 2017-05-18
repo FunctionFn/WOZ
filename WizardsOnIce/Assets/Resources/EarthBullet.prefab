@@ -114,7 +114,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000011096784084}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.14964336, y: -1.753, z: -0.3965149}
+  m_LocalPosition: {x: -6.7729125, y: -1.7138748, z: -4.4413395}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
@@ -323,6 +323,8 @@ MonoBehaviour:
   shooter: 
   strength: 8
   environmentDamage: 0
+  fireSounds: []
+  onHitSound: {fileID: 0}
   left: {fileID: 4000012229508354}
   strengthModifier: 1
   fullChargeBonus: 2
@@ -333,6 +335,10 @@ MonoBehaviour:
   gravity: 7
   jumpSpeed: 3
   punchAmt: 0.3
+  bounceSounds:
+  - {fileID: 8300000, guid: a90d6cd1fdb74494b8ab0a56bc0a3e37, type: 3}
+  - {fileID: 8300000, guid: 96c58d0c3140ef245954e9f72cc11189, type: 3}
+  - {fileID: 8300000, guid: 1b9c7b8d8ce3a2e46b4a45b802ffe9ca, type: 3}
   particles: {fileID: 1000013135579308}
 --- !u!198 &198000010794828028
 ParticleSystem:

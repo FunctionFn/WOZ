@@ -51,14 +51,14 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 413a3e1721d975443b0edb4e7bdf01b3, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 3938df8e063d58344bce176185ff9988, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
   Loop: 1
   Mute: 0
   Spatialize: 0
-  Priority: 128
+  Priority: 61
   DopplerLevel: 1
   MinDistance: 1
   MaxDistance: 500
@@ -153,6 +153,8 @@ MonoBehaviour:
   winner: -1
   endCountdownStart: 2
   endCountdown: 0
+  menuMusic: {fileID: 8300000, guid: 3938df8e063d58344bce176185ff9988, type: 3}
+  battleMusic: {fileID: 8300000, guid: 6911c9e39e0dc104d9673a01395a6c73, type: 3}
   end: 0
   CDIndicators:
   - {fileID: 21300000, guid: 067f6c3aeb3bade44861b170243c008c, type: 3}

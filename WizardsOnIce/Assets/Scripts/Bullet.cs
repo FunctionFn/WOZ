@@ -10,6 +10,7 @@ public class Bullet : MonoBehaviour
     public float environmentDamage;
 
     public AudioClip[] fireSounds;
+    public AudioClip onHitSound;
 
     public Transform left;
 
@@ -49,6 +50,7 @@ public class Bullet : MonoBehaviour
 
             other.GetComponent<Rigidbody>().AddForce(this.GetComponent<Rigidbody>().velocity.normalized * strength, ForceMode.Impulse);
             other.GetComponent<PlayerController>().OnHit();
+            AudioManager.Inst.PlaySound(onHitSound, gameObject.transform.position);
             Destroy(gameObject);
         }
         else if(other.GetComponent<IceWall>())
