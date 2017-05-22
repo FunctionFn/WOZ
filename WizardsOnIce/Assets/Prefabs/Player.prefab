@@ -1049,8 +1049,15 @@ MonoBehaviour:
   missilePrefab: {fileID: 1000011816276132, guid: 9934efbff3871de45bead5491db78df5,
     type: 2}
   grabBox: {fileID: 1000011281330154}
+  wizardModel: {fileID: 0}
+  particles: {fileID: 0}
+  dashParticles: {fileID: 0}
+  bloodParticles: {fileID: 0}
+  warpParticles: {fileID: 0}
+  cooldownParticles: {fileID: 0}
   IceBrake: {fileID: 0}
   cdtext: {fileID: 0}
+  dashCDImage: {fileID: 0}
   color: {fileID: 0}
   indicatorColor: {fileID: 0}
   playerCenter: {fileID: 4000013151245776}
@@ -1091,12 +1098,10 @@ MonoBehaviour:
   grabTime: 0
   environmentDamage: 0
   enter: 0
-  Skating: {fileID: 0}
-  DeathSound: {fileID: 0}
-  WindDash: {fileID: 0}
-  Brake: {fileID: 0}
-  volume: 0
+  DashSound: {fileID: 8300000, guid: bdc40107eedc45c42bb8e1ee7e7238e4, type: 3}
   startTime: 3
+  recoveryModifier: 0
+  recoveryBase: 0
 --- !u!114 &114000013703221150
 MonoBehaviour:
   m_ObjectHideFlags: 1

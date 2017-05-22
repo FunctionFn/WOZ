@@ -373,7 +373,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: b522c986dadbeec45aae53fb7a5c3f36, type: 3}
   - {fileID: 8300000, guid: 6783be3be5d35494b953e4d8276affea, type: 3}
   - {fileID: 8300000, guid: f5e3d533bba7bc9479dafdc6d9cf2ef8, type: 3}
-  onHitSound: {fileID: 8300000, guid: 62ded850961dfbd4ea79405b5262beb0, type: 3}
+  onHitSound: {fileID: 8300000, guid: 9cd0a296f3f5e594b9a19153910f00fc, type: 3}
   left: {fileID: 4000013155207636}
 --- !u!136 &136000013665981620
 CapsuleCollider:

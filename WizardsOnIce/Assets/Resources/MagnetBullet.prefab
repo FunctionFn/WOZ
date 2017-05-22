@@ -415,6 +415,11 @@ MonoBehaviour:
   shooter: 
   strength: -8.3
   environmentDamage: 1
+  fireSounds:
+  - {fileID: 8300000, guid: 8df35011cbbe1b848b90bcbf90384a4c, type: 3}
+  - {fileID: 8300000, guid: 0f49c2cb1f914584b9c42f3d124e7daa, type: 3}
+  - {fileID: 8300000, guid: e8d898bb37e69f1469e83a439e631366, type: 3}
+  onHitSound: {fileID: 8300000, guid: 9cd0a296f3f5e594b9a19153910f00fc, type: 3}
   left: {fileID: 4000013155207636}
 --- !u!136 &136000013665981620
 CapsuleCollider:
