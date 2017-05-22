@@ -272,7 +272,9 @@ public class MenuManager : MonoBehaviour {
             if(GameManager.Inst.CheckNumPlayersSelected() >= 2)
             {
                 ExecuteEvents.Execute(startButton.gameObject, new PointerEventData(EventSystem.current), ExecuteEvents.pointerUpHandler);
+                AudioManager.Inst.ChangeMusic(GameManager.Inst.battleMusic);
                 GameManager.Inst.LoadNextScene(1);
+                
             }
             
         }

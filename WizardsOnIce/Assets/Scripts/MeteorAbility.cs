@@ -7,6 +7,8 @@ public class MeteorAbility : PlayerAbility {
     public float meteorSpeed = 14.0f;
     // CAN BE CHANGED FOR BALANCE
 
+    public AudioClip magnetSound;
+    
     public GameObject meteorIndicator;
     public GameObject meteorReticle;
     public Transform meteorSpawn;

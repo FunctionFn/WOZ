@@ -17,18 +17,24 @@ public class EarthBullet : Bullet
 
     public float punchAmt;
 
+    public AudioClip[] bounceSounds;
+    float bounceTimer;
+    float bounceTime;
+
     public GameObject particles;
 
     void Start()
     {
         chargeBonus = 0.0f;
+        bounceTimer = .5f;
+        bounceTime = 0.0f;
         //GetComponent<AudioSource>().Pause();
     }
 
     // Update is called once per frame
     void Update()
     {
-
+        bounceTime -= Time.deltaTime;
     }
 
     void FixedUpdate()
@@ -78,6 +84,8 @@ public class EarthBullet : Bullet
             other.gameObject.GetComponent<Rigidbody>().AddForce(velNorm * (strength * strengthModifier + chargeBonus), ForceMode.Impulse);
             other.gameObject.GetComponent<PlayerController>().OnHit(maxSpeedHitModifier + (chargeBonus * 2));
 
+            AudioManager.Inst.PlaySound(bounceSounds[Random.Range(0, bounceSounds.Length)], gameObject.transform.position, Mathf.Clamp(chargeAmt, .35f, 1.0f) / 2.0f);
+
             //fully charged shot disables dash
             if (chargeBonus > 0)
             {
@@ -92,7 +100,12 @@ public class EarthBullet : Bullet
             GetComponent<Rigidbody>().velocity = new Vector3(GetComponent<Rigidbody>().velocity.x, jumpSpeed, GetComponent<Rigidbody>().velocity.z);
             other.GetComponent<IceBlock>().Decay(groundDamage * chargeAmt * chargeAmt);
             particles.GetComponent<ParticleSystem>().Play();
-            if(chargeBonus > 0)
+            if (bounceTime <= 0)
+            {
+                AudioManager.Inst.PlaySound(bounceSounds[Random.Range(0, bounceSounds.Length)], gameObject.transform.position, Mathf.Clamp(chargeAmt, .35f, 1.0f) / 2.0f);
+                bounceTime = bounceTimer;
+            }
+            if (chargeBonus > 0)
             {
                 iTween.PunchPosition(Camera.main.gameObject, new Vector3(0.0f, punchAmt, 0.0f), 0.3f);
             }

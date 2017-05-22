@@ -30,7 +30,9 @@ public class GameManager : MonoBehaviour
 
     public float endCountdownStart;
     public float endCountdown;
-    
+
+    public AudioClip menuMusic;
+    public AudioClip battleMusic;
 
     public bool end;
 
@@ -118,6 +120,7 @@ public class GameManager : MonoBehaviour
 	}
     public void LoadNextScene(int levelNum)
     {
+        
         nextLevel = levelNum;
         SceneManager.LoadScene(levelList[nextLevel]);
     }
@@ -193,7 +196,7 @@ public class GameManager : MonoBehaviour
                 playerWins[i]++;
                 // Go to character select menu
                 nextLevel = 0;
-
+                AudioManager.Inst.ChangeMusic(menuMusic);
                 for (int j = 0; j < playerScores.Length; j++)
                 {
                     playerScores[j] = 0;

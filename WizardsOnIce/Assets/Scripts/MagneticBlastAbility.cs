@@ -3,6 +3,9 @@ using System.Collections;
 
 public class MagneticBlastAbility : PlayerAbility {
 
+
+    public AudioClip magnetSound;
+
     public float radius = 3.0F;
     public float power;
     public float onhitpower;
@@ -12,6 +15,7 @@ public class MagneticBlastAbility : PlayerAbility {
     {
         abilityPrefab = (GameObject)(Resources.Load("MeteorIndicator"));
         missilePrefab = (GameObject)(Resources.Load("MagnetBullet"));
+        magnetSound = (AudioClip)(Resources.Load("MagnetWizardSpecialSFXv2"));
         // CAN BE CHANGED FOR BALANCE
         abilityTime = 3.0f;
         FireTime = 0.5f;
@@ -65,6 +69,8 @@ public class MagneticBlastAbility : PlayerAbility {
         playerObject.GetComponent<PlayerController>().SetAbilityTimer(abilityTime);
 
         iTween.PunchRotation(Camera.main.gameObject, new Vector3(0.0f, 0.0f, 3.0f), 1f);
+
+        AudioSource.PlayClipAtPoint(magnetSound, transform.position);
     }
 
     public override void Fire()

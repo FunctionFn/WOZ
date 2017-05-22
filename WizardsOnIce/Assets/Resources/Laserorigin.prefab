@@ -526,6 +526,8 @@ MonoBehaviour:
   chargeAmt: 0
   minCharge: 0.1
   maxSpeedHitModifier: 6
+  laserSound: {fileID: 8300000, guid: 081ffa3689b265d4e8291dd286a5b880, type: 3}
+  onHit: {fileID: 8300000, guid: 5d5a639677857aa4d991a8236eb3c959, type: 3}
   strength: 12
   shooter: 
   environmentalDamage: 65

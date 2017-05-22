@@ -95,11 +95,9 @@ public class PlayerController : MonoBehaviour
 
 	public bool enter;
 
-	public AudioClip Skating;
-	public AudioClip DeathSound;
-	public AudioClip WindDash;
-	public AudioClip Brake;
-	public float volume;
+	//public AudioClip Skating;
+	//public AudioClip DeathSound;
+	public AudioClip DashSound;
 	//AudioSource audio;
 
     public float startTime;
@@ -675,6 +673,8 @@ public class PlayerController : MonoBehaviour
             dashCDImage.enabled = true;
 
             ChangeMovementState(State.Dash);
+
+            AudioSource.PlayClipAtPoint(DashSound, transform.position);
 		}
 	}
 
