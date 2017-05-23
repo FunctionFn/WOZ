@@ -10,6 +10,10 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour 
 
 {
+    public enum MenuScreen { Intro, Credits, HowTo, CharacterSelect, Play };
+
+    public MenuScreen currMenu;
+
     public List<PlayerController> PlayersAlive;
 
     private static GameManager _inst;
@@ -57,6 +61,8 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
+        currMenu = MenuScreen.Intro;
+
         Inst.PlayerSkills.Add(0, PlayerController.SkillID.None);
         Inst.PlayerSkills.Add(1, PlayerController.SkillID.None);
         Inst.PlayerSkills.Add(2, PlayerController.SkillID.None);
@@ -79,22 +85,38 @@ public class GameManager : MonoBehaviour
     }
     void Update()
     {
-        if(Input.GetButtonUp("Submit") && SceneManager.GetActiveScene().name == "GameSettings")
+        if (SceneManager.GetActiveScene().name == "GameSettings")
         {
-            ReconstructLevelList();
-            if (levelList.Length > 1)
+            for (int i = 0; i < 4; ++i)
             {
-                nextLevel = 0;
-                LoadNextScene();
+                if (Input.GetButtonDown("Brake" + i.ToString()))
+                {
+                    ReconstructLevelList();
+                    if (levelList.Length > 1)
+                    {
+                        nextLevel = 0;
+                        LoadNextScene();
+                    }
+                }
             }
         }
-
-        if (Input.GetButtonUp("Submit") && SceneManager.GetActiveScene().name == "CharacterSelect")
+        if (SceneManager.GetActiveScene().name == "CharacterSelect")
         {
-            nextLevel = 0;
-            LoadNextScene("GameSettings");
-            ResetLevelsSelected();
-
+            for (int i = 0; i < 4; ++i)
+            {
+                if (Input.GetButtonDown("Select" + i.ToString()))
+                {
+                    nextLevel = 0;
+                    LoadNextScene("GameSettings");
+                    ResetLevelsSelected();
+                }
+                if (Input.GetButtonDown("Brake" + i.ToString()))
+                {
+                    nextLevel = 0;
+                    currMenu = MenuScreen.Intro;
+                    LoadNextScene("MainMenu");
+                }
+            }
         }
 
         endCountdown -= Time.deltaTime;
@@ -210,7 +232,6 @@ public class GameManager : MonoBehaviour
         end = false;
         LoadNextScene();
     }
-
 
     public void SetPlayerSkill(int playerNum, int skillNum)
     {
