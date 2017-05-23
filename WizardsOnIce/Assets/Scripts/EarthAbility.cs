@@ -18,6 +18,12 @@ public class EarthAbility : PlayerAbility
 
     public GameObject chargingBullet;
 
+    public float stunAnimTimer;
+    public float stunAnimTime = 0.1f;
+
+    public float chargeTransitionTimer;
+    public float chargeTransitionTime = 0.28f;
+
     // Use this for initialization
     void Start()
     {
@@ -42,10 +48,27 @@ public class EarthAbility : PlayerAbility
     void Update()
     {
         FireTimer -= Time.deltaTime;
+        stunAnimTimer -= Time.deltaTime;
+        chargeTransitionTimer -= Time.deltaTime;
 
+        if(charging && chargeTransitionTimer <= 0.0f)
+        {
+            playerObject.GetComponent<PlayerController>().PauseAnimation();
+        }
+        else if(chargeTransitionTimer <= 0.0f)
+        {
+            playerObject.GetComponent<PlayerController>().PlayAnimation();
+            chargeTransitionTimer = 99999999.9f;
+        }
+
+        if(stunAnimTimer <= 0.0f)
+        {
+            playerObject.GetComponent<PlayerController>().SetAnimBool("Stun", false);
+        }
         if (Input.GetAxis("Trigger" + playerNumber) < 0.5f && Input.GetAxis("Trigger" + playerNumber) > -0.5f)
         {
             ReleaseChargeShot();
+            playerObject.GetComponent<PlayerController>().SetAnimBool("Charging", false);
         }
         
         if(charging)
@@ -58,6 +81,9 @@ public class EarthAbility : PlayerAbility
             chargingBullet.transform.rotation = missileSpawnLocation.rotation;
             chargingBullet.transform.localScale = new Vector3(chargeper, chargeper, chargeper);
         }
+
+
+
     }
 
     public override void TriggerAbility()
@@ -71,6 +97,8 @@ public class EarthAbility : PlayerAbility
         FireTimer = FireTime;
 
         playerObject.GetComponent<PlayerController>().SetAbilityTimer(abilityTime);
+        playerObject.GetComponent<PlayerController>().SetAnimBool("Stun", true);
+        stunAnimTimer = stunAnimTime;
     }
 
     public override void Fire()
@@ -86,8 +114,9 @@ public class EarthAbility : PlayerAbility
             //chargingBullet.GetComponent<Transform>().parent = playerObject.transform.GetChild(0);
             chargingBullet.GetComponent<BoxCollider>().enabled = false;
             charging = true;
-            
-            
+
+            playerObject.GetComponent<PlayerController>().SetAnimBool("Charging", true);
+            chargeTransitionTimer = chargeTransitionTime;
         }
         else
         {

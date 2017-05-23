@@ -76,6 +76,8 @@ public class PlayerController : MonoBehaviour
     Rigidbody rb;
     public Pickupable heldObject;
 
+    public Animator modelAnimator;
+
     public PlayerAbility playerSkill;
 
     public enum State { NoMovement, GroundedMovement, Jumping, Dash, Braking, Countdown } 
@@ -148,6 +150,7 @@ public class PlayerController : MonoBehaviour
         else if (Skill == SkillID.Earth)
         {
             playerSkill = gameObject.AddComponent<EarthAbility>();
+            missileSpawnLocation = transform.Find("PlayerCenter/ChargeShotSpawn");
         }
         else if (Skill == SkillID.Lightning)
         {
@@ -736,6 +739,21 @@ public class PlayerController : MonoBehaviour
         //now you can set the position of the ui element
         cdtext.GetComponent<RectTransform>().anchoredPosition = WorldObject_ScreenPosition;
         dashCDImage.GetComponent<RectTransform>().anchoredPosition = WorldObject_ScreenPosition;
+    }
+
+    public void SetAnimBool(string animBool, bool val)
+    {
+        modelAnimator.SetBool(animBool, val);
+    }
+
+    public void PauseAnimation()
+    {
+        modelAnimator.speed = 0.0f;
+    }
+
+    public void PlayAnimation()
+    {
+        modelAnimator.speed = 1.0f;
     }
 }
 
