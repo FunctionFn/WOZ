@@ -4,6 +4,7 @@ using System.Collections;
 public class StunBullet : Bullet
 {
     public float stunTime;
+    public AudioClip onHit;
     void Start()
     {
     }
@@ -36,6 +37,9 @@ public class StunBullet : Bullet
         if (other.gameObject.GetComponent<PlayerController>() && other.gameObject.GetComponent<PlayerController>().PlayerNumber != shooter)
         {
             other.GetComponent<PlayerController>().Stun(stunTime);
+
+            AudioSource.PlayClipAtPoint(onHit, transform.position);
+
             Destroy(gameObject);
 
 

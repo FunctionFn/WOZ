@@ -323,8 +323,11 @@ MonoBehaviour:
   shooter: 
   strength: 0
   environmentDamage: 0
+  fireSounds: []
+  onHitSound: {fileID: 0}
   left: {fileID: 4000010786079320}
   stunTime: 0.75
+  onHit: {fileID: 8300000, guid: df305a3a7748ffd43b86483e841aa006, type: 3}
 --- !u!198 &198000010161665720
 ParticleSystem:
   m_ObjectHideFlags: 1

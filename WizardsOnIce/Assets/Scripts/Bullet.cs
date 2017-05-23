@@ -9,12 +9,16 @@ public class Bullet : MonoBehaviour
     public float strength;
     public float environmentDamage;
 
+    public AudioClip[] fireSounds;
+    public AudioClip onHitSound;
+
     public Transform left;
 
     void Start()
     {
         Physics.IgnoreLayerCollision(10, gameObject.layer);
         GetComponent<TrailRenderer>().material = transform.GetChild(0).GetComponent<Renderer>().material;
+        AudioManager.Inst.PlaySound(fireSounds[Random.Range(0, fireSounds.Length)], gameObject.transform.position);
     }
 
     // Update is called once per frame
@@ -46,6 +50,7 @@ public class Bullet : MonoBehaviour
 
             other.GetComponent<Rigidbody>().AddForce(this.GetComponent<Rigidbody>().velocity.normalized * strength, ForceMode.Impulse);
             other.GetComponent<PlayerController>().OnHit();
+            AudioManager.Inst.PlaySound(onHitSound, gameObject.transform.position);
             Destroy(gameObject);
         }
         else if(other.GetComponent<IceWall>())
