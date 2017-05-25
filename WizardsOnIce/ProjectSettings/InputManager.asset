@@ -470,6 +470,22 @@ InputManager:
     axis: 2
     joyNum: 4
   - serializedVersion: 3
+    m_Name: Trigger3
+    descriptiveName: 
+    descriptiveNegativeName: 
+    negativeButton: 
+    positiveButton: e
+    altNegativeButton: 
+    altPositiveButton: 
+    gravity: 100
+    dead: 0.19
+    sensitivity: 100
+    snap: 0
+    invert: 0
+    type: 0
+    axis: 2
+    joyNum: 4
+  - serializedVersion: 3
     m_Name: Fire0
     descriptiveName: 
     descriptiveNegativeName: 
@@ -742,6 +758,22 @@ InputManager:
     axis: 0
     joyNum: 0
   - serializedVersion: 3
+    m_Name: RollDash0
+    descriptiveName: 
+    descriptiveNegativeName: 
+    negativeButton: 
+    positiveButton: q
+    altNegativeButton: 
+    altPositiveButton: 
+    gravity: 1000
+    dead: 0.001
+    sensitivity: 1000
+    snap: 0
+    invert: 0
+    type: 0
+    axis: 0
+    joyNum: 0
+  - serializedVersion: 3
     m_Name: RollDash1
     descriptiveName: 
     descriptiveNegativeName: 
@@ -810,7 +842,7 @@ InputManager:
     descriptiveName: 
     descriptiveNegativeName: 
     negativeButton: 
-    positiveButton: e
+    positiveButton: z
     altNegativeButton: 
     altPositiveButton: 
     gravity: 1000
@@ -1067,6 +1099,22 @@ InputManager:
     descriptiveNegativeName: 
     negativeButton: 
     positiveButton: joystick 1 button 6
+    altNegativeButton: 
+    altPositiveButton: '['
+    gravity: 1000
+    dead: 0.001
+    sensitivity: 1000
+    snap: 0
+    invert: 0
+    type: 0
+    axis: 0
+    joyNum: 4
+  - serializedVersion: 3
+    m_Name: Select0
+    descriptiveName: 
+    descriptiveNegativeName: 
+    negativeButton: 
+    positiveButton: e
     altNegativeButton: 
     altPositiveButton: '['
     gravity: 1000
