@@ -4787,8 +4787,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 523492810}
-  m_LocalRotation: {x: 0.06048334, y: -0.016857473, z: 0.0010208688, w: 0.9980264}
-  m_LocalPosition: {x: 614.93365, y: -248.05806, z: -562.7042}
+  m_LocalRotation: {x: 0.22782765, y: 0.6473196, z: 0.21196528, w: -0.6958036}
+  m_LocalPosition: {x: 9.345411, y: -33.890583, z: 0.26550472}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
@@ -8130,6 +8130,11 @@ MonoBehaviour:
   - {fileID: 331396216}
   - {fileID: 1090225315}
   - {fileID: 412039804}
+  sounds:
+  - {fileID: 8300000, guid: 91d19bde831dd7f45b5fb1c94f6377c8, type: 3}
+  - {fileID: 8300000, guid: 13b3af0809b0d6142acc07f0e6aa7f8c, type: 3}
+  - {fileID: 8300000, guid: b2e3c6988499f2447bd6d4b0fc3430a5, type: 3}
+  - {fileID: 8300000, guid: 8b77a825aea4a5448b75071f53266ef0, type: 3}
 --- !u!4 &807400925 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4000011813474782, guid: 60f0a3bca800d2a43a14a12c3b1b464e,

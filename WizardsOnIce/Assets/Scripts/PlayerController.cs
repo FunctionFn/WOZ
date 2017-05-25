@@ -11,6 +11,9 @@ public class PlayerController : MonoBehaviour
     public string PlayerNumber;
     [SerializeField] private SkillID Skill;
 
+    public GameObject[] models;
+    public Material[] materials;
+
     public GameObject mainCamera;
     public GameObject missilePrefab;
     public GameObject grabBox;
@@ -109,6 +112,8 @@ public class PlayerController : MonoBehaviour
     public float recoveryModifier;
     public float recoveryBase;
 
+    Vector3 tempScale;
+
     void Awake()
     {
         // Wizard Model
@@ -119,7 +124,9 @@ public class PlayerController : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-		//audio = GetComponent<AudioSource> ();
+        //audio = GetComponent<AudioSource> ();
+
+        
 
         rb = GetComponent<Rigidbody>();
 
@@ -150,7 +157,7 @@ public class PlayerController : MonoBehaviour
         else if (Skill == SkillID.Earth)
         {
             playerSkill = gameObject.AddComponent<EarthAbility>();
-            missileSpawnLocation = transform.Find("PlayerCenter/ChargeShotSpawn");
+            
         }
         else if (Skill == SkillID.Lightning)
         {
@@ -162,7 +169,21 @@ public class PlayerController : MonoBehaviour
 
         }
 
-        if(Skill != SkillID.None)
+        if (models[(int)Skill] != null)
+        {
+            for (int i = 0; i < materials.Length; ++i)
+            {
+                materials[i].color = color.color;
+            }
+            wizardModel.gameObject.SetActive(false);
+            wizardModel = models[(int)Skill].transform;
+            wizardModel.gameObject.SetActive(true);
+
+            
+        }
+
+
+        if (Skill != SkillID.None)
         {
             cdtext.sprite = GameManager.Inst.CDIndicators[(int)Skill];
         }
@@ -339,7 +360,7 @@ public class PlayerController : MonoBehaviour
         {
             GetComponent<Rigidbody>().isKinematic = false;
             GetComponent<Rigidbody>().useGravity = true;
-            wizardModel.localScale = new Vector3(1.0f, 1.0f, 1.0f);
+            wizardModel.localScale = tempScale;
         }
 
         if(movementState == State.Dash && state != State.Dash)
@@ -360,6 +381,7 @@ public class PlayerController : MonoBehaviour
 
         if (movementState == State.Countdown)
         {
+            tempScale = wizardModel.localScale;
             wizardModel.localScale = new Vector3(0.0f, 0.0f, 0.0f);
         }
 
@@ -439,10 +461,10 @@ public class PlayerController : MonoBehaviour
         {
             if (!holding)
             {
-                if (Input.GetButtonDown("Brake" + PlayerNumber))
-                {
-                    ChangeMovementState(State.Braking);
-                }
+                //if (Input.GetButtonDown("Brake" + PlayerNumber))
+                //{
+                //    ChangeMovementState(State.Braking);
+                //}
                 //if (Input.GetButton("Fire" + PlayerNumber))
                 //{
                 //    Fireball();
@@ -463,10 +485,10 @@ public class PlayerController : MonoBehaviour
                     RollDash();
 
                 }
-                if(Input.GetButtonUp("Brake" + PlayerNumber))
-                {
-                    ChangeMovementState(State.GroundedMovement);
-                }
+                //if(Input.GetButtonUp("Brake" + PlayerNumber))
+                //{
+                //    ChangeMovementState(State.GroundedMovement);
+                //}
 
 
             }

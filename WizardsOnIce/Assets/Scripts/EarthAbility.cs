@@ -39,8 +39,7 @@ public class EarthAbility : PlayerAbility
 
         currentCharge = 0.0f;
 
-        meteorSpawn = playerObject.transform.Find("PlayerCenter/MeteorSpawn");
-
+        meteorSpawn = playerObject.transform.Find("PlayerCenter/ChargeShotSpawn");
         Physics.IgnoreLayerCollision(10, gameObject.layer);
     }
 
@@ -77,8 +76,8 @@ public class EarthAbility : PlayerAbility
             float NewRange = (1.5f - .3f);
             float chargeper = (((currentCharge) * NewRange) / OldRange) + .3f;
             chargeper = Mathf.Clamp(chargeper, 0.1f, 1.5f);
-            chargingBullet.transform.position = missileSpawnLocation.position;
-            chargingBullet.transform.rotation = missileSpawnLocation.rotation;
+            chargingBullet.transform.position = meteorSpawn.position;
+            chargingBullet.transform.rotation = meteorSpawn.rotation;
             chargingBullet.transform.localScale = new Vector3(chargeper, chargeper, chargeper);
         }
 
