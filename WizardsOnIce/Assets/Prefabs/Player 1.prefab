@@ -6197,6 +6197,8 @@ MonoBehaviour:
   warpParticles: {fileID: 1000011745069114, guid: 968b0aa275ceba245ae93f99d0d89f62,
     type: 2}
   cooldownParticles: {fileID: 1000013176001358}
+  stunPrefab: {fileID: 1000010523021274, guid: 6aca2ee84dc8ebc4c939f7a8dcbc155a, type: 2}
+  stunVerticalOffset: 2
   IceBrake: {fileID: 1000011146211426}
   cdtext: {fileID: 0}
   dashCDImage: {fileID: 0}
