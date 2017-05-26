@@ -36,6 +36,8 @@ public class MenuManager : MonoBehaviour {
 
     public Image[] winIndicators;
     public Text[] winCounters;
+
+    public AudioClip[] sounds;
     // Use this for initialization
     void Start()
     {
@@ -114,142 +116,23 @@ public class MenuManager : MonoBehaviour {
                 {
                     ExecuteEvents.Execute(player4Buttons[CurrentButton[i]].gameObject, new PointerEventData(EventSystem.current), ExecuteEvents.deselectHandler);
                     ExecuteEvents.Execute(player4Buttons[CurrentButton[i]].gameObject, new PointerEventData(EventSystem.current), ExecuteEvents.pointerUpHandler);
+
                 }
 
                 if (Input.GetButton("Brake" + i.ToString()))
                 {
                     GameManager.Inst.SetPlayerSkill(i, 4);
                     charactersSelected[i].enabled = false;
+                   
+                }
+
+                if(Input.GetButtonDown("RollDash" + i.ToString()) || Input.GetButtonDown("Brake" + i.ToString()))
+                {
+                    PlayMenuBoop();
                 }
 
                 playerSkillHighlights[i].rectTransform.localPosition = new Vector3(player4Buttons[CurrentButton[i]].GetComponent<RectTransform>().localPosition.x, playerSkillHighlights[i].rectTransform.localPosition.y, playerSkillHighlights[i].rectTransform.localPosition.z);
             }
-
-            // Button Selection
-            //if ((Input.GetAxis("Horizontal0") > 0.5 || Input.GetAxis("DPHorizontal0") > 0.5) && p1CurrentButton < player1Buttons.Length - 1 && !p1AxisUsed)
-            //{
-            //    ExecuteEvents.Execute(player1Buttons[p1CurrentButton].gameObject, new PointerEventData(EventSystem.current), ExecuteEvents.pointerExitHandler);
-            //    p1CurrentButton++;
-            //    p1AxisUsed = true;
-            //}
-            //else if ((Input.GetAxis("Horizontal0") < -0.5 || Input.GetAxis("DPHorizontal0") < -0.5) && p1CurrentButton > 0 && !p1AxisUsed)
-            //{
-            //    ExecuteEvents.Execute(player1Buttons[p1CurrentButton].gameObject, new PointerEventData(EventSystem.current), ExecuteEvents.pointerExitHandler);
-            //    p1CurrentButton--;
-            //    p1AxisUsed = true;
-            //}
-
-            //if (((Input.GetAxis("Horizontal0") < 0.5 && Input.GetAxis("DPHorizontal0") < 0.5) && (Input.GetAxis("Horizontal0") > -0.5 && Input.GetAxis("DPHorizontal0") > -0.5)) && p1AxisUsed)
-            //{
-            //    p1AxisUsed = false;
-            //}
-
-            //if ((Input.GetAxis("Horizontal1") > 0.5 || Input.GetAxis("DPHorizontal1") > 0.5) && p2CurrentButton < player2Buttons.Length - 1 && !p2AxisUsed)
-            //{
-            //    ExecuteEvents.Execute(player2Buttons[p2CurrentButton].gameObject, new PointerEventData(EventSystem.current), ExecuteEvents.pointerExitHandler);
-            //    p2CurrentButton++;
-            //    p2AxisUsed = true;
-            //}
-            //else if ((Input.GetAxis("Horizontal1") < -0.5 || Input.GetAxis("DPHorizontal1") < -0.5) && p2CurrentButton > 0 && !p2AxisUsed)
-            //{
-            //    ExecuteEvents.Execute(player2Buttons[p2CurrentButton].gameObject, new PointerEventData(EventSystem.current), ExecuteEvents.pointerExitHandler);
-            //    p2CurrentButton--;
-            //    p2AxisUsed = true;
-            //}
-
-            //if (((Input.GetAxis("Horizontal1") < 0.5 && Input.GetAxis("DPHorizontal1") < 0.5) && (Input.GetAxis("Horizontal1") > -0.5 && Input.GetAxis("DPHorizontal1") > -0.5)) && p2AxisUsed)
-            //{
-            //    p2AxisUsed = false;
-            //}
-
-            //if ((Input.GetAxis("Horizontal2") > 0.5 || Input.GetAxis("DPHorizontal2") > 0.5) && p3CurrentButton < player3Buttons.Length - 1 && !p3AxisUsed)
-            //{
-            //    ExecuteEvents.Execute(player3Buttons[p3CurrentButton].gameObject, new PointerEventData(EventSystem.current), ExecuteEvents.pointerExitHandler);
-            //    p3CurrentButton++;
-            //    p3AxisUsed = true;
-            //}
-            //else if ((Input.GetAxis("Horizontal2") < -0.5 || Input.GetAxis("DPHorizontal2") < -0.5) && p3CurrentButton > 0 && !p3AxisUsed)
-            //{
-            //    ExecuteEvents.Execute(player3Buttons[p3CurrentButton].gameObject, new PointerEventData(EventSystem.current), ExecuteEvents.pointerExitHandler);
-            //    p3CurrentButton--;
-            //    p3AxisUsed = true;
-            //}
-
-            //if (((Input.GetAxis("Horizontal2") < 0.5 && Input.GetAxis("DPHorizontal2") < 0.5) && (Input.GetAxis("Horizontal2") > -0.5 && Input.GetAxis("DPHorizontal2") > -0.5)) && p3AxisUsed)
-            //{
-            //    p3AxisUsed = false;
-            //}
-
-            //if ((Input.GetAxis("Horizontal3") > 0.5 || Input.GetAxis("DPHorizontal3") > 0.5) && p4CurrentButton < player4Buttons.Length - 1 && !p4AxisUsed)
-            //{
-            //    ExecuteEvents.Execute(player4Buttons[p4CurrentButton].gameObject, new PointerEventData(EventSystem.current), ExecuteEvents.pointerExitHandler);
-            //    p4CurrentButton++;
-            //    p4AxisUsed = true;
-            //}
-            //else if ((Input.GetAxis("Horizontal3") < -0.5 || Input.GetAxis("DPHorizontal3") < -0.5) && p4CurrentButton > 0 && !p4AxisUsed)
-            //{
-            //    ExecuteEvents.Execute(player4Buttons[p4CurrentButton].gameObject, new PointerEventData(EventSystem.current), ExecuteEvents.pointerExitHandler);
-            //    p4CurrentButton--;
-            //    p4AxisUsed = true;
-            //}
-
-            //if (((Input.GetAxis("Horizontal3") < 0.5 && Input.GetAxis("DPHorizontal3") < 0.5) && (Input.GetAxis("Horizontal3") > -0.5 && Input.GetAxis("DPHorizontal3") > -0.5)) && p4AxisUsed)
-            //{
-            //    p4AxisUsed = false;
-            //}
-
-
-            //// Button Highlighting
-            ////ExecuteEvents.Execute(player1Buttons[p1CurrentButton].gameObject, new PointerEventData(EventSystem.current), ExecuteEvents.pointerEnterHandler);
-            ////ExecuteEvents.Execute(player2Buttons[p2CurrentButton].gameObject, new PointerEventData(EventSystem.current), ExecuteEvents.pointerEnterHandler);
-            ////ExecuteEvents.Execute(player3Buttons[p3CurrentButton].gameObject, new PointerEventData(EventSystem.current), ExecuteEvents.pointerEnterHandler);
-            ////ExecuteEvents.Execute(player4Buttons[p4CurrentButton].gameObject, new PointerEventData(EventSystem.current), ExecuteEvents.pointerEnterHandler);
-
-            //// Activate Buttons
-            //if (Input.GetButton("RollDash0"))
-            //{
-            //    GameManager.Inst.SetPlayerSkill(0, p1CurrentButton);
-            //    ExecuteEvents.Execute(player1Buttons[p1CurrentButton].gameObject, new PointerEventData(EventSystem.current), ExecuteEvents.pointerDownHandler);
-            //    playerSkillHighlights[0].rectTransform.localPosition = new Vector3(player1Buttons[p1CurrentButton].GetComponent<RectTransform>().localPosition.x, playerSkillHighlights[0].rectTransform.localPosition.y, playerSkillHighlights[0].rectTransform.localPosition.z);
-            //}
-            //else
-            //{
-            //    ExecuteEvents.Execute(player1Buttons[p1CurrentButton].gameObject, new PointerEventData(EventSystem.current), ExecuteEvents.deselectHandler);
-            //    ExecuteEvents.Execute(player1Buttons[p1CurrentButton].gameObject, new PointerEventData(EventSystem.current), ExecuteEvents.pointerUpHandler);
-            //}
-            //if (Input.GetButton("RollDash1"))
-            //{
-            //    GameManager.Inst.SetPlayerSkill(1, p2CurrentButton);
-            //    ExecuteEvents.Execute(player2Buttons[p2CurrentButton].gameObject, new PointerEventData(EventSystem.current), ExecuteEvents.pointerDownHandler);
-            //    playerSkillHighlights[1].rectTransform.localPosition = new Vector3(player2Buttons[p2CurrentButton].GetComponent<RectTransform>().localPosition.x, playerSkillHighlights[1].rectTransform.localPosition.y, playerSkillHighlights[1].rectTransform.localPosition.z);
-            //}
-            //else
-            //{
-            //    ExecuteEvents.Execute(player2Buttons[p2CurrentButton].gameObject, new PointerEventData(EventSystem.current), ExecuteEvents.deselectHandler);
-            //    ExecuteEvents.Execute(player2Buttons[p2CurrentButton].gameObject, new PointerEventData(EventSystem.current), ExecuteEvents.pointerUpHandler);
-            //}
-            //if (Input.GetButton("RollDash2"))
-            //{
-            //    GameManager.Inst.SetPlayerSkill(2, p3CurrentButton);
-            //    ExecuteEvents.Execute(player3Buttons[p3CurrentButton].gameObject, new PointerEventData(EventSystem.current), ExecuteEvents.pointerDownHandler);
-            //    playerSkillHighlights[2].rectTransform.localPosition = new Vector3(player3Buttons[p3CurrentButton].GetComponent<RectTransform>().localPosition.x, playerSkillHighlights[2].rectTransform.localPosition.y, playerSkillHighlights[2].rectTransform.localPosition.z);
-            //}
-            //else
-            //{
-            //    ExecuteEvents.Execute(player3Buttons[p3CurrentButton].gameObject, new PointerEventData(EventSystem.current), ExecuteEvents.deselectHandler);
-            //    ExecuteEvents.Execute(player3Buttons[p3CurrentButton].gameObject, new PointerEventData(EventSystem.current), ExecuteEvents.pointerUpHandler);
-            //}
-            //if (Input.GetButton("RollDash3"))
-            //{
-            //    GameManager.Inst.SetPlayerSkill(3, p4CurrentButton);
-            //    ExecuteEvents.Execute(player4Buttons[p4CurrentButton].gameObject, new PointerEventData(EventSystem.current), ExecuteEvents.pointerDownHandler);
-            //    playerSkillHighlights[3].rectTransform.localPosition = new Vector3(player4Buttons[p4CurrentButton].GetComponent<RectTransform>().localPosition.x, playerSkillHighlights[3].rectTransform.localPosition.y, playerSkillHighlights[3].rectTransform.localPosition.z);
-            //}
-            //else
-            //{
-            //    ExecuteEvents.Execute(player4Buttons[p4CurrentButton].gameObject, new PointerEventData(EventSystem.current), ExecuteEvents.deselectHandler);
-            //    ExecuteEvents.Execute(player4Buttons[p4CurrentButton].gameObject, new PointerEventData(EventSystem.current), ExecuteEvents.pointerUpHandler);
-            //}
 
             // Make the start button appear if 2 players have selected!
             if (GameManager.Inst.CheckNumPlayersSelected() >= 2)
@@ -291,6 +174,7 @@ public class MenuManager : MonoBehaviour {
                     canvasUI.transform.GetChild(2).GetComponent<Transform>().localScale = new Vector3(0.0f, 0.0f, 0.0f);
                     canvasUI.transform.GetChild(3).GetComponent<Transform>().localScale = new Vector3(0.0f, 0.0f, 0.0f);
                     canvasUI.transform.GetChild(4).GetComponent<Transform>().localScale = new Vector3(0.0f, 0.0f, 0.0f);
+                    PlayMenuBoop();
                 }
 
                 if (Input.GetButtonDown("Select" + i.ToString()))
@@ -301,6 +185,7 @@ public class MenuManager : MonoBehaviour {
                     canvasUI.transform.GetChild(2).GetComponent<Transform>().localScale = new Vector3(0.0f, 0.0f, 0.0f);
                     canvasUI.transform.GetChild(3).GetComponent<Transform>().localScale = new Vector3(0.0f, 0.0f, 0.0f);
                     canvasUI.transform.GetChild(4).GetComponent<Transform>().localScale = new Vector3(0.0f, 0.0f, 0.0f);
+                    PlayMenuBoop();
                 }
             }
         }
@@ -317,6 +202,7 @@ public class MenuManager : MonoBehaviour {
                     canvasUI.transform.GetChild(2).GetComponent<Transform>().localScale = new Vector3(1.0f, 1.0f, 1.0f);
                     canvasUI.transform.GetChild(3).GetComponent<Transform>().localScale = new Vector3(1.0f, 1.0f, 1.0f);
                     canvasUI.transform.GetChild(4).GetComponent<Transform>().localScale = new Vector3(1.0f, 1.0f, 1.0f);
+                    PlayMenuBoop();
                 }
             }
         }
@@ -333,8 +219,14 @@ public class MenuManager : MonoBehaviour {
                     canvasUI.transform.GetChild(2).GetComponent<Transform>().localScale = new Vector3(1.0f, 1.0f, 1.0f);
                     canvasUI.transform.GetChild(3).GetComponent<Transform>().localScale = new Vector3(1.0f, 1.0f, 1.0f);
                     canvasUI.transform.GetChild(4).GetComponent<Transform>().localScale = new Vector3(1.0f, 1.0f, 1.0f);
+                    PlayMenuBoop();
                 }
             }
         }
+    }
+
+    void PlayMenuBoop()
+    {
+        AudioSource.PlayClipAtPoint(sounds[Random.Range(0, sounds.Length)], Camera.main.transform.position, 0.1f);
     }
 }
