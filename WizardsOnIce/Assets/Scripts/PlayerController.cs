@@ -26,6 +26,8 @@ public class PlayerController : MonoBehaviour
     public GameObject warpParticles;
     public GameObject cooldownParticles;
 
+    public GameObject stunPrefab;
+    public float stunVerticalOffset;
     public GameObject IceBrake;
 
     public Image cdtext;
@@ -367,8 +369,10 @@ public class PlayerController : MonoBehaviour
         {
             rb.useGravity = true;
             //AudioSource.PlayClipAtPoint (WindDash, new Vector3 (0,19,0));
-	}
+	    }
         
+        
+
 
         movementState = state;
 
@@ -383,6 +387,12 @@ public class PlayerController : MonoBehaviour
         {
             tempScale = wizardModel.localScale;
             wizardModel.localScale = new Vector3(0.0f, 0.0f, 0.0f);
+        }
+
+        if (movementState == State.NoMovement)
+        {
+            GameObject go = (GameObject)Instantiate(stunPrefab, transform.position + new Vector3(0.0f, stunVerticalOffset, 0.0f), this.transform.rotation, gameObject.transform);
+            go.transform.localScale = new Vector3(2.0f, 2.0f, 2.0f);
         }
 
     }

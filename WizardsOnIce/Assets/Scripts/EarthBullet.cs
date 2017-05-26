@@ -26,7 +26,7 @@ public class EarthBullet : Bullet
     void Start()
     {
         chargeBonus = 0.0f;
-        bounceTimer = .5f;
+        bounceTimer = .05f;
         bounceTime = 0.0f;
         //GetComponent<AudioSource>().Pause();
     }
@@ -113,8 +113,14 @@ public class EarthBullet : Bullet
 
         else if(other.GetComponent<IceWall>())
         {
+            GetComponent<Rigidbody>().velocity = new Vector3(GetComponent<Rigidbody>().velocity.x, jumpSpeed, GetComponent<Rigidbody>().velocity.z);
             other.GetComponent<IceWall>().Decay(groundDamage * chargeAmt * chargeAmt);
-            Destroy(gameObject);
+            
+            particles.GetComponent<ParticleSystem>().Play();
+            AudioManager.Inst.PlaySound(bounceSounds[Random.Range(0, bounceSounds.Length)], gameObject.transform.position, Mathf.Clamp(chargeAmt, .35f, 1.0f) / 2.0f);
+            bounceTime = bounceTimer;
+            
+
             if (chargeBonus > 0)
             {
                 iTween.PunchPosition(Camera.main.gameObject, new Vector3(0.0f, punchAmt, 0.0f), 0.3f);
