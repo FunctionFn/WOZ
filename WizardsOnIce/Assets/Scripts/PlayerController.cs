@@ -180,7 +180,7 @@ public class PlayerController : MonoBehaviour
             wizardModel.gameObject.SetActive(false);
             wizardModel = models[(int)Skill].transform;
             wizardModel.gameObject.SetActive(true);
-
+            modelAnimator = wizardModel.GetComponent<Animator>();
             
         }
 
