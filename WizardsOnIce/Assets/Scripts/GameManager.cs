@@ -21,6 +21,9 @@ public class GameManager : MonoBehaviour
 
     public int[] playerScores = new int[4];
     public int[] playerWins = new int[4];
+    public int topPlayerScore = 0;
+
+
     public string[] levelList;
     public int nextLevel;
 
@@ -58,7 +61,6 @@ public class GameManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
         PlayerSkills = new Dictionary<int, PlayerController.SkillID>();
         levelsEnabled = new OrderedDictionary();
-
     }
 
     void Start()
@@ -160,6 +162,10 @@ public class GameManager : MonoBehaviour
     public void AddPlayer(PlayerController p)
     {
         PlayersAlive.Add(p);
+        if (topPlayerScore != 0 && playerScores[int.Parse(p.PlayerNumber)] == topPlayerScore)
+        {
+            p.EnableWinningPlayerParticles(true);
+        }
     }
 
     public void SubPlayer(PlayerController p)
@@ -172,18 +178,34 @@ public class GameManager : MonoBehaviour
             {
                 case "0":
                     playerScores[0] += 1;
+                    if(topPlayerScore < playerScores[0])
+                    {
+                        topPlayerScore++;
+                    }
                     break;
 
                 case "1":
                     playerScores[1] += 1;
+                    if (topPlayerScore < playerScores[1])
+                    {
+                        topPlayerScore++;
+                    }
                     break;
 
                 case "2":
                     playerScores[2] += 1;
+                    if (topPlayerScore < playerScores[2])
+                    {
+                        topPlayerScore++;
+                    }
                     break;
 
                 case "3":
                     playerScores[3] += 1;
+                    if (topPlayerScore < playerScores[3])
+                    {
+                        topPlayerScore++;
+                    }
                     break;
 
                    default:
@@ -223,6 +245,8 @@ public class GameManager : MonoBehaviour
                 {
                     playerScores[j] = 0;
                 }
+
+                topPlayerScore = 0;
 
                 for (int j = 0; j < PlayerSkills.Count; j++)
                 {
