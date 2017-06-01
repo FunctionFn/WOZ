@@ -6026,8 +6026,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 689122736}
-  m_LocalRotation: {x: 0.27794063, y: 0.6791098, z: 0.31306037, w: -0.60295284}
-  m_LocalPosition: {x: 10.7722, y: -43.534306, z: 4.9274073}
+  m_LocalRotation: {x: -0.37044373, y: 0.32855764, z: 0.14199147, w: 0.85712296}
+  m_LocalPosition: {x: -1.4797373, y: -35.15394, z: -4.615707}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
@@ -8012,11 +8012,6 @@ Prefab:
         type: 2}
       propertyPath: PlayerNumber
       value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 114000010592206144, guid: 63e40eb59c87a164ebfebebbde3967c2,
-        type: 2}
-      propertyPath: Skill
-      value: 4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 63e40eb59c87a164ebfebebbde3967c2, type: 2}
