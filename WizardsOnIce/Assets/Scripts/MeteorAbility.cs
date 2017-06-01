@@ -56,12 +56,12 @@ public class MeteorAbility : PlayerAbility {
 
         if(Input.GetAxis("Trigger" + playerObject.GetComponent<PlayerController>().PlayerNumber) <= 0.5f)
         {
-            playerObject.GetComponent<PlayerController>().SetAnimBool("Firing", false);
+            //playerObject.GetComponent<PlayerController>().SetAnimBool("Firing", false);
         }
 
         if(playerObject.GetComponent<PlayerController>().AbilityTimer < abilityTime - 1.0f)
         {
-            playerObject.GetComponent<PlayerController>().SetAnimBool("Special", false);
+            //playerObject.GetComponent<PlayerController>().SetAnimBool("Special", false);
         }
     }
 
@@ -82,7 +82,7 @@ public class MeteorAbility : PlayerAbility {
 
         playerObject.GetComponent<PlayerController>().SetAbilityTimer(abilityTime);
 
-        playerObject.GetComponent<PlayerController>().SetAnimBool("Special", true);
+        //playerObject.GetComponent<PlayerController>().SetAnimBool("Special", true);
     }
 
     public override void TriggerAbility()
@@ -101,7 +101,7 @@ public class MeteorAbility : PlayerAbility {
             go.GetComponent<Bullet>().shooter = playerNumber;
             go.transform.GetChild(0).GetComponent<Renderer>().material = playerColor;
             FireTimer = FireTime;
-            playerObject.GetComponent<PlayerController>().SetAnimBool("Firing", true);
+            //playerObject.GetComponent<PlayerController>().SetAnimBool("Firing", true);
         }
     }
 }
