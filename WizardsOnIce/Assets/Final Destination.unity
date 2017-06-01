@@ -1921,8 +1921,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 173193928}
-  m_LocalRotation: {x: 0.11802701, y: 0.7676347, z: 0.1479842, w: -0.6122968}
-  m_LocalPosition: {x: -0.38011742, y: -29.118017, z: 4.0544806}
+  m_LocalRotation: {x: 0.27794063, y: 0.6791098, z: 0.31306037, w: -0.60295284}
+  m_LocalPosition: {x: 17.962212, y: -43.57249, z: 2.5293312}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
@@ -2939,6 +2939,11 @@ Prefab:
       propertyPath: dashCDImage
       value: 
       objectReference: {fileID: 63476605}
+    - target: {fileID: 114000010592206144, guid: 63e40eb59c87a164ebfebebbde3967c2,
+        type: 2}
+      propertyPath: Skill
+      value: 4
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 63e40eb59c87a164ebfebebbde3967c2, type: 2}
   m_IsPrefabParent: 0
@@ -6021,8 +6026,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 689122736}
-  m_LocalRotation: {x: 0.38194454, y: 0.4317091, z: 0.20870584, w: -0.7900554}
-  m_LocalPosition: {x: 5.2818713, y: -36.675915, z: -1.8387039}
+  m_LocalRotation: {x: 0.27794063, y: 0.6791098, z: 0.31306037, w: -0.60295284}
+  m_LocalPosition: {x: 10.7722, y: -43.534306, z: 4.9274073}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
@@ -8011,7 +8016,7 @@ Prefab:
     - target: {fileID: 114000010592206144, guid: 63e40eb59c87a164ebfebebbde3967c2,
         type: 2}
       propertyPath: Skill
-      value: 1
+      value: 4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 63e40eb59c87a164ebfebebbde3967c2, type: 2}
@@ -10049,6 +10054,11 @@ Prefab:
         type: 2}
       propertyPath: InitialModule.startSpeed.scalar
       value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000010592206144, guid: 63e40eb59c87a164ebfebebbde3967c2,
+        type: 2}
+      propertyPath: Skill
+      value: 4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 63e40eb59c87a164ebfebebbde3967c2, type: 2}
@@ -16289,6 +16299,11 @@ Prefab:
     - target: {fileID: 4000012421787042, guid: 63e40eb59c87a164ebfebebbde3967c2, type: 2}
       propertyPath: m_LocalScale.y
       value: 0.44393522
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000010592206144, guid: 63e40eb59c87a164ebfebebbde3967c2,
+        type: 2}
+      propertyPath: Skill
+      value: 4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 63e40eb59c87a164ebfebebbde3967c2, type: 2}
