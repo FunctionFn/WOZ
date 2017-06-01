@@ -14,6 +14,13 @@ public class PlayerController : MonoBehaviour
     public GameObject[] models;
     public Material[] materials;
 
+    GameObject[][] meshes;
+
+    public GameObject[] fireMeshes;
+    public GameObject[] earthMeshes;
+    public GameObject[] magnetMeshes;
+    public GameObject[] lightningMeshes;
+
     public GameObject mainCamera;
     public GameObject missilePrefab;
     public GameObject grabBox;
@@ -128,8 +135,11 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         //audio = GetComponent<AudioSource> ();
-
-        
+        meshes = new GameObject[4][];
+        meshes[0] = fireMeshes;
+        meshes[1] = earthMeshes;
+        meshes[2] = magnetMeshes;
+        meshes[3] = lightningMeshes;
 
         rb = GetComponent<Rigidbody>();
 
@@ -174,9 +184,15 @@ public class PlayerController : MonoBehaviour
 
         if (models[(int)Skill] != null)
         {
-            for (int i = 0; i < materials.Length; ++i)
+            for (int i = 0; i < meshes[(int)Skill].Length; ++i)
             {
-                materials[i].color = color.color;
+                for(int j = 0; j < meshes[(int)Skill][i].GetComponent<Renderer>().materials.Length; ++j)
+                {
+                    MaterialPropertyBlock prop = new MaterialPropertyBlock();
+                    prop.SetColor("_Color", color.color);
+                    meshes[(int)Skill][i].GetComponent<Renderer>().SetPropertyBlock(prop);
+                }
+                
             }
             wizardModel.gameObject.SetActive(false);
             wizardModel = models[(int)Skill].transform;
