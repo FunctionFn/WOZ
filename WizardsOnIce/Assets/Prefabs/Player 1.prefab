@@ -4847,7 +4847,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000010765101244}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -11.25, y: -1.6, z: 6.42}
+  m_LocalPosition: {x: -3.47, y: -1.6, z: 3.47}
   m_LocalScale: {x: 0.6, y: 0.6, z: 0.6}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
@@ -6184,6 +6184,13 @@ MonoBehaviour:
   - {fileID: 2100000, guid: 774cd31094611824cb45972a52507a8f, type: 2}
   - {fileID: 2100000, guid: c28c2763a1b1fce4585bc7ca78d00801, type: 2}
   - {fileID: 2100000, guid: 104127b5c83297f4391fdab5bc03dab0, type: 2}
+  fireMeshes: []
+  earthMeshes:
+  - {fileID: 1000013463006668}
+  - {fileID: 1000010459074648}
+  - {fileID: 1000012101728704}
+  magnetMeshes: []
+  lightningMeshes: []
   mainCamera: {fileID: 0}
   missilePrefab: {fileID: 1000011816276132, guid: 9934efbff3871de45bead5491db78df5,
     type: 2}
