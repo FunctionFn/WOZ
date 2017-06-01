@@ -53,6 +53,16 @@ public class MeteorAbility : PlayerAbility {
             
             playerObject.GetComponent<PlayerController>().turnRate = aimTurnRate;
         }
+
+        if(Input.GetAxis("Trigger" + playerObject.GetComponent<PlayerController>().PlayerNumber) <= 0.5f)
+        {
+            playerObject.GetComponent<PlayerController>().SetAnimBool("Firing", false);
+        }
+
+        if(playerObject.GetComponent<PlayerController>().AbilityTimer < abilityTime - 1.0f)
+        {
+            playerObject.GetComponent<PlayerController>().SetAnimBool("Special", false);
+        }
     }
 
     public void LaunchMeteor()
@@ -71,6 +81,8 @@ public class MeteorAbility : PlayerAbility {
         go2.transform.GetChild(0).GetComponent<Renderer>().material = indicatorColor;
 
         playerObject.GetComponent<PlayerController>().SetAbilityTimer(abilityTime);
+
+        playerObject.GetComponent<PlayerController>().SetAnimBool("Special", true);
     }
 
     public override void TriggerAbility()
@@ -89,6 +101,7 @@ public class MeteorAbility : PlayerAbility {
             go.GetComponent<Bullet>().shooter = playerNumber;
             go.transform.GetChild(0).GetComponent<Renderer>().material = playerColor;
             FireTimer = FireTime;
+            playerObject.GetComponent<PlayerController>().SetAnimBool("Firing", true);
         }
     }
 }

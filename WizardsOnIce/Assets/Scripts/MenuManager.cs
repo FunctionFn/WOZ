@@ -169,7 +169,7 @@ public class MenuManager : MonoBehaviour {
                 if (Input.GetButtonDown("Jump" + i.ToString()))
                 {
                     GameManager.Inst.currMenu = GameManager.MenuScreen.HowTo;
-                    canvasUI.transform.GetChild(0).GetComponent<Image>().sprite = Resources.Load<Sprite>("MenuImages/HowToPlayScreen_Transparent");
+                    canvasUI.transform.GetChild(0).GetComponent<Image>().sprite = Resources.Load<Sprite>("MenuImages/FinalHowToPlayScreen_Transparent");
                     canvasUI.transform.GetChild(1).GetComponent<Transform>().localScale = new Vector3(1.0f, 1.0f, 1.0f);
                     canvasUI.transform.GetChild(2).GetComponent<Transform>().localScale = new Vector3(0.0f, 0.0f, 0.0f);
                     canvasUI.transform.GetChild(3).GetComponent<Transform>().localScale = new Vector3(0.0f, 0.0f, 0.0f);

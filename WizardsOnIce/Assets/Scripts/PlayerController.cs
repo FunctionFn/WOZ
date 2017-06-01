@@ -180,7 +180,7 @@ public class PlayerController : MonoBehaviour
             wizardModel.gameObject.SetActive(false);
             wizardModel = models[(int)Skill].transform;
             wizardModel.gameObject.SetActive(true);
-
+            modelAnimator = wizardModel.GetComponent<Animator>();
             
         }
 
@@ -786,6 +786,18 @@ public class PlayerController : MonoBehaviour
     public void PlayAnimation()
     {
         modelAnimator.speed = 1.0f;
+    }
+
+    public void EnableWinningPlayerParticles(bool b)
+    {
+        if (b)
+        {
+            particles.GetComponent<ParticleSystemRenderer>().material = Resources.Load<Material>("Particles/ParticleStar");
+        }
+        else
+        {
+            particles.GetComponent<ParticleSystemRenderer>().material = Resources.Load<Material>("Particles/ParticleGlow");
+        }
     }
 }
 
