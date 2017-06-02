@@ -32,6 +32,7 @@ public class PlayerController : MonoBehaviour
     public GameObject bloodParticles;
     public GameObject warpParticles;
     public GameObject cooldownParticles;
+    public GameObject dashCDParticles;
 
     public GameObject stunPrefab;
     public float stunVerticalOffset;
@@ -318,12 +319,16 @@ public class PlayerController : MonoBehaviour
 
         if(DashTimer <= 0)
         {
-            dashCDImage.enabled = false;
+            //dashCDImage.enabled = false;
+            if (dashCDParticles.GetComponent<ParticleSystem>().isPlaying)
+            {
+                dashCDParticles.GetComponent<ParticleSystem>().Stop();
+            }
         }
-        else
-        {
-            dashCDImage.enabled = true;
-        }
+        //else
+        //{
+        //    dashCDImage.enabled = true;
+        //}
 
         if (GrabTimer <= 0)
         {
@@ -383,6 +388,10 @@ public class PlayerController : MonoBehaviour
 
         if(movementState == State.Dash && state != State.Dash)
         {
+            if (!dashCDParticles.GetComponent<ParticleSystem>().isPlaying)
+            {
+                dashCDParticles.GetComponent<ParticleSystem>().Play();
+            }
             rb.useGravity = true;
             //AudioSource.PlayClipAtPoint (WindDash, new Vector3 (0,19,0));
 	    }
@@ -396,7 +405,6 @@ public class PlayerController : MonoBehaviour
         {
             //AudioSource.PlayClipAtPoint (WindDash, new Vector3 (0,19,0));
 			rb.useGravity = false;
-            
         }
 
         if (movementState == State.Countdown)
@@ -550,8 +558,8 @@ public class PlayerController : MonoBehaviour
         
         AbilityTimer = t;
         AbilityTime = t;
-        cdtext.fillAmount = 1 - AbilityTimer / AbilityTime;
-        cdtext.enabled = true;
+        //cdtext.fillAmount = 1 - AbilityTimer / AbilityTime;
+        //cdtext.enabled = true;
 
         // Set Up Cooldown Particles
         cooldownParticles.GetComponent<ParticleSystemCooldownParticle>().ResetRadius(AbilityTime);
@@ -720,8 +728,8 @@ public class PlayerController : MonoBehaviour
             currentMaxSpeed = 9999999.0f;
             DashTimer = DashTime + dashCooldown;
 
-            dashCDImage.fillAmount = 1 - DashTimer / (DashTime + dashCooldown);
-            dashCDImage.enabled = true;
+            //dashCDImage.fillAmount = 1 - DashTimer / (DashTime + dashCooldown);
+            //dashCDImage.enabled = true;
 
             ChangeMovementState(State.Dash);
 
@@ -767,7 +775,7 @@ public class PlayerController : MonoBehaviour
     public void CooldownUpdate()
     {
         cdtext.fillAmount = 1 - AbilityTimer / AbilityTime;
-        dashCDImage.fillAmount = 1 - DashTimer / (DashTime + dashCooldown);
+        //dashCDImage.fillAmount = 1 - DashTimer / (DashTime + dashCooldown);
         //GameObject WorldObject;
 
         //this is the ui element
