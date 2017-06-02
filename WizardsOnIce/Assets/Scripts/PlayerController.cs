@@ -21,6 +21,8 @@ public class PlayerController : MonoBehaviour
     public GameObject[] magnetMeshes;
     public GameObject[] lightningMeshes;
 
+    public bool[][] fireMeshIndices;
+
     public GameObject mainCamera;
     public GameObject missilePrefab;
     public GameObject grabBox;
@@ -158,6 +160,10 @@ public class PlayerController : MonoBehaviour
         if (Skill == SkillID.Meteor)
         {
             playerSkill = gameObject.AddComponent<MeteorAbility>();
+
+            fireMeshIndices = new bool[2][];
+            fireMeshIndices[0] = new bool[8] { true, false, false, false, false, true, true, false };
+            fireMeshIndices[1] = new bool[3] { false, false, true };
         }
         //else if (Skill == SkillID.IceWall)
         //{
@@ -184,15 +190,41 @@ public class PlayerController : MonoBehaviour
 
         if (models[(int)Skill] != null)
         {
-            for (int i = 0; i < meshes[(int)Skill].Length; ++i)
+
+            switch (Skill)
             {
-                for(int j = 0; j < meshes[(int)Skill][i].GetComponent<Renderer>().materials.Length; ++j)
-                {
-                    MaterialPropertyBlock prop = new MaterialPropertyBlock();
-                    prop.SetColor("_Color", color.color);
-                    meshes[(int)Skill][i].GetComponent<Renderer>().SetPropertyBlock(prop);
-                }
-                
+                case SkillID.Earth:
+                    for (int i = 0; i < meshes[(int)Skill].Length; ++i)
+                    {
+                        for (int j = 0; j < meshes[(int)Skill][i].GetComponent<Renderer>().materials.Length; ++j)
+                        {
+                            MaterialPropertyBlock prop = new MaterialPropertyBlock();
+                            prop.SetColor("_Color", color.color);
+                            meshes[(int)Skill][i].GetComponent<Renderer>().SetPropertyBlock(prop);
+                        }
+
+                    }
+                    break;
+                case SkillID.Meteor:
+                    for (int i = 0; i < meshes[(int)Skill].Length; ++i)
+                    {
+                        for (int j = 0; j < meshes[(int)Skill][i].GetComponent<Renderer>().materials.Length; ++j)
+                        {
+                            if (fireMeshIndices[i][j] == true)
+                            {
+                                MaterialPropertyBlock prop = new MaterialPropertyBlock();
+                                prop.SetColor("_Color", color.color);
+                                meshes[(int)Skill][i].GetComponent<Renderer>().materials[j].SetColor("_Color", color.color);
+
+                                if(i == 1)
+                                {
+                                    meshes[(int)Skill][i].GetComponent<Renderer>().materials[j].color *= 0.4f;
+                                }
+                            }
+                        }
+
+                    }
+                    break;
             }
             wizardModel.gameObject.SetActive(false);
             wizardModel = models[(int)Skill].transform;
