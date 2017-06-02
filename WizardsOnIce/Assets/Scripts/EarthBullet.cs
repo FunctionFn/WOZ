@@ -91,6 +91,10 @@ public class EarthBullet : Bullet
             {
                 iTween.PunchPosition(Camera.main.gameObject, new Vector3(0.0f, punchAmt * 5, 0.0f), 0.3f);
                 other.gameObject.GetComponent<PlayerController>().DashTimer = other.gameObject.GetComponent<PlayerController>().DashTime + other.gameObject.GetComponent<PlayerController>().dashCooldown;
+                if (!other.gameObject.GetComponent<PlayerController>().dashCDParticles.GetComponent<ParticleSystem>().isPlaying)
+                {
+                    other.gameObject.GetComponent<PlayerController>().dashCDParticles.GetComponent<ParticleSystem>().Play();
+                }
             }
             Destroy(gameObject);
         }
