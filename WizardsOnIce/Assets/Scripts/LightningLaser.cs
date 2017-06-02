@@ -93,7 +93,13 @@ public class LightningLaser : MonoBehaviour {
             AudioSource.PlayClipAtPoint(onHit, transform.position, Mathf.Clamp(chargeAmt, 0.2f, 1.0f));
             //fully charged shot disables dash
             if (chargeBonus > 0)
+            {
                 other.gameObject.GetComponent<PlayerController>().DashTimer = other.gameObject.GetComponent<PlayerController>().DashTime + other.gameObject.GetComponent<PlayerController>().dashCooldown;
+                if (!other.gameObject.GetComponent<PlayerController>().dashCDParticles.GetComponent<ParticleSystem>().isPlaying)
+                {
+                    other.gameObject.GetComponent<PlayerController>().dashCDParticles.GetComponent<ParticleSystem>().Play();
+                }
+            } 
         }
         else if(other.GetComponent<IceBlockTriggerZone>())
         {
