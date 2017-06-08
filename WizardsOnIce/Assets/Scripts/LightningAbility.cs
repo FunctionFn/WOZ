@@ -31,7 +31,13 @@ public class LightningAbility : PlayerAbility
     public float currentAmmo;
     public float ammoDrainSpeed;
     public float ammoGainSpeed;
-    
+
+    public float attackTransitionTimer;
+    public float attackTransitionTime = 0.25f;
+
+    public float specialTransitionTimer;
+    public float specialTransitionTime = 0.25f;
+
 
     public GameObject AreaOfAffect;
     public GameObject chargingLaser;
@@ -74,6 +80,29 @@ public class LightningAbility : PlayerAbility
     // Update is called once per frame
     void Update()
     {
+        specialTransitionTimer -= Time.deltaTime;
+        attackTransitionTimer -= Time.deltaTime;
+
+        if (charging && specialTransitionTimer <= 0.0f)
+        {
+            playerObject.GetComponent<PlayerController>().PauseAnimation();
+        }
+        else if (specialTransitionTimer <= 0.0f)
+        {
+            playerObject.GetComponent<PlayerController>().PlayAnimation();
+            specialTransitionTimer = 99999999.9f;
+        }
+
+        if (shooting && attackTransitionTimer <= 0.0f)
+        {
+            playerObject.GetComponent<PlayerController>().PauseAnimation();
+        }
+        else if (attackTransitionTimer <= 0.0f)
+        {
+            playerObject.GetComponent<PlayerController>().PlayAnimation();
+            specialTransitionTimer = 99999999.9f;
+        }
+
         FireTimer -= Time.deltaTime;
 
         if ((Input.GetAxis("Trigger" + playerNumber) < 0.5f && Input.GetAxis("Trigger" + playerNumber) > -0.5f))
@@ -107,6 +136,8 @@ public class LightningAbility : PlayerAbility
             {
                 currentAmmo = 100.0f;
             }
+
+            playerObject.GetComponent<PlayerController>().SetAnimBool("Attacking", false);
         }
         
         if ((Input.GetButtonUp("AbilityTrigger" + playerObject.GetComponent<PlayerController>().PlayerNumber) || currentCharge >= 1.0f)
@@ -115,6 +146,7 @@ public class LightningAbility : PlayerAbility
         {
             LightningLaser();
             playerObject.GetComponent<PlayerController>().turnRate = baseTurnSpeed;
+            playerObject.GetComponent<PlayerController>().SetAnimBool("Charging", false);
             //meteorReticle.GetComponent<SkinnedMeshRenderer>().enabled = false;
         }
 
@@ -176,7 +208,9 @@ public class LightningAbility : PlayerAbility
             chargingLaser.transform.GetChild(0).GetComponent<BoxCollider>().enabled = false;
             charging = true;
 
+            playerObject.GetComponent<PlayerController>().SetAnimBool("Charging", true);
 
+            specialTransitionTimer = specialTransitionTime;
         }
         //else
         //{
@@ -195,6 +229,10 @@ public class LightningAbility : PlayerAbility
             AreaOfAffect.transform.GetChild(0).GetComponent<LightningAttack>().shooterPlayerObject = playerObject;
             AreaOfAffect.transform.GetChild(0).GetComponent<LightningAttack>().shooter = playerNumber;
             AreaOfAffect.transform.GetChild(1).GetComponent<Renderer>().material = indicatorColor;
+
+            playerObject.GetComponent<PlayerController>().SetAnimBool("Attacking", true);
+
+            attackTransitionTimer = attackTransitionTime;
         }
         else
         {

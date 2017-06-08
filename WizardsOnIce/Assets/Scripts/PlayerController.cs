@@ -225,6 +225,22 @@ public class PlayerController : MonoBehaviour
 
                     }
                     break;
+                case SkillID.MagneticBlast:
+                    for (int i = 0; i < meshes[(int)Skill].Length; ++i)
+                    {
+                        MaterialPropertyBlock prop = new MaterialPropertyBlock();
+                        prop.SetColor("_Color", color.color);
+                        meshes[(int)Skill][i].GetComponent<Renderer>().SetPropertyBlock(prop);
+                    }
+                    break;
+                case SkillID.Lightning:
+                    for (int i = 0; i < meshes[(int)Skill].Length; ++i)
+                    {
+                        MaterialPropertyBlock prop = new MaterialPropertyBlock();
+                        prop.SetColor("_Color", color.color);
+                        meshes[(int)Skill][i].GetComponent<Renderer>().SetPropertyBlock(prop);
+                    }
+                    break;
             }
             wizardModel.gameObject.SetActive(false);
             wizardModel = models[(int)Skill].transform;
