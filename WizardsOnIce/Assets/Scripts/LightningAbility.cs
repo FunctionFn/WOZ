@@ -83,9 +83,15 @@ public class LightningAbility : PlayerAbility
         specialTransitionTimer -= Time.deltaTime;
         attackTransitionTimer -= Time.deltaTime;
 
+        if(specialTransitionTimer <= specialTransitionTime)
+        {
+            Debug.Log(specialTransitionTimer);
+        }
+        
         if (charging && specialTransitionTimer <= 0.0f)
         {
             playerObject.GetComponent<PlayerController>().PauseAnimation();
+            
         }
         else if (specialTransitionTimer <= 0.0f)
         {
@@ -100,7 +106,7 @@ public class LightningAbility : PlayerAbility
         else if (attackTransitionTimer <= 0.0f)
         {
             playerObject.GetComponent<PlayerController>().PlayAnimation();
-            specialTransitionTimer = 99999999.9f;
+            attackTransitionTimer = 99999999.9f;
         }
 
         FireTimer -= Time.deltaTime;
@@ -211,6 +217,7 @@ public class LightningAbility : PlayerAbility
             playerObject.GetComponent<PlayerController>().SetAnimBool("Charging", true);
 
             specialTransitionTimer = specialTransitionTime;
+           
         }
         //else
         //{
