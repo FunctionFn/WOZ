@@ -171,6 +171,7 @@ public class MenuManager : MonoBehaviour {
                     GameManager.Inst.currMenu = GameManager.MenuScreen.HowTo;
                     canvasUI.transform.GetChild(0).GetComponent<Image>().sprite = Resources.Load<Sprite>("MenuImages/FinalHowToPlayScreen_Transparent");
                     canvasUI.transform.GetChild(1).GetComponent<Transform>().localScale = new Vector3(1.0f, 1.0f, 1.0f);
+                    canvasUI.transform.GetChild(5).GetComponent<Transform>().localScale = new Vector3(1.0f, 1.0f, 1.0f);
                     canvasUI.transform.GetChild(2).GetComponent<Transform>().localScale = new Vector3(0.0f, 0.0f, 0.0f);
                     canvasUI.transform.GetChild(3).GetComponent<Transform>().localScale = new Vector3(0.0f, 0.0f, 0.0f);
                     canvasUI.transform.GetChild(4).GetComponent<Transform>().localScale = new Vector3(0.0f, 0.0f, 0.0f);
@@ -219,7 +220,22 @@ public class MenuManager : MonoBehaviour {
                     canvasUI.transform.GetChild(2).GetComponent<Transform>().localScale = new Vector3(1.0f, 1.0f, 1.0f);
                     canvasUI.transform.GetChild(3).GetComponent<Transform>().localScale = new Vector3(1.0f, 1.0f, 1.0f);
                     canvasUI.transform.GetChild(4).GetComponent<Transform>().localScale = new Vector3(1.0f, 1.0f, 1.0f);
+                    canvasUI.transform.GetChild(5).GetComponent<Transform>().localScale = new Vector3(0.0f, 0.0f, 0.0f);
+                    canvasUI.transform.GetChild(6).GetComponent<Transform>().localScale = new Vector3(0.0f, 0.0f, 0.0f);
                     PlayMenuBoop();
+                }
+
+                if ((Input.GetAxis("Horizontal" + i.ToString()) > 0.5 || Input.GetAxis("DPHorizontal" + i.ToString()) > 0.5))
+                {
+                    canvasUI.transform.GetChild(0).GetComponent<Image>().sprite = Resources.Load<Sprite>("MenuImages/FinalHowToPlayScreen2_Transparent");
+                    canvasUI.transform.GetChild(5).GetComponent<Transform>().localScale = new Vector3(0.0f, 0.0f, 0.0f);
+                    canvasUI.transform.GetChild(6).GetComponent<Transform>().localScale = new Vector3(1.0f, 1.0f, 1.0f);
+                }
+                else if ((Input.GetAxis("Horizontal" + i.ToString()) < -0.5 || Input.GetAxis("DPHorizontal" + i.ToString()) < -0.5))
+                {
+                    canvasUI.transform.GetChild(0).GetComponent<Image>().sprite = Resources.Load<Sprite>("MenuImages/FinalHowToPlayScreen_Transparent");
+                    canvasUI.transform.GetChild(5).GetComponent<Transform>().localScale = new Vector3(1.0f, 1.0f, 1.0f);
+                    canvasUI.transform.GetChild(6).GetComponent<Transform>().localScale = new Vector3(0.0f, 0.0f, 0.0f);
                 }
             }
         }
