@@ -22,6 +22,7 @@ public class PlayerController : MonoBehaviour
     public GameObject[] lightningMeshes;
 
     public bool[][] fireMeshIndices;
+    public bool[][] lightningMeshIndices;
 
     public GameObject mainCamera;
     public GameObject missilePrefab;
@@ -181,6 +182,11 @@ public class PlayerController : MonoBehaviour
         else if (Skill == SkillID.Lightning)
         {
             playerSkill = gameObject.AddComponent<LightningAbility>();
+
+            lightningMeshIndices = new bool[2][];
+
+            lightningMeshIndices[0] = new bool[4] { false, false, true, true };
+            lightningMeshIndices[1] = new bool[1] { true };
         }
         else if (Skill == SkillID.None)
         {
@@ -217,6 +223,34 @@ public class PlayerController : MonoBehaviour
                                 meshes[(int)Skill][i].GetComponent<Renderer>().materials[j].SetColor("_Color", color.color);
 
                                 if(i == 1)
+                                {
+                                    meshes[(int)Skill][i].GetComponent<Renderer>().materials[j].color *= 0.4f;
+                                }
+                            }
+                        }
+
+                    }
+                    break;
+                case SkillID.MagneticBlast:
+                    for (int i = 0; i < meshes[(int)Skill].Length; ++i)
+                    {
+                        MaterialPropertyBlock prop = new MaterialPropertyBlock();
+                        prop.SetColor("_Color", color.color);
+                        meshes[(int)Skill][i].GetComponent<Renderer>().SetPropertyBlock(prop);
+                    }
+                    break;
+                case SkillID.Lightning:
+                    for (int i = 0; i < meshes[(int)Skill].Length; ++i)
+                    {
+                        for (int j = 0; j < meshes[(int)Skill][i].GetComponent<Renderer>().materials.Length; ++j)
+                        {
+                            if (lightningMeshIndices[i][j] == true)
+                            {
+                                MaterialPropertyBlock prop = new MaterialPropertyBlock();
+                                prop.SetColor("_Color", color.color);
+                                meshes[(int)Skill][i].GetComponent<Renderer>().materials[j].SetColor("_Color", color.color);
+
+                                if (i == 0 && j == 3)
                                 {
                                     meshes[(int)Skill][i].GetComponent<Renderer>().materials[j].color *= 0.4f;
                                 }
