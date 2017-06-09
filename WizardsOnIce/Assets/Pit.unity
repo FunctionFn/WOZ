@@ -1308,6 +1308,11 @@ Prefab:
       propertyPath: dashCDImage
       value: 
       objectReference: {fileID: 1574708896}
+    - target: {fileID: 114000010592206144, guid: 63e40eb59c87a164ebfebebbde3967c2,
+        type: 2}
+      propertyPath: Skill
+      value: 4
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 63e40eb59c87a164ebfebebbde3967c2, type: 2}
   m_IsPrefabParent: 0
@@ -3092,8 +3097,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 406268405}
-  m_LocalRotation: {x: -0.5247328, y: 0.0022216018, z: 0.0013676534, w: 0.85126305}
-  m_LocalPosition: {x: 8.656792, y: -58.93539, z: -14.855567}
+  m_LocalRotation: {x: -0.47560737, y: 0.057454575, z: 0.03115, w: 0.8772265}
+  m_LocalPosition: {x: 1.8880378, y: -48.456673, z: -14.084695}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
@@ -14046,6 +14051,11 @@ Prefab:
       propertyPath: dashCDImage
       value: 
       objectReference: {fileID: 2033062611}
+    - target: {fileID: 114000010592206144, guid: 63e40eb59c87a164ebfebebbde3967c2,
+        type: 2}
+      propertyPath: Skill
+      value: 4
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 63e40eb59c87a164ebfebebbde3967c2, type: 2}
   m_IsPrefabParent: 0
