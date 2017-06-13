@@ -149,6 +149,7 @@ public class PlayerController : MonoBehaviour
         ChangeMovementState(State.GroundedMovement);
         
         holding = false;
+        transform.Find("PlayerCenter/TargetReticle/Shockwave_Export/ShockWave").gameObject.GetComponent<SkinnedMeshRenderer>().material = indicatorColor;
 
         // Change this to be added by menu system!!
         int output;

@@ -14,8 +14,7 @@ public class LightningAttack : MonoBehaviour {
 
     public List<PlayerController> PlayersHit;
     //public float environmentDamage;
-
-    public 
+    
 
     // Use this for initialization
     void Start () {
